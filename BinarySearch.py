@@ -10,7 +10,7 @@ def binarySearchRecursive(list, num_to_find):
         return print("Found")
     elif len(list) == 1:
         return print("NOT Found", -1)
-    else:
+    else: 
         if num_to_find < list[idx_middle]:
             binarySearchRecursive(list[:idx_middle], num_to_find)
         elif num_to_find > list[idx_middle]:   
