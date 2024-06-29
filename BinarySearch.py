@@ -85,4 +85,4 @@ def binarySearchWhileLoop(list, x):
                 begin = mid + 1
 
 
-binarySearchWhileLoop(list, num_to_find)
+binarySearchWhileLoop(list, num_to_find)    
