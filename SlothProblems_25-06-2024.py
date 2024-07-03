@@ -27,7 +27,7 @@
 #   "#"
 # ] 1x1 box
 
-def makeBox(n):
+def make_box(n):
     final_box = ""
     # Create first and last row
     first_and_last_row = ""
@@ -51,10 +51,10 @@ def makeBox(n):
             final_box += middle_rows + "" + "\n"            
     return final_box
 
-print(makeBox(5))
+print(make_box(5))
 
 
-def makeBox1(n):
+def make_box1(n):
     final_box = ""
     # loop through the rows
     for row in range(n):
@@ -75,4 +75,4 @@ def makeBox1(n):
         final_box += row_string
     return final_box
 
-print(makeBox1(5)) 
+print(make_box1(5)) 

@@ -4,7 +4,7 @@ num_to_find = 2
 
 print("Binary Search Recursive")
 
-def binarySearchRecursive(list, num_to_find):
+def binary_search_recursive(list, num_to_find):
     idx_middle = len(list) // 2
     if list[idx_middle] == num_to_find:
         return print("Found")
@@ -12,17 +12,17 @@ def binarySearchRecursive(list, num_to_find):
         return print("NOT Found", -1)
     else: 
         if num_to_find < list[idx_middle]:
-            binarySearchRecursive(list[:idx_middle], num_to_find)
+            binary_search_recursive(list[:idx_middle], num_to_find)
         elif num_to_find > list[idx_middle]:   
-            binarySearchRecursive(list[idx_middle + 1:], num_to_find)
+            binary_search_recursive(list[idx_middle + 1:], num_to_find)
 
-binarySearchRecursive(list, num_to_find)
+binary_search_recursive(list, num_to_find)
 
 
 print()
 print("Binary Search Recursive With Idx")
 
-def binarySearchRecursiveWithIdx(list, begin, end, num_to_find):
+def binary_search_recursive_with_idx(list, begin, end, num_to_find):
     middle = begin + (end - begin) // 2
     if middle == len(list):
         return print("Not Found", -1)
@@ -32,18 +32,18 @@ def binarySearchRecursiveWithIdx(list, begin, end, num_to_find):
         return print("NOT Found", -1)
     else:
         if num_to_find < list[middle]:
-            binarySearchRecursiveWithIdx(list, 0, middle, num_to_find)
+            binary_search_recursive_with_idx(list, 0, middle, num_to_find)
         elif num_to_find > list[middle]:
-            binarySearchRecursiveWithIdx(list, middle + 1, len(list), num_to_find)
+            binary_search_recursive_with_idx(list, middle + 1, len(list), num_to_find)
 
 
-binarySearchRecursiveWithIdx(list, 0, len(list) - 1, num_to_find)
+binary_search_recursive_with_idx(list, 0, len(list) - 1, num_to_find)
 
 
 print()
 print("Binary Search Recursive With Idx GeeksForGeeks")
 
-def binarySearchRecursiveWithIdxGeeksForGeeks(list, begin, end, num_to_find):
+def binary_search_recursive_with_idx_GeeksForGeeks(list, begin, end, num_to_find):
     #Check base case
     if end >= begin:
         mid = begin + (end - begin) // 2
@@ -54,22 +54,22 @@ def binarySearchRecursiveWithIdxGeeksForGeeks(list, begin, end, num_to_find):
 
         # If element is smaller than min, then it can only be present in the left subarray
         elif list[mid] > num_to_find:
-            return binarySearchRecursiveWithIdxGeeksForGeeks(list, begin, mid - 1, num_to_find)
+            return binary_search_recursive_with_idx_GeeksForGeeks(list, begin, mid - 1, num_to_find)
         # Else the element can only be present in the right subarray
         else:
-            return binarySearchRecursiveWithIdxGeeksForGeeks(list, mid + 1, end, num_to_find)
+            return binary_search_recursive_with_idx_GeeksForGeeks(list, mid + 1, end, num_to_find)
         
     # Element is not present
     else:
         return print("NOT FOUND", -1)
 
-binarySearchRecursiveWithIdxGeeksForGeeks(list, 0, len(list) - 1, num_to_find)
+binary_search_recursive_with_idx_GeeksForGeeks(list, 0, len(list) - 1, num_to_find)
 
 
 print()
 print("Binary Search While loop")
 
-def binarySearchWhileLoop(list, x):
+def binary_search_whileLoop(list, x):
     begin = 0
     end = len(list) - 1
     while True:
@@ -85,4 +85,4 @@ def binarySearchWhileLoop(list, x):
                 begin = mid + 1
 
 
-binarySearchWhileLoop(list, num_to_find)    
+binary_search_whileLoop(list, num_to_find)    
