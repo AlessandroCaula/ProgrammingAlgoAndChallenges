@@ -72,4 +72,37 @@ target = 3
 if (find_first_occurrence(arr, target) == -1):
     print("Element not found")
 else:
-    print("Element found at index: " + str(find_first_occurrence(arr, target)))
+    print("First element occurrence found at index: " + str(find_first_occurrence(arr, target)))
+
+
+# Program to find first and last occurrences of a number in a given sorted array, using Binary Search recursively.
+# If x is present in arr[] then returns the index of FIRST occurrence of x in arr[0..n-1], otherwise returns -1.
+
+def first_occurrence(arr, low, high, x, n):
+    if (high >= low):
+        mid = low + (high - low) // 2
+        if ((mid == 0 or x > arr[mid - 1]) and arr[mid] == x):
+            return mid
+        elif (x > arr[mid]):
+            return first_occurrence(arr, (mid + 1), high, x, n)
+        else:
+            return first_occurrence(arr, low, (mid - 1), x, n)
+    return -1
+
+# If x is present in arr[] then returns the index of LAST occurrence of x in arr[0..n-1], otherwise returns -1.
+def last_occurrence(arr, low, high, x, n):
+    if (high >= low):
+        mid = low + (high - low) // 2
+        if ((mid == n - 1 or x < arr[mid + 1]) and arr[mid] == x):
+            return mid
+        elif (x < arr[mid]):
+            return last_occurrence(arr, low, (mid - 1), x, n)
+        else:
+            return last_occurrence(arr, (mid + 1), high, x, n)
+    return -1
+
+arr = [1, 2, 2, 2, 2, 3, 4, 7, 8, 8]
+n = len(arr)
+x = 8
+print("First occurrence: ", first_occurrence(arr, 0, n - 1, x, n))
+print("Last occurrence: ", last_occurrence(arr, 0, n - 1, x, n))
