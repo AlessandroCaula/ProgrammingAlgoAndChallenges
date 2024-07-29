@@ -25,10 +25,9 @@ body{
 }
 
 .wrapper{
+    /* The backdrop-filter property lets you apply graphical effects such as blurring or color shifting to the area behind an element */
     backdrop-filter: blur(5.5px);
     -webkit-backdrop-filter: blur(5.5px);
-    background: rgba(255, 255, 255, 0.75);
-    border: 1px solid rgba(255, 255, 255, 0.01);
     border-radius: 16px;
     box-shadow: 0 4px 30px rgba(35, 35, 35, 0.1);
     color: #232323;
@@ -39,4 +38,75 @@ body{
     flex-basis: 400px;
     height: 540px;
     padding: 20px 35px;
+}
+
+.screen{
+    backdrop-filter: blur(5.5px);
+    -webkit-backdrop-filter: blur(5.5px);
+    background: rgba(255, 255, 255, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.01);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(35, 35, 35, 0.1);
+    color: #232323;
+    font-size: 35px;
+    overflow: auto;
+    padding: 20px;
+    text-align: right;
+    width: 326px;
+}
+
+.calc-button-row{
+    display: flex;
+    justify-content: space-between;
+    margin: 5% 0;
+}
+
+.calc-button{
+    backdrop-filter: blur(5.5px);
+    -webkit-backdrop-filter: blur(5.5px);
+    background: rgba(255, 255, 255, 0.75);
+    border: 1px solid rgba(35, 35, 35, 0.1);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(35, 35, 35, 0.1);
+    color: #232323;
+    flex-basis: 20%;
+    /* The inherit keyword specifies that a property should inherit its value from its parent element. (body in this case) */
+    font-family: inherit;
+    font-size: 24px;
+    height: 65px;
+}
+
+/* The :last-child selector matches every element that is the last child of its parent */
+.calc-button:last-child{
+    backdrop-filter: blur(5.5px);
+    -webkit-backdrop-filter: blur(5.5px);
+    background: rgba(255, 255, 255, 0.75);
+    border: 1px solid rgba(35, 35, 35, 0.1);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(35, 35, 35, 0.1);
+    color: #fff;
+    background: #d72880;
+}
+
+/* The :hover selector is used to select elements when you mouse over them. The :hover selector can be used on all elements */
+.calc-button:last-child:hover{
+    background-color: inherit;
+    color: inherit;
+}
+
+.calc-button:hover{
+    background-color: inherit;
+}
+
+/* The :active selector is used to select and style the active link. A link become active when you click on it */
+.calc-button:active{
+    background-color: #ffef78;
+}
+
+.double{
+    flex-basis: 47%;
+}
+
+.triple{
+    flex-basis: 73%;
 }
