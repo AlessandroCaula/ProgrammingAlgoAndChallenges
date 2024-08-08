@@ -13,6 +13,7 @@ def hide_password():
 
 hide_password()
 
+## Extra Challenge
 '''
 Your new company has a list of figures saved in a list. The issue is that these numbers have no separator. 
 The numbers are saved in the following format: 
