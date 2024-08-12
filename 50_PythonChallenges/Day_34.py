@@ -20,18 +20,11 @@ Source:Wikipedia
 
 import csv
 
-#def just_digits():
-#    with open('python.csv', 'r') as file_to_open:
-#        csv_reader = csv.reader(file_to_open)
-#        for row in csv_reader:
-#            print(row)
-#    return
-
-
-import pandas as pd
 def just_digits():
-    csv_file = open('D:\PythonScripts\ProgrammingAlgoAndChallenges\50 Python Challenges\python.txt', 'r')
-    print(csv_file)
+    with open('d:/PythonScripts/ProgrammingAlgoAndChallenges/50_PythonChallenges/Day_34_File.csv', 'r') as file_to_open:
+        file = file_to_open.read().split()
+        list_of_digits = [word for word in file if word.isdigit()]
+    return list_of_digits
 
 print(just_digits())
 
