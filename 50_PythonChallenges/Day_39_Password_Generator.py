@@ -86,4 +86,4 @@ def generate_password1():
         password1.append(password)
     return ''.join(password1)
     
-print(f"Your password is ====> {generate_password1()}")
+print(f"Other Generated (not always with all the requested constraints) Your password is ====> {generate_password1()}")
