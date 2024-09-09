@@ -27,7 +27,27 @@
 # 1 <= s.length <= 104
 # s consists of parentheses only '()[]{}'.
 
-def validParentheses(s):
-    for p, i in enumerate(s):
-        print(p)
-    return True
+def validParentheses(string):
+    parenthesis_dict = {")": "(", "]": "[", "}": "{"}
+    stack_for_parentheses = []
+    for i, p in enumerate(string):
+        # If the parenthesis in the string are opened, add them to the stack. 
+        if p in parenthesis_dict.values():
+            stack_for_parentheses.append(p)
+        # If the parenthesis are closed.
+        else:
+            # If the parenthesis is closed and no opened one has been inserted in the stack. 
+            # Or the closed parenthesis do not correspond to the last opened parenthesis added in the stack, return false.
+            if (len(stack_for_parentheses) == 0) or (parenthesis_dict[p] != stack_for_parentheses[len(stack_for_parentheses) - 1]):
+                return False
+            # If instead the closed parenthesis is correctly closing the last opened parenthesis, remove it from the stack and continue. 
+            else:
+                stack_for_parentheses.pop()
+    # If all the parentheses have been correctly cosed, return True.
+    if len(stack_for_parentheses) == 0:   
+        return True
+    else:
+        return False
+
+s = "([])"
+print(validParentheses(s))
