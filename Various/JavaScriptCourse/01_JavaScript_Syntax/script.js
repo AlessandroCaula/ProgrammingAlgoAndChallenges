@@ -1,3 +1,10 @@
+/////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////
+// VARIABLES and DATA TYPE
+/////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////
+
+
 // Creating a variable using the var keyword
 var variableNameVar = "Welcome to Variables in var";
 console.log(variableNameVar);
@@ -45,7 +52,7 @@ const number = 2;
 console.log("Result", string / number);
 // But attention cause, if in the string you put a number
 const stringNumber = "10"
-console.log("Number string divided by a number: ", stringNumber / number); // 10 / 2 = 5
+console.log("Number string divided by a number: " + stringNumber / number); // 10 / 2 = 5
 
 console.log('');
 
@@ -86,7 +93,7 @@ console.log(person.name);
 console.log(person.age);
 console.log(typeof person.age);
 
-// Array 
+// ---- Array (still an object)
 const arr = [1, 2, 3, 4]
 console.log(arr);
 console.log(typeof arr);
@@ -117,16 +124,129 @@ const b = 10;
 console.log(a > b);
 console.log(a >= b);
 console.log(a < b);
+// LOOSE equality => Does NOT compare DATA TYPES 
 console.log(a == b);
+// LOOSE disequality
 console.log(a != b);
 
-// Stric equality (===): PREFERRED TO USE
+// STRICT equality (===): PREFERRED TO USE
 // The most notable difference between this operator and the strict equality (===) operator is that the strict equality operator does not attempt type conversion.
-// It basically compares VALUES and DATA TYPES.
+// It compares VALUES and DATA TYPES. Return true only if both are equal.
 const numStr = '5';
 const numInt = 5;
-console.log("Loose equality (==):", numStr == numInt);
-console.log("Loose equality (===):", numStr === numInt);
+console.log(`Loose equality ${numStr} == "${numInt}":`, numStr == numInt);
+console.log(`Loose equality ${numStr} === "${numInt}"`, numStr === numInt);
 
-// Stric equality (!==): PREFERRED TO USE
+// STRICT equality (!==): PREFERRED TO USE
 // The most notable difference between this operator and the strict inequality (!==) operator is that the strict equality operator does not attempt type conversion.
+
+// The GOOD ones => === and !==  ---> Use almost eerytime these. 
+// The evil twins => == and != 
+
+// Look at this thing which is very strange
+console.log(0 == ''); // true   => This is quite strange and brings you into errors.
+console.log(false == 'false'); // false
+console.log(true == 1); // true
+// With the loose equality there are a lot of unexpected results.
+
+// ALWAYS USE the STRICT (dis)equality => === and !==
+
+//
+// LOGICAL OPERATORS
+//
+// AND => && => All operands are true
+// OR => || => At least one operand is true
+// NOT => ! => Reverses the boolean value => !false === true: true
+
+
+/////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////
+// LOGIC and DECISION MAKING
+/////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////
+
+// IF statement
+const age = 19;
+if (age > 18) {
+    console.log('You may enter');
+} else if (age == 18) {
+    console.log('Just made it')
+} else {
+    console.log('You shall not PASSSS')
+}
+
+// WHILE loop
+let i = 0;
+while (i < 10) {
+    console.log(i);
+    i++;
+}
+
+// FOR loop
+for (i = 0; i < 10; i++) {
+    console.log(i  + 10);
+}
+console.log('');
+
+// Looping through array
+const arr1 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+for (let i = 0; i < arr1.length; i++) {
+    console.log(i + ' => ' + arr1[i]);
+}
+
+
+/////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////
+// FUNCTIONS
+/////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////
+
+// -- Function declaration
+function square(number) {
+    // statements.
+    return number * number
+    // the only way of wrinting a function which have access to "this" keyword.
+}
+console.log(square(5))
+
+// -- Function expression
+// Assigning to a variable a function. 
+const funtionVariableName = function(parameters) {
+    // statements
+    return parameters + " => from function"
+}
+console.log(funtionVariableName("Hello"))
+
+
+// -- Arrow function => most modern way of writing function in JS
+// Shorter syntax for writing function expression. 
+const functionVariableName1 = (parameters) => {
+    // statements
+    return parameters + " => from arrow function"
+}
+console.log(functionVariableName1("Hello"))
+
+// Every function in JS returns "Undefined" if we don't specify any return.
+
+// Arrow function
+// We declare arrow function like normal variables, with const or let. 
+// And then we add the variable name.
+// Then we add a set of parenthesis. And then the arrow which point to the function block.  
+const square1 = (number) => {
+    return number * number;
+}
+// Function call to the arrow function. The call is dentical to a call to the more classical functions.
+const result = square1(10);
+console.log(result);
+
+// Arrow function have also a more concise way of defining them, ONLY if there is just the single RETURN statement to perform. 
+// Remove the return statements and the brackets. 
+const square2 = (number) => number * number;
+const result1 = square2(5);
+console.log(result1);
+
+// ONLY If you have only one parameter you can also remove the ( ).
+const square3 = number => {
+    return number * number;
+}
+
