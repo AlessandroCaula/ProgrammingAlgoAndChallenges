@@ -249,3 +249,91 @@ console.log(result1);
 const square3 = number => {
     return number * number;
 }
+
+
+
+//////////////////////////////////////////
+// From Javascript to React
+//////////////////////////////////////////
+
+// Working with Functions
+
+// - Arrow functionss
+const DoSomething = (args) => {
+    // Code block
+}
+
+// How to export arrow functions in order to use them in another file.
+export const DoSomething1 = (args) => {
+    // Code block
+}
+
+// What you usually do in React is working with components, which are basically these functions
+/*
+const MyComponent = (args) => {
+    // Return html
+    return <div></div> // <div> is a container element
+}
+*/
+
+// Anonymous functions. Function without a name. 
+// In react you can just define the anonymous function inline inside the onClick actions. 
+/*
+<button onClick={(args) => {  Code block  }}>
+</button>
+*/
+
+// Working with conditionals using the ternary operators. Shorter notation of writing IF/ELSE statements.  
+let agePerson = 16;
+// Now I want a variable to store a string "adult" or "underage" if the age is greater than 18.
+let adultOrMinor = agePerson >= 18 ? "adult" : "underage";
+console.log(adultOrMinor);
+
+// In React for example, a thing that is usually done.
+/*
+const MyComponent = (args) => {
+    return age >= 18 ? <div> adult </div> : <div> underage </div>;
+}
+*/
+
+// Objects/Dictionary
+// Very important in JavaScript and React. 
+
+// Destructuring
+const person1 = {
+    name: "Pedro", 
+    age: 20,
+    isMarried: false
+}
+// Deconstructuring. 
+const { name, age1, isMarried } = person1;
+console.log(person);
+
+// Spread Operator
+// In this case is used to create another person, which is equal to person, but with a different name
+const person2 = {...person, name: "Jack"};
+console.log(person2);
+const names = ['Ale', 'Bonfi', 'Leo'];
+console.log(names);
+const names2 = [...names, 'Gabo'];
+console.log(names2);
+names2.push('Pedro');
+console.log(names2);
+const names3 = names2.concat("Ale", "Ludo");
+console.log(names3);
+
+// Functino to manipulate arrays
+// .map() - .filter() 
+
+// .map()
+// In order to access each element of the array. A for loop in one line. 
+names.map((name) => {console.log(name)});
+//.map() creates a new array with the transformed values but doesn't modify the original array
+const names3_1 = names3.map((name) => {
+    return name + "1";
+});
+console.log(names3_1);
+//.filter()
+const arr2 = ['Ale', 'Bonfi', 'Bonfi', 'Bonfi', 'Bonfi'];
+const arr_filtered = arr2.filter((name) => {return name !== 'Bonfi'});
+console.log(arr_filtered)
