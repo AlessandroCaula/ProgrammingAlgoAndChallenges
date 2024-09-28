@@ -249,4 +249,3 @@ console.log(result1);
 const square3 = number => {
     return number * number;
 }
-
