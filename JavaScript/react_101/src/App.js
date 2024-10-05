@@ -16,7 +16,7 @@ const Person = () => {
 
 // Custom component
 const Person1 = (props) => {
-  return(
+  return( 
     <>
     <h1>Name: {props.name}</h1>
     <h2>Last Name: {props.lastName}</h2>
