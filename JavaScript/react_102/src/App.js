@@ -31,11 +31,7 @@ function App() {
     setMovies(data.Search);
     // In this way we can dynamically pass the movie search to the movie card.
   };
-
-  // useEffect(() => {
-  //   searchMovies('Spiderman');
-  // });
-
+  
   return (
     <div className='app'>
       <h1>MovieLand</h1>
