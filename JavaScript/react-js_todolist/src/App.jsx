@@ -10,12 +10,8 @@ function App() {
   // Using the React State variables. These are used whenever you're defining a variable that a user is going to interact with, for example a list that we're going to modify via
   // user interaction in our page, then you will want to define it as a Stateful variable.
   // By defining a variable, and a setter function that is used to update the value of that variable. 
-  // We pass to the useState a default variable (we can also not pass any default variable). But since we know that our variable will be a list, we will pass the list, with some default values in it. 
-  const [todos, setTodos] = useState([
-    'Go to the gym',
-    'Eat more fruit and vege',
-    'Pick up the kids from school'
-  ]);
+  // We pass to the useState a default variable (we can also not pass any default variable). But since we know that our variable will be a list, we will pass an empty list. 
+  const [todos, setTodos] = useState([]);
 
   // Create a function that is used to handle update todos.
   function handleAddTodos(newTodo) {
@@ -23,6 +19,22 @@ function App() {
     const newTodoList = [...todos, newTodo];
     // Calling the setter function, by simply passing the new updated todos list.
     setTodos(newTodoList);
+  }
+
+  // Function that handles the delete action. 
+  function handleDeleteTodo(index) {
+    // Creating a new list with all the elements, minus the deleted one. 
+    const newTodoList = todos.filter((todo, todoIndex) => {
+      // If the todoIndex is NOT equal to the index, it is allowed to stay in the list. 
+      return todoIndex !== index
+    });
+    // Call the setTodo State and pass the new list, without the removed element. 
+    setTodos(newTodoList);
+  }
+
+  // Function that handles the edit action. 
+  function handleEditTodo(index) {
+
   }
 
   // In the return function we have jsx. Which is basically plain HTML in which we can write JavaScript code. 
