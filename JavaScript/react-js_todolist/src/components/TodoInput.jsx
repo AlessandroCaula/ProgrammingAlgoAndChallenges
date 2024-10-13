@@ -1,11 +1,11 @@
-import { useState } from "react";
-
 // Entire React Functional component
 export default function TodoInput(props) {
   // Destructuring the function that is sent as a prop to this component. 
-  const { handleAddTodos } = props;
-  // Creating a Stateful variable for the element that the user type in the <input placeholder="Enter todo..." ></input>. 
-  const [todoValue, setTodoValue] = useState('');
+  const { handleAddTodos, todoValue, setTodoValue } = props;
+  
+  // // Creating a Stateful variable for the element that the user type in the <input placeholder="Enter todo..." ></input>. 
+  // // Since we had to decleare the state in the App component, we will receive and decompone them instead of declearing them in this component. 
+  // const [todoValue, setTodoValue] = useState('');
 
   return (
     <header>
