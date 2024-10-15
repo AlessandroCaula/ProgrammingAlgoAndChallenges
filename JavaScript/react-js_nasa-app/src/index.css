@@ -3,9 +3,9 @@
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  /*color-scheme: light dark;*/
+  color: white;
+  background-color: #030615;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -13,56 +13,79 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
+/*Create the * selector. This select everything in our page.*/
+* {
+  padding: 0;
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
+  box-sizing: border-box;
+}
+
+/*Selecting the div with the ID of root with the #root*/
+#root {
+  /*Setting the minimum hight as the 100% of the visible height (vh)*/
   min-height: 100vh;
+  /*Enabling a flexible box layout, allowing elements to align, distribute space, and adjust their size efficiently within a container.*/
+  display: flex;
+  /*position: relative is used to position an element relative to its normal or static position in the document layout. When an element is given position: relative, it remains in the flow of the document, and its original space is still occupied, but you can adjust its position using the top, right, bottom, or left properties.*/
+  position: relative;
+
+  /*For test*/
+  border: 2px solid rgb(0, 60, 255);
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+/*Selecting the imgContainer class (className)*/
+.imgContainer {  
+  display: flex;
+  /*height: 50%;*/
+  flex-direction: column;
+  
+  /*For test*/
+  border: 2px solid rgb(255, 0, 0);
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+/*Select the className of the image to style it.*/
+.bgImage {
+  width: 100%;
+  height: 100%;
+  /*flex-grow: 1: This property defines how much the image should grow relative to other flex items in the container when there is available space. A value of 1 means the image can grow to fill up the remaining space equally with other items that also have flex-grow: 1.*/
+  flex: 1;
+  /*This property is used to control how an image or video is resized to fit its container, particularly when the dimensions of the image and the container differ. It ensures the image covers the entire container while maintaining its aspect ratio.*/
+  object-fit: cover;
+
+  /*For test*/
+  border: 2px solid rgb(7, 255, 7);
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+/*Styling the footer tag, by just selecting the footer just by using the tag*/
+footer {
+  /*position: fixed is used to position an element relative to the browser window (viewport), rather than its normal place in the document flow. Once an element is set to position: fixed, it remains fixed at a specific position on the screen, even when the page is scrolled.*/
+  position: fixed;
+  /*bottom of 0, so that the footer will be hold to the bottom*/
+  bottom: 0;
+  /*Set the footer to the left*/
+  left: 0;
+  width: 100%;
+  /*re-arranging the info icon, by pushing it on the very right side*/
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /*gap property defines the spacing between items in a flex or grid container. When you use gap: 1rem, it creates a gap of 1 rem (relative to the root font size, usually 16px) between the grid rows and columns, or between flex items if applied in a flex container.*/
+  gap: 1rem;
+
+  /*For test*/
+  border: 2px solid white;
+}
+
+/*Select and style the bgGradient className of the footer*/
+.bgGradient {
+  position: absolute;
+  /*inset: 0 is going to expand the full width of the parent container, which is the footer*/
+  inset: 0;
+  /*z-index: -1 means that is going to be layered behind everything else*/
+  z-index: -1;
+  /*rgba(255, 255, 255, 0) means completely transparent. Creating a gradient from the bottom to the top of the footer. The bottom will have the same color of the background, the top will be completely transparent, to allow the image under it to be seen*/
+  background: linear-gradient(to top, #030615, rgba(255, 255, 255, 0));
+
+  /*For test*/
+  border: 2px solid rgb(255, 255, 0);
 }
