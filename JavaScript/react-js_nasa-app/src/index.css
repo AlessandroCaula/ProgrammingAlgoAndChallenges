@@ -53,7 +53,7 @@
   object-fit: cover;
 
   /*For test*/
-  border: 2px solid rgb(7, 255, 7);
+  border: 2px solid rgb(189, 255, 7);
 }
 
 /*Styling the footer tag, by just selecting the footer just by using the tag*/
@@ -78,6 +78,7 @@ footer {
 
 /*Select and style the bgGradient className of the footer*/
 .bgGradient {
+  /*position: absolute is used to position an element relative to its nearest positioned ancestor (an element that has a position other than static). If there is no positioned ancestor, the element is positioned relative to the initial containing block (usually the document body).*/
   position: absolute;
   /*inset: 0 is going to expand the full width of the parent container, which is the footer*/
   inset: 0;
@@ -88,4 +89,102 @@ footer {
 
   /*For test*/
   border: 2px solid rgb(255, 255, 0);
+}
+
+/*Style the Side Bar with the class name of sidebar*/
+.sidebar {
+  position: fixed;
+  /*inset: 0 => means that it extends to the exterior of the entire page. The inset property is a shorthand for setting the top, right, bottom, and left properties of a positioned element. It allows you to define how far an element should be positioned from each edge of its containing block. When you use inset: 0, it sets all four of these properties (top, right, bottom, and left) to 0*/
+  inset: 0;
+  display: flex;
+  /*flex-direction: column; is a property used in a flex container to arrange its child elements in a vertical direction, from top to bottom, instead of the default horizontal row layout.*/
+  flex-direction: column;
+  /*We want the Side Bar to sit above (cover) the footer by setting a z-index of 10. The z-index property defines the stack level of an element. Elements with a lower z-index will appear behind elements with a higher z-index*/
+  z-index: 10;
+
+  /*margin-left: auto;
+  background: #c8ff00;*/
+
+  /*For test*/
+  border: 2px solid rgb(0, 255, 51);
+}
+
+/*Select and Style the BackGround overlay of the Side Bar.*/
+.bgOverlay { 
+  /*position: absolute is used to position an element relative to its nearest positioned ancestor (an element that has a position other than static). If there is no positioned ancestor, the element is positioned relative to the initial containing block (usually the document body).*/
+  position: absolute;
+  inset: 0;
+  /*If we see now, without setting the opacity, the entire page is in this color. The image is covered with this Side Bar*/
+  background: #030615;
+  opacity: 0.6;
+
+  /*For test*/
+  border: 2px solid rgb(123, 0, 255);
+}
+
+/*Select and style the Side Bar Content*/
+.sidebarContents {
+  /*z-index of 15, so it seats even higher. The sidebarContents come up on top of our background overlay*/
+  z-index: 15;
+  position: relative;
+  display: flex;
+  /*flex-direction: column; is a property used in a flex container to arrange its child elements in a vertical direction, from top to bottom, instead of the default horizontal row layout.*/
+  flex-direction: column;
+  /*gap property defines the spacing between items in a flex or grid container. When you use gap: 1rem, it creates a gap of 1 rem (relative to the root font size, usually 16px) between the grid rows and columns, or between flex items*/
+  gap: 1rem;
+  padding: 1rem;
+  /*overflow-y: scroll; is used to control the vertical overflow of an element's content. It forces a vertical scrollbar to appear, even if all the content fits within the element.*/
+  overflow-y: auto;
+  height: 100%;
+  width: 90%;
+  max-width: 800px;
+  /*Setting the contents to the right hand side of our page*/
+  margin-left: auto;
+
+  /*For test*/
+  border: 2px solid rgb(255, 243, 105);
+}
+
+/*Tag the sidebarContent and select the div within, which is going to contain all the paragraph text*/
+.sidebarContents div {
+  /*This will put the arrow button down to the bottom*/
+  flex: 1;
+
+  /*For test*/
+  border: 2px solid rgb(153, 153, 153);
+}
+
+/*Selecting and accessing the button in the Side Bar*/
+.sidebarContents button {
+  background: transparent;
+  color: white;
+  border: none;
+  /*outline property is used to draw a line around the outside of an element. It's similar to the border property but has some key differences, including that it does not take up space and does not affect the element's layout.*/
+  outline: none;
+  /*Set the button to the left hand side.*/
+  margin-right: auto;
+
+  /*For test*/
+  /*border: 2px solid rgb(255, 130, 130);*/
+}
+
+/*We made the sidebar adapted to a phone screen. In order to make it responsive for a big screen display we add the at Media query. Specify the width at which we want the large screen displays to apply with the min-width*/
+/*These are the styles that we are going to apply to the tagged items when we exceed the minimum width criteria.*/
+/*Try commenting it to see the sidebar for teh mobile adaptation*/
+@media (min-width: 640px) {
+  /*Tagging the sidebar*/
+  .sidebar {
+    /*Inside of the sidebar we are going to change its position from being fixed to relative. So that it will sit in the context of the page*/
+    position: relative;
+    /*Set the inset*/
+    inset: unset;
+    /*Minimum width of 30% of the view width*/
+    min-width: 40%;
+    box-shadow: 0 0 40px 1px #030615;
+  }
+
+  /*Tagging the sidebarContents*/
+  .sidebarContents {
+    margin: unset;
+  }
 }
