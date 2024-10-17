@@ -34,11 +34,11 @@
 }
 
 /*Selecting the imgContainer class (className)*/
-.imgContainer {  
+.imgContainer {
   display: flex;
   /*height: 50%;*/
   flex-direction: column;
-  
+
   /*For test*/
   border: 2px solid rgb(255, 0, 0);
 }
@@ -110,7 +110,7 @@ footer {
 }
 
 /*Select and Style the BackGround overlay of the Side Bar.*/
-.bgOverlay { 
+.bgOverlay {
   /*position: absolute is used to position an element relative to its nearest positioned ancestor (an element that has a position other than static). If there is no positioned ancestor, the element is positioned relative to the initial containing block (usually the document body).*/
   position: absolute;
   inset: 0;
@@ -151,7 +151,7 @@ footer {
   flex: 1;
 
   /*For test*/
-  border: 2px solid rgb(153, 153, 153);
+  border: 2px solid rgb(123, 123, 123);
 }
 
 /*Selecting and accessing the button in the Side Bar*/
@@ -172,6 +172,7 @@ footer {
 /*These are the styles that we are going to apply to the tagged items when we exceed the minimum width criteria.*/
 /*Try commenting it to see the sidebar for teh mobile adaptation*/
 @media (min-width: 640px) {
+
   /*Tagging the sidebar*/
   .sidebar {
     /*Inside of the sidebar we are going to change its position from being fixed to relative. So that it will sit in the context of the page*/

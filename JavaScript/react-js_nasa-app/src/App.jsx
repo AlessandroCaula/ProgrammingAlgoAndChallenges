@@ -6,7 +6,7 @@ import Main from "./components/Main"
 // All the others components (i.e. Footer, Main, SideBar, etc.) are rendered here, in the App.jsx component. 
 function App() {
 
-  return (  
+  return (
     <>
       <Main />
       <SideBar>Text from the SideBar</SideBar>
