@@ -38,7 +38,6 @@
   display: flex;
   /*height: 50%;*/
   flex-direction: column;
-
   max-height: 100vh;
   width: 100%;
 
@@ -170,7 +169,7 @@ footer button:hover {
 /*Select and style the Side Bar Content*/
 .sidebarContents {
   /*z-index of 15, so it seats even higher. The sidebarContents come up on top of our background overlay*/
-  z-index: 15;
+  z-index: 15; 
   position: relative;
   display: flex;
   /*flex-direction: column; is a property used in a flex container to arrange its child elements in a vertical direction, from top to bottom, instead of the default horizontal row layout.*/
@@ -184,7 +183,7 @@ footer button:hover {
   width: 80%;
   max-width: 800px;
   /*Setting the contents to the right hand side of our page*/
-  margin-left: auto;
+  margin-left: auto; 
   background: #030615;
 
   /*For test*/
@@ -215,6 +214,8 @@ footer button:hover {
   transition-duration: 200ms;
   /*Changes the cursor to a hand, when hover over the button.*/
   cursor: pointer;
+  /*1rem: Value applied to the top and bottom of the element. 0: This value applies padding to the left and right of the element.*/
+  padding: 1rem 0;
 
   /*For test*/
   /*border: 2px solid rgb(255, 130, 130);*/
@@ -223,7 +224,7 @@ footer button:hover {
 /*Make the button interactive*/
 .sidebarContents button:hover {
   /*Changing its opacity when you hover over it with the mouse*/
-  opacity: 0.6;
+  opacity: 0.7;
 }
 
 /*We made the sidebar adapted to a phone screen. In order to make it responsive for a big screen display we add the at Media query. Specify the width at which we want the large screen displays to apply with the min-width*/
@@ -238,12 +239,14 @@ footer button:hover {
     /*Set the inset*/
     inset: unset;
     /*Minimum width of 30% of the view width*/
-    min-width: 40%;
+    min-width: 30%;
+    max-height: 100vh;
     box-shadow: 0 0 40px 1px #030615;
   }
 
   /*Tagging the sidebarContents*/
   .sidebarContents {
     margin: unset;
+    width: 100%;
   }
 }

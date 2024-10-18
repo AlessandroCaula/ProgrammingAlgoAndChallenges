@@ -7,6 +7,7 @@ export default function SideBar(props) {
 
 	return (
 		<div className='sidebar'>
+			{/*When the background overlay is clicked, then the side bar disappear as well*/}
 			<div onClick={handleToggleModel} className='bgOverlay'></div>
 			<div className='sidebarContents'>
 				<h2>The Brutal Martian Land</h2>
