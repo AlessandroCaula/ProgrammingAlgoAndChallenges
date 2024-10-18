@@ -16,7 +16,7 @@
 /*Create the * selector. This select everything in our page.*/
 * {
   padding: 0;
-  margin: 0;
+  margin: 0;     
   box-sizing: border-box;
 }
 
@@ -30,7 +30,7 @@
   position: relative;
 
   /*For test*/
-  border: 2px solid rgb(0, 60, 255);
+  /* border: 2px solid rgb(0, 60, 255); */
 }
 
 /*Selecting the imgContainer class (className)*/
@@ -39,8 +39,11 @@
   /*height: 50%;*/
   flex-direction: column;
 
+  max-height: 100vh;
+  width: 100%;
+
   /*For test*/
-  border: 2px solid rgb(255, 0, 0);
+  /* border: 2px solid rgb(255, 0, 0); */
 }
 
 /*Select the className of the image to style it.*/
@@ -53,7 +56,7 @@
   object-fit: cover;
 
   /*For test*/
-  border: 2px solid rgb(189, 255, 7);
+  /* border: 2px solid rgb(189, 255, 7); */
 }
 
 /*Styling the footer tag, by just selecting the footer just by using the tag*/
@@ -71,9 +74,54 @@ footer {
   justify-content: space-between;
   /*gap property defines the spacing between items in a flex or grid container. When you use gap: 1rem, it creates a gap of 1 rem (relative to the root font size, usually 16px) between the grid rows and columns, or between flex items if applied in a flex container.*/
   gap: 1rem;
+  /*Adding a Paddin, so that everything sits toward the center of the page a little bit*/
+  padding: 1rem;
 
-  /*For test*/
-  border: 2px solid white;
+  /* For test */
+  /* border: 2px solid white; */
+}
+
+/*Target and style the div that contains the h1 and h2 elements of the footer.*/
+footer div {
+  display: flex;
+  flex-direction: column;
+}
+
+/*Style the footer h2 element*/
+footer h2 {
+  font-size: 1.4rem;
+}
+
+/*Style the footer h1 element*/
+footer h1 {
+  font-size: 0.9rem;
+  /*Setting the font extra thin*/
+  font-weight: 200;
+}
+
+/*Target and style the footer button (i)*/
+footer button {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: white;
+  padding: 1rem;
+  /*The transition-duration property in CSS specifies the time it takes for a transition effect to complete when a CSS property changes. It controls the speed of the transition, allowing for smooth animations between the initial and final states of an element.*/
+  transition-duration: 200ms;
+  /*Changes the cursor to a hand, when hover over the button.*/
+  cursor: pointer;
+}
+
+/*Target the button icont and give it a size.*/
+footer button i {
+  /*If you change from the style above, the one of the footer bottom, changing the size, also change a bit the size of the entire footer itself, like if it is adapting to the size change*/
+  font-size: 1.3rem;
+}
+
+/*Make the button interactive*/
+footer button:hover {
+  /*Changing its opacity when you hover over it with the mouse*/
+  opacity: 0.7;
 }
 
 /*Select and style the bgGradient className of the footer*/
@@ -88,7 +136,7 @@ footer {
   background: linear-gradient(to top, #030615, rgba(255, 255, 255, 0));
 
   /*For test*/
-  border: 2px solid rgb(255, 255, 0);
+  /* border: 2px solid rgb(255, 255, 0); */
 }
 
 /*Style the Side Bar with the class name of sidebar*/
@@ -102,11 +150,8 @@ footer {
   /*We want the Side Bar to sit above (cover) the footer by setting a z-index of 10. The z-index property defines the stack level of an element. Elements with a lower z-index will appear behind elements with a higher z-index*/
   z-index: 10;
 
-  /*margin-left: auto;
-  background: #c8ff00;*/
-
   /*For test*/
-  border: 2px solid rgb(0, 255, 51);
+  /* border: 2px solid rgb(0, 255, 51); */
 }
 
 /*Select and Style the BackGround overlay of the Side Bar.*/
@@ -119,7 +164,7 @@ footer {
   opacity: 0.6;
 
   /*For test*/
-  border: 2px solid rgb(123, 0, 255);
+  /* border: 2px solid rgb(123, 0, 255); */
 }
 
 /*Select and style the Side Bar Content*/
@@ -134,16 +179,19 @@ footer {
   gap: 1rem;
   padding: 1rem;
   /*overflow-y: scroll; is used to control the vertical overflow of an element's content. It forces a vertical scrollbar to appear, even if all the content fits within the element.*/
-  overflow-y: auto;
+  overflow-y: scroll;
   height: 100%;
-  width: 90%;
+  width: 80%;
   max-width: 800px;
   /*Setting the contents to the right hand side of our page*/
   margin-left: auto;
+  background: #030615;
 
   /*For test*/
-  border: 2px solid rgb(255, 243, 105);
+  /* border: 2px solid rgb(255, 243, 105); */
 }
+
+
 
 /*Tag the sidebarContent and select the div within, which is going to contain all the paragraph text*/
 .sidebarContents div {
@@ -151,7 +199,7 @@ footer {
   flex: 1;
 
   /*For test*/
-  border: 2px solid rgb(123, 123, 123);
+  /* border: 2px solid rgb(123, 123, 123); */
 }
 
 /*Selecting and accessing the button in the Side Bar*/
@@ -163,9 +211,19 @@ footer {
   outline: none;
   /*Set the button to the left hand side.*/
   margin-right: auto;
+  /*The transition-duration property in CSS specifies the time it takes for a transition effect to complete when a CSS property changes. It controls the speed of the transition, allowing for smooth animations between the initial and final states of an element.*/
+  transition-duration: 200ms;
+  /*Changes the cursor to a hand, when hover over the button.*/
+  cursor: pointer;
 
   /*For test*/
   /*border: 2px solid rgb(255, 130, 130);*/
+}
+
+/*Make the button interactive*/
+.sidebarContents button:hover {
+  /*Changing its opacity when you hover over it with the mouse*/
+  opacity: 0.6;
 }
 
 /*We made the sidebar adapted to a phone screen. In order to make it responsive for a big screen display we add the at Media query. Specify the width at which we want the large screen displays to apply with the min-width*/
