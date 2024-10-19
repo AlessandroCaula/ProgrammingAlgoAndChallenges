@@ -38,7 +38,7 @@
   display: flex;
   /*height: 50%;*/
   flex-direction: column;
-  max-height: 100vh;
+  max-height: 100%;
   width: 100%;
 
   /*For test*/
@@ -190,8 +190,6 @@ footer button:hover {
   /* border: 2px solid rgb(255, 243, 105); */
 }
 
-
-
 /*Tag the sidebarContent and select the div within, which is going to contain all the paragraph text*/
 .sidebarContents div {
   /*This will put the arrow button down to the bottom*/
@@ -214,7 +212,7 @@ footer button:hover {
   transition-duration: 200ms;
   /*Changes the cursor to a hand, when hover over the button.*/
   cursor: pointer;
-  /*1rem: Value applied to the top and bottom of the element. 0: This value applies padding to the left and right of the element.*/
+  /*1rem: Value applied to the top and bottom of the element. 0: This value applies padding to the left and right of the element. Making it sit to the left border of the Side Bar*/
   padding: 1rem 0;
 
   /*For test*/
@@ -227,11 +225,56 @@ footer button:hover {
   opacity: 0.7;
 }
 
+/*Target and style the Description container in the SideBar*/
+.descriptionContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/*Target and style the Description title in the SideBar*/
+.descriptionTitle {
+  font-size: 1.1rem;
+  font-weight: 200;
+}
+
+/*Target the SideBar Title*/
+.sidebarContents h2 {
+  font-weight: 200;
+  font-size: 1.4rem;
+}
+
+/*Select and style the LoadingState gear*/
+.loadingState {
+  display: flex;
+  /*Put the loading gear in the center of the screen*/
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  /*Give some animation to the gear*/
+  animation: spin 1.5s linear infinite;
+}
+
+/*Target and style the icon within the loadingState.*/
+.loadingState i {
+  opacity: 0.2;
+  font-size: 5rem;
+}
+
+/*Define the spin which is used in the loadingState for the gear. It will make the gear to spin full time.*/
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 /*We made the sidebar adapted to a phone screen. In order to make it responsive for a big screen display we add the at Media query. Specify the width at which we want the large screen displays to apply with the min-width*/
 /*These are the styles that we are going to apply to the tagged items when we exceed the minimum width criteria.*/
 /*Try commenting it to see the sidebar for teh mobile adaptation*/
 @media (min-width: 640px) {
-
   /*Tagging the sidebar*/
   .sidebar {
     /*Inside of the sidebar we are going to change its position from being fixed to relative. So that it will sit in the context of the page*/
