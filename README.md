@@ -1,2 +1,4 @@
-Repository that contains Small Funcitonal Challenges, Algorithm Implementations, Code Tests and Lessons/Tutorial for new programming languages and Projects.     
+# Programming and Challenges
+
+Repository that contains Small Funcitonal Challenges, Algorithm Implementations, Code Tests and small Projects.     
 Different languages are included. 
