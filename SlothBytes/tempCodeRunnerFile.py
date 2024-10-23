@@ -1,2 +1,1 @@
-
-    for i in range(len(ping_pong_list)):
+                final_result *= operation_number
