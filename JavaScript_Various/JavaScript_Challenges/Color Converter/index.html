@@ -46,12 +46,12 @@
             <p style="font-size: 20px;">Select your color:</p>
             <div class="color-picker-and-display">
                 <input type="color" id="color-picker" value="#ff0000">
-                <p id="color-display">RGB: (0, 0, 0)</p>
+                <p id="color-display">RGB: (255, 0, 0)</p>
             </div>
         </div>
         <!-- Center part of the container. Button used for converting the selected color -->
         <div>
-            <button id="button-style">Opposite Color</button>
+            <button id="button-style" onclick="oppositeColor()">Opposite Color</button>
         </div>
         <!-- Right side of the container, used to display a box with a converted color -->
         <!-- 
@@ -62,8 +62,8 @@
             <!-- I could also just have moved the border-radius: 20%; to the child div. -->
             <!-- Colored div -->
             <div class="color-picker-and-display">
-                <div style="background-color: blue; height: 80px; width: 80px; border-radius: 20%"></div>
-                <p id="color-display-1">RGB: (0, 0, 0)</p>
+                <div id="color-picker-opposite" style="background-color: aliceblue; height: 80px; width: 80px; border-radius: 20%"></div>
+                <p id="color-display-opposite">RGB: (0, 0, 0)</p>
             </div>
         </div>
     </div>

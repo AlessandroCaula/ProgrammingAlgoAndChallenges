@@ -13,7 +13,11 @@
     background-color:aliceblue;
     display: flex;
     align-items: center; /* Aligns vertically */
-    justify-content: space-around;
+    justify-content: space-between;
+
+    /* overflow: hidden; */ /* Hide overflowing text */
+    /* text-overflow: ellipsis; */ 
+    white-space: nowrap; /* Prevent text wrapping */
 }
 
 /* style="display: flex; flex-direction: column; justify-content: center; align-items: center;" */
@@ -22,6 +26,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 150px;
 }
 
 #color-picker {
