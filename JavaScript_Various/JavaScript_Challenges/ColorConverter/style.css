@@ -1,0 +1,32 @@
+/*
+- Definition: Styles are defined in a separated CSS file and applied to elements using selectors.
+- Advantages:
+    - Reusability: Styles can be reused across multiple elements and pages. 
+    - Separation of Concerns: Keeps HTML clean and focused on structure while CSS handles presentation. 
+    - Scalability: Easier to manage for large projects.
+    - Global Consistency: Changes in the CSS file automatically apply to all elements using the same class.
+- Disadvantages:
+    - Extra Setup: Requires linking the CSS file to the HTML (though it's a minor step)
+    - Lower Specificity: Inline styles or styles in <style> tags may override external CSS unless you use specificity or "!important".
+*/
+.container {
+    background-color:aliceblue;
+    display: flex;
+    align-items: center; /* Aligns vertically */
+    justify-content: space-around;
+}
+
+/* style="display: flex; flex-direction: column; justify-content: center; align-items: center;" */
+.color-picker-and-display {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#color-picker {
+    width: 80px;
+    height: 80px;
+    border-radius: 15%;
+}
+
