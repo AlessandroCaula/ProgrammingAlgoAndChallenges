@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- The Inline Styles in HTML: 
+    - Definition: 
+        Inline styles are defined directly within the HTML element using the style attribute.
+    - Advantages:
+        - Quick Application: Easy to use for small, one-off style changes.
+        - Overrides External CSS: Inline styles have high specificity and override external or internal CSS unless "!important" is used. 
+        - No Extra File Needed: Useful in cases where only minor, specific styling is required.
+    - Disadvantages:
+        - Hard to Maintain: Difficult to read and update as the project grows.
+        - Not Reusable: Styles must be rewritten for each element, leading to redundancy.
+        - Cluttered Markup: Mixing content (HtML) with presentation (CSS) violates the principle of separation of concerns.
+    -->
+
+    <!-- When to use "id" and when to use "class" in the HTML elements for styling in the CSS file -->
+    <!-- 
+    - Use a CLASS:
+        - When to use:
+            - Reusable styles: Apply the same styling to multiple elements.
+            - Group styling: Style multiple elements in the same way.
+        - Why Use a Class:
+            - Classes are not unique and can be used on multiple elements. 
+            - They make it easier to maintain and scale your styles.
+    - Use an ID:
+        - When to use:
+            - Unique style: Apply a specific style to a single, unique element.
+            - Targeting specific elements: For unique components like headers or unique sections of the page.
+        - Why use and ID: 
+            - IDs must be unique within a page, which ensure precise targeting. 
+            - They are useful when styling or scripting single elements. 
+    -->
+    <div class="container">
+        <!-- Left side of the container, with the color picker. Disposing the elements using inline Flex -->
+        <div style="display: flex; align-items: center; gap: 20px;">
+            <p style="font-size: 20px;">Select your color:</p>
+            <div class="color-picker-and-display">
+                <input type="color" id="color-picker" value="#ff0000">
+                <p id="color-display">RGB: (0, 0, 0)</p>
+            </div>
+        </div>
+        <!-- Center part of the container. Button used for converting the selected color -->
+        <div>
+            <button id="button-style">Opposite Color</button>
+        </div>
+        <!-- Right side of the container, used to display a box with a converted color -->
+        <!-- 
+            - Parent's border-radius only affects its own visual boundary, not its child's shape.
+            - By default, children are not clipped by the parent's border radius unless overflow:hidden or a similar clipping mechanism is used. 
+        -->
+        <div>
+            <!-- I could also just have moved the border-radius: 20%; to the child div. -->
+            <!-- Colored div -->
+            <div class="color-picker-and-display">
+                <div style="background-color: blue; height: 80px; width: 80px; border-radius: 20%"></div>
+                <p id="color-display-1">RGB: (0, 0, 0)</p>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
