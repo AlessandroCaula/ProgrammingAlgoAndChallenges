@@ -1,15 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
     <script src="script.js" defer></script>
     <title>Document</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <!-- The Inline Styles in HTML: 
     - Definition: 
         Inline styles are defined directly within the HTML element using the style attribute.
@@ -41,33 +40,41 @@
             - They are useful when styling or scripting single elements. 
     -->
     <div class="container">
-        <!-- Left side of the container, with the color picker. Disposing the elements using inline Flex -->
-        <div style="display: flex; align-items: center; gap: 20px;">
-            <p style="font-size: 20px;">Select your color:</p>
-            <div class="color-picker-and-display">
-                <input type="color" id="color-picker" value="#ff0000">
-                <p id="color-display">RGB: (255, 0, 0)</p>
-            </div>
+      <!-- Left side of the container, with the color picker. Disposing the elements using inline Flex -->
+      <div style="display: flex; align-items: center; gap: 20px">
+        <p style="font-size: 20px">Select your color:</p>
+        <div class="color-picker-and-display">
+          <input type="color" id="color-picker" value="#ff0000" />
+          <p id="color-display">RGB: (255, 0, 0)</p>
         </div>
-        <!-- Center part of the container. Button used for converting the selected color -->
-        <div>
-            <button id="button-style" onclick="oppositeColor()">Opposite Color</button>
-        </div>
-        <!-- Right side of the container, used to display a box with a converted color -->
-        <!-- 
+      </div>
+      <!-- Center part of the container. Button used for converting the selected color -->
+      <div>
+        <button id="button-style" onclick="oppositeColor()">
+          Opposite Color
+        </button>
+      </div>
+      <!-- Right side of the container, used to display a box with a converted color -->
+      <!-- 
             - Parent's border-radius only affects its own visual boundary, not its child's shape.
             - By default, children are not clipped by the parent's border radius unless overflow:hidden or a similar clipping mechanism is used. 
         -->
-        <div>
-            <!-- I could also just have moved the border-radius: 20%; to the child div. -->
-            <!-- Colored div -->
-            <div class="color-picker-and-display">
-                <div id="color-picker-opposite" style="background-color: aliceblue; height: 80px; width: 80px; border-radius: 20%"></div>
-                <p id="color-display-opposite">RGB: (0, 0, 0)</p>
-            </div>
+      <div>
+        <!-- I could also just have moved the border-radius: 20%; to the child div. -->
+        <!-- Colored div -->
+        <div class="color-picker-and-display">
+          <div
+            id="color-picker-opposite"
+            style="
+              background-color: aliceblue;
+              height: 80px;
+              width: 80px;
+              border-radius: 20%;
+            "
+          ></div>
+          <p id="color-display-opposite">RGB: (0, 0, 0)</p>
         </div>
+      </div>
     </div>
-
-</body>
-
+  </body>
 </html>
