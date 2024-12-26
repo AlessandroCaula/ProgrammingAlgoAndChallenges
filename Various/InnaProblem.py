@@ -1,4 +1,4 @@
-# Given a matrix M x N extract a window array of m (40) lenght from each of the M rows, shifiting the array every rows.
+# Given a matrix M x N extract a window array of m (40) length from each of the M rows, shifting the array every rows.
 # i.e. First Row --> array from 0 to 39. Second Row --> array from 40 to 79. Third array --> from 80 to 119. Etc.
 # [[[0 .. 39], 40 .. 480], 
 #  [0 .. 39, .. [40 .. 79], 80 .. 480], 
