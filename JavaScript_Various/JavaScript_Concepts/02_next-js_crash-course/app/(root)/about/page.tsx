@@ -2,6 +2,9 @@
 // In next.js folder are used to create routes, and the tsx file within the folder it becomes the file that gets rendered for that route.
 
 const page = () => {
+  // Throwing a new error on purpose.
+  throw new Error('NOT IMPLEMENTED -custom error-');
+
   return (
     <div>About</div>
   )
