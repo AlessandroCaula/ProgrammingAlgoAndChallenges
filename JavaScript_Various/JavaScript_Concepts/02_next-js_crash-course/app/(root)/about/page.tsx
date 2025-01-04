@@ -3,7 +3,7 @@
 
 const page = () => {
   // Throwing a new error on purpose.
-  throw new Error('NOT IMPLEMENTED -custom error-');
+  throw new Error('NOT IMPLEMENTED - custom error -');
 
   return (
     <div>About</div>
