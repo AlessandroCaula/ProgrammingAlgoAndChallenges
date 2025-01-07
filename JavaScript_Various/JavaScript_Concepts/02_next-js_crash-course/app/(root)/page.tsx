@@ -1,5 +1,11 @@
 import Hello from "../components/hello";
 
+// Creating metadata.
+export const metadata = {
+  title: "Home | Next.js",
+  description: "Generation by create next app",
+}
+
 export default function Home() {
   // Check if this component is rendered on the server or on the client.
   console.log("what am I? -- SERVER/CLIENT?");
