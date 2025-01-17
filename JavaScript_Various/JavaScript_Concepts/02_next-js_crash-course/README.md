@@ -1,1 +1,0 @@
-Next.js crash course from JavaScript Mastery (https://www.youtube.com/watch?v=Zq5fmkH0T78&t=2104s).
