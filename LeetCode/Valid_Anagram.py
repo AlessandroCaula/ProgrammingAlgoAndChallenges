@@ -30,7 +30,7 @@ def valid_anagram(s: str, t: str) -> bool:
 
 print(valid_anagram("anagram", "nagaram"))
 
-print(valid_anagram("cat", "car"))
+print(valid_anagram("bbcc", "ccbc"))
 
 print(valid_anagram("anagra", "nagaraa"))
 
@@ -55,8 +55,28 @@ def is_anagram(s:str, t:str) -> bool:
     return all(count == 0 for count in char_count.values())
 
 
-print(is_anagram("anagram", "nagaram"))
+# print(is_anagram("anagram", "nagaram"))
 
-print(is_anagram("cat", "car"))
+# print(is_anagram("cat", "car"))
 
-print(is_anagram("anagra", "nagaraa"))
+# print(is_anagram("anagra", "nagaraa"))
+
+def isAnagram(s: str, t: str) -> bool:
+    if len(s) != len(t):
+        return False
+    letter_count_dict = {}
+    for letter in s:
+        if letter in letter_count_dict.keys():
+            letter_count_dict[letter] += 1
+        else:
+            letter_count_dict[letter] = 1
+    for letter in t:
+        if letter in letter_count_dict.keys():
+            letter_count_dict[letter] -= 1
+            if letter_count_dict[letter] < 0:
+                return False
+        else: 
+            return False
+    return sum(letter_count_dict.values()) == 0
+
+print(isAnagram("bbcc", "ccbc"))
