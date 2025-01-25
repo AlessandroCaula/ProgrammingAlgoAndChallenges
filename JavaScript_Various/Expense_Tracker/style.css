@@ -1,0 +1,52 @@
+/* Set the style to the html */
+html {
+    /* Box sizing: border-box; ensure that the width and the height that are set for an element apply only on the content area */
+    /* Ensures that widths and heights ae easier to calculate since padding and borders are included. */
+    /* No need to manually add padding or borders when calculating the size of elements. */
+    box-sizing: border-box;
+    height: 100%; /* Make the html stretch to the full viewport height  */
+}
+
+/* Set a background color for the whole page */
+body {
+    /* Creating a gradient background */
+    background: linear-gradient(to bottom, #4fb2ce, #87ce8a, #d7e19c);
+    font-family: Arial, Helvetica, sans-serif; 
+    margin: 0; /* Remove the default margin to prevent gaps */
+    padding: 0; /* Remove the default padding */
+    display: flex; /* Enable flexbox layout */
+    flex-direction: column; /* Stack the elements in the page vertically */
+    align-items: center; /* Center the elements horizontally */
+    height: 100%;
+}
+
+/* Center the header, in which there is the Title */
+header {
+    border: 2px solid #434242;
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center;
+    height: 20%; /* Adjust the height for the header area */ 
+    width: 100%;
+}
+
+h1 {
+    border: 2px solid #fffdfd;
+    font-size: 3rem;
+    margin: 0;
+}
+
+/* Main section layout. The one that will contain the left and right panels sections */
+main {
+
+}
+
+.left-panel {
+    border: solid 2px #ff0026;
+    padding: 10px;
+}
+
+.right-panel {
+    border: solid 2px #0000ff;
+    padding: 10px;
+}
