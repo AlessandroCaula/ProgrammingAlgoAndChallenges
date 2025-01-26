@@ -1,52 +1,68 @@
 /* Set the style to the html */
 html {
-    /* Box sizing: border-box; ensure that the width and the height that are set for an element apply only on the content area */
-    /* Ensures that widths and heights ae easier to calculate since padding and borders are included. */
-    /* No need to manually add padding or borders when calculating the size of elements. */
-    box-sizing: border-box;
-    height: 100%; /* Make the html stretch to the full viewport height  */
+  /* Box sizing: border-box; ensure that the width and the height that are set for an element apply only on the content area */
+  /* Ensures that widths and heights ae easier to calculate since padding and borders are included. */
+  /* No need to manually add padding or borders when calculating the size of elements. */
+  box-sizing: border-box;
+  height: 100%; /* Make the html stretch to the full viewport height  */
 }
 
 /* Set a background color for the whole page */
 body {
-    /* Creating a gradient background */
-    background: linear-gradient(to bottom, #4fb2ce, #87ce8a, #d7e19c);
-    font-family: Arial, Helvetica, sans-serif; 
-    margin: 0; /* Remove the default margin to prevent gaps */
-    padding: 0; /* Remove the default padding */
-    display: flex; /* Enable flexbox layout */
-    flex-direction: column; /* Stack the elements in the page vertically */
-    align-items: center; /* Center the elements horizontally */
-    height: 100%;
+  /* Creating a gradient background */
+  background: linear-gradient(to bottom, #4fb2ce, #87ce8a, #d7e19c);
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0; /* Remove the default margin to prevent gaps */
+  padding: 0; /* Remove the default padding */
+  display: flex; /* Enable flexbox layout */
+  flex-direction: column; /* Stack the elements in the page vertically */
+  align-items: center; /* Center the elements horizontally */
+  height: 100%;
 }
 
 /* Center the header, in which there is the Title */
 header {
-    border: 2px solid #434242;
-    display: flex;
-    justify-content: center; /* Center horizontally */
-    align-items: center;
-    height: 20%; /* Adjust the height for the header area */ 
-    width: 100%;
+  border: 2px solid #434242;
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center;
+  height: 20%; /* Adjust the height for the header area */
+  width: 100%;
 }
 
 h1 {
-    border: 2px solid #fffdfd;
-    font-size: 3rem;
-    margin: 0;
+  border: 2px solid #fffdfd;
+  font-size: 3rem;
+  margin: 0;
 }
 
 /* Main section layout. The one that will contain the left and right panels sections */
 main {
-
+  border: 2px solid rgb(223, 115, 39);
+  display: flex; /* Arrange the left and right panels side-bu-side */
+  width: 100%; /* It will occupy the entire width of the page */
+  height: 80%; /* The main section will occupy the remaining height of the page */
 }
 
+/* Styling the left panel, which will contain the expenses history and the add expense button */
 .left-panel {
-    border: solid 2px #ff0026;
-    padding: 10px;
+  flex: 1; /* Take equal space - Could have put width: 50; */
+  border: solid 2px #ff0026;
+  padding: 10px; /* add some inner space between this panel and the element inside it */
 }
 
+/* Style of the right panel, this will contain all the groups people recap of what they owe and to who */
 .right-panel {
-    border: solid 2px #0000ff;
-    padding: 10px;
+  /* By setting flex: 1; in both the left and right panels ensure that both the panels take equal space */
+  flex: 1; /* Take equal space - Could have put width: 50; */
+  border: solid 2px #0000ff;
+  padding: 10px;
+}
+
+.expense-history {
+  height: 50%; /* adjust the height of this expense history inside the left-panel */
+  overflow-y: auto; /* Enable vertical history */
+  border: 1px solid rgb(255, 98, 0); /* Add border to visually define this scrollable expense history */ 
+  border-radius: 5%; /* Smoothing the corner of the container */
+  padding: 10px; /* Add some inner spacing for content readability */
 }
