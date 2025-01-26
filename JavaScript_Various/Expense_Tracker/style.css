@@ -49,6 +49,10 @@ main {
   flex: 1; /* Take equal space - Could have put width: 50; */
   border: solid 2px #ff0026;
   padding: 10px; /* add some inner space between this panel and the element inside it */
+  /* Make sure the left-panel properly accommodates the scrollable section */
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Add space between child elements */
 }
 
 /* Style of the right panel, this will contain all the groups people recap of what they owe and to who */
@@ -59,10 +63,28 @@ main {
   padding: 10px;
 }
 
-.expense-history {
+.expenses {
   height: 50%; /* adjust the height of this expense history inside the left-panel */
-  overflow-y: auto; /* Enable vertical history */
   border: 1px solid rgb(255, 98, 0); /* Add border to visually define this scrollable expense history */ 
   border-radius: 5%; /* Smoothing the corner of the container */
   padding: 10px; /* Add some inner spacing for content readability */
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+h2 {
+  border: 1px solid blueviolet;
+  margin: 0;
+  text-align: center;
+  color: rgb(157, 55, 1);
+  height: 40px; /* Fix the height of the h2 text */
+  line-height: 40px; /* Align text vertically within the <h2> */
+  font-size: 26px;
+}
+
+.expense-history {
+  border: 1px solid blue;
+  flex: 1; /* Take the remaining space dynamically */
+  overflow-y: auto; /* Enable vertical history scrolling */
 }
