@@ -66,25 +66,55 @@ main {
 .expenses {
   height: 50%; /* adjust the height of this expense history inside the left-panel */
   border: 1px solid rgb(255, 98, 0); /* Add border to visually define this scrollable expense history */ 
-  border-radius: 5%; /* Smoothing the corner of the container */
-  padding: 10px; /* Add some inner spacing for content readability */
+  border-radius: 10px; /* Smoothing the corner of the container */
+  /* padding: 10px; /* Add some inner spacing for content readability */
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
+  background: linear-gradient(to bottom, #4fb2ce, #87ce8a, #d7e19c);
 }
 
 h2 {
-  border: 1px solid blueviolet;
+  /* border: 1px solid blueviolet; */
   margin: 0;
   text-align: center;
-  color: rgb(157, 55, 1);
+  /* color: rgb(0, 0, 0); */
   height: 40px; /* Fix the height of the h2 text */
   line-height: 40px; /* Align text vertically within the <h2> */
   font-size: 26px;
+  background-color: #4fb2ce;
+  border-radius: 10px 10px 0 0;
 }
 
 .expense-history {
-  border: 1px solid blue;
+  /* border: 1px solid blue; */
   flex: 1; /* Take the remaining space dynamically */
   overflow-y: auto; /* Enable vertical history scrolling */
+  padding: 0 0 0 10px;
+}
+
+/* Targeting the scroll-bar --> Does NOT work */
+section.left-panel .expense-history::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background: yellow;
+}
+
+/* Target the add-expenses element */
+.add-expense {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Style the add expense button */
+.add-expense-btn {
+  height: 40px;
+  border-radius: 10px;
+  border: 2px solid #287286;
+  background-color: #4fb2ce;
+  font-size: 1rem;
+  margin-top: 30px;
+  cursor: pointer;
+}
+.add-expense-btn:hover {
+  background-color: #347c91;
 }
