@@ -43,7 +43,7 @@ def validParentheses(string):
             # If instead the closed parenthesis is correctly closing the last opened parenthesis, remove it from the stack and continue. 
             else:
                 stack_for_parentheses.pop()
-    # If all the parentheses have been correctly cosed, return True.
+    # If all the parentheses have been correctly closed, return True.
     if len(stack_for_parentheses) == 0:   
         return True
     else:
