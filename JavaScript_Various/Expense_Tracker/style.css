@@ -65,7 +65,7 @@ main {
 
 .expenses {
   height: 50%; /* adjust the height of this expense history inside the left-panel */
-  border: 1px solid rgb(255, 98, 0); /* Add border to visually define this scrollable expense history */ 
+  border: 2px solid rgb(255, 98, 0); /* Add border to visually define this scrollable expense history */ 
   border-radius: 10px; /* Smoothing the corner of the container */
   /* padding: 10px; /* Add some inner spacing for content readability */
   display: flex;
@@ -116,5 +116,15 @@ section.left-panel .expense-history::-webkit-scrollbar-track {
   cursor: pointer;
 }
 .add-expense-btn:hover {
-  background-color: #347c91;
+  background-color: #4ba2bd;
+  border-color: #0000ff;
+  box-shadow: ;
+}
+
+/* Expense Form */
+.expense-form {
+  border: 1px solid green;
+  margin-top: 20px; /* Space above the form */
+  padding-left: 10px; /* Adding some space on the left */
+  display: block; /* Initially hidden, will be shown dynamically */
 }

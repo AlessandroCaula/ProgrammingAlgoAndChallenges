@@ -5,6 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Expense Tracker</title>
     <link rel="stylesheet" href="style.css" />
+    <!-- Adding the Font Awesome Library -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
   </head>
   <body>
     <header>
@@ -19,21 +27,78 @@
           <h2>Expense History</h2>
           <div class="expense-history">
             <!-- Expenses will be dynamically added here -->
-             <!-- Adding some placeholders -->
-              <p>Expense name/description: <br /> import [$] - payed by: </p>
-              <p>Expense name/description: <br /> import [$] - payed by: </p>
-              <p>Expense name/description: <br /> import [$] - payed by: </p>
-              <p>Expense name/description: <br /> import [$] - payed by: </p>
-              <p>Expense name/description: <br /> import [$] - payed by: </p>
-              <p>Expense name/description: <br /> import [$] - payed by: </p>
-              <p>Expense name/description: <br /> import [$] - payed by: </p>
+            <!-- Adding some placeholders -->
+            <p>
+              Expense name/description: <br />
+              import [$] - payed by:
+            </p>
+            <p>
+              Expense name/description: <br />
+              import [$] - payed by:
+            </p>
+            <p>
+              Expense name/description: <br />
+              import [$] - payed by:
+            </p>
+            <p>
+              Expense name/description: <br />
+              import [$] - payed by:
+            </p>
+            <p>
+              Expense name/description: <br />
+              import [$] - payed by:
+            </p>
+            <p>
+              Expense name/description: <br />
+              import [$] - payed by:
+            </p>
+            <p>
+              Expense name/description: <br />
+              import [$] - payed by:
+            </p>
           </div>
         </div>
-        
+
         <!-- Section for adding a new expense -->
         <div class="add-expense">
           <!-- Button for adding new expenses -->
-          <button class="add-expense-btn">Add Expense</button>
+          <button class="add-expense-btn">
+            Add Expense
+            <i class="fa-solid fa-plus"></i>
+          </button>
+
+          <!-- Section to show the form when the button is clicked for adding the new expense -->
+          <div class="expense-form">
+            <form class="expenseForm">
+              <!-- The <label> element is used to associate a text label with a form <input> field -->
+              <!-- The for specifies the id of the form element the label should be bound to -->
+              <!-- required: is added to the important fields to make sure the user cannot submit the form without entering the data -->
+              <label for="amount">Description</label>
+              <input
+                type="text"
+                id="description"
+                placeholder="Enter expense description"
+                required
+              />
+
+              <label for="amount">Amount (€):</label>
+              <input
+                type="number"
+                id="amout"
+                placeholder="Enter amount"
+                required
+              />
+              
+              <!-- Paid by Section -->
+              <label for="payer">Paid by:</label>
+              <!-- Here we will dynamically show all the participants to the tracker, between which we can choose who paid -->
+              <div class="checkbox-group" id="payerCheckboxes"></div>
+
+              <!-- Split by Section -->
+              <label>Split By:</label>
+              <div class="checkbox-group" id="splitCheckboxes"></div>
+            </form>
+          </div>
         </div>
       </section>
 
