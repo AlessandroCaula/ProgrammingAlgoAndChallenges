@@ -118,7 +118,7 @@ section.left-panel .expense-history::-webkit-scrollbar-track {
 .add-expense-btn:hover {
   background-color: #4ba2bd;
   border-color: #0000ff;
-  box-shadow: ;
+  box-shadow: 3px 3px rgba(0, 128, 255, 0.588); /* Put some shadow for depth */
 }
 
 /* Expense Form */
@@ -127,4 +127,37 @@ section.left-panel .expense-history::-webkit-scrollbar-track {
   margin-top: 20px; /* Space above the form */
   padding-left: 10px; /* Adding some space on the left */
   display: block; /* Initially hidden, will be shown dynamically */
+}
+
+/* Form Layout */
+.expense-form form {
+  display: flex;
+  flex-direction: column; /* Stack elements vertically */
+  gap: 5px; /* Put some gap between elements */
+}
+
+/* Wrap each label and input pair */
+.form-group {
+  display: flex; /* Align label and input side by side */
+  align-items: center; /* Center vertically */
+  gap: 10px; /* Space between label and input */
+}
+
+/* Labels and Input container */
+.expense-form label {
+  display: flex; /* Flexbox layout for label and input alignment */
+  align-items: center; /* Center the label and input vertically */
+  justify-content: flex-start; /* Align items to the left */
+  gap: 10px; /* Space between label and input field */
+}
+
+/* Inputs - specify the type of the input to target */
+.expense-form input[type="text"],
+.expense-form input[type="number"] {
+  flex: 1; /* Make inputs grow to fill the available space */
+  padding: 5px;
+  border: none;
+  border-radius: 5px;
+  background-color: rgb(233, 243, 255);
+  font-size: 14px;
 }

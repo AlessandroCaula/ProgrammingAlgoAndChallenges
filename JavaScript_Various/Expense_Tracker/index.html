@@ -73,22 +73,26 @@
               <!-- The <label> element is used to associate a text label with a form <input> field -->
               <!-- The for specifies the id of the form element the label should be bound to -->
               <!-- required: is added to the important fields to make sure the user cannot submit the form without entering the data -->
-              <label for="amount">Description</label>
-              <input
-                type="text"
-                id="description"
-                placeholder="Enter expense description"
-                required
-              />
+              <div class="form-group">
+                <label for="amount">Description</label>
+                <input
+                  type="text"
+                  id="description"
+                  placeholder="Enter expense description"
+                  required
+                />
+              </div>
 
-              <label for="amount">Amount (€):</label>
-              <input
-                type="number"
-                id="amout"
-                placeholder="Enter amount"
-                required
-              />
-              
+              <div class="form-group">
+                <label for="amount">Amount (€):</label>
+                <input
+                  type="number"
+                  id="amout"
+                  placeholder="Enter amount"
+                  required
+                />
+              </div>
+
               <!-- Paid by Section -->
               <label for="payer">Paid by:</label>
               <!-- Here we will dynamically show all the participants to the tracker, between which we can choose who paid -->
