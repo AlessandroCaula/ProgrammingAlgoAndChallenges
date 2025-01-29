@@ -126,7 +126,7 @@ section.left-panel .expense-history::-webkit-scrollbar-track {
   border: 1px solid green;
   margin-top: 20px; /* Space above the form */
   padding-left: 10px; /* Adding some space on the left */
-  display: block; /* Initially hidden, will be shown dynamically */
+  display: none; /* Initially hidden, will be shown dynamically on Add Expense button click */
 }
 
 /* Form Layout */
