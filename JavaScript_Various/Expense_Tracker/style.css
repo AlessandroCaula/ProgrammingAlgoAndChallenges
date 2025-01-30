@@ -64,7 +64,7 @@ main {
 }
 
 .expenses {
-  height: 50%; /* adjust the height of this expense history inside the left-panel */
+  height: 40%; /* adjust the height of this expense history inside the left-panel */
   border: 2px solid rgb(255, 98, 0); /* Add border to visually define this scrollable expense history */ 
   border-radius: 10px; /* Smoothing the corner of the container */
   /* padding: 10px; /* Add some inner spacing for content readability */
@@ -100,7 +100,7 @@ section.left-panel .expense-history::-webkit-scrollbar-track {
 }
 
 /* Target the add-expenses element */
-.add-expense {
+.add-expense-form {
   display: flex;
   flex-direction: column;
 }
@@ -109,7 +109,7 @@ section.left-panel .expense-history::-webkit-scrollbar-track {
 .add-expense-btn {
   height: 40px;
   border-radius: 10px;
-  border: 2px solid #287286;
+  border: 2px solid #287186;
   background-color: #4fb2ce;
   font-size: 1rem;
   margin-top: 30px;
@@ -156,8 +156,41 @@ section.left-panel .expense-history::-webkit-scrollbar-track {
 .expense-form input[type="number"] {
   flex: 1; /* Make inputs grow to fill the available space */
   padding: 5px;
+  margin-bottom: 5px;
   border: none;
   border-radius: 5px;
   background-color: rgb(233, 243, 255);
   font-size: 14px;
+}
+
+label[for="payer"] {
+  margin-top: 10px;
+}
+
+/* label[for="split"] {
+  margin-top: 10px;
+} */
+
+.submit-form {
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px;
+}
+
+.clear-form {
+  font-size: 18px;
+  color: red;
+  background-color: #4fb2ce;
+  cursor: pointer;
+  border: 2px solid #287186;
+  border-radius: 5px;
+}
+
+.add-expense {
+  font-size: 18px;
+  color: rgb(0, 74, 0);
+  background-color: #4fb2ce;
+  cursor: pointer;
+  border: 2px solid #287186;
+  border-radius: 5px;
 }

@@ -60,9 +60,9 @@
         </div>
 
         <!-- Section for adding a new expense -->
-        <div class="add-expense">
+        <div class="add-expense-form">
           <!-- Button for adding new expenses -->
-          <button class="add-expense-btn">
+          <button onclick="toggleExpenseForm()" class="add-expense-btn">
             Add Expense
             <i class="fa-solid fa-plus"></i>
           </button>
@@ -74,7 +74,7 @@
               <!-- The for specifies the id of the form element the label should be bound to -->
               <!-- required: is added to the important fields to make sure the user cannot submit the form without entering the data -->
               <div class="form-group">
-                <label for="amount">Description</label>
+                <label for="amount">Description:</label>
                 <input
                   type="text"
                   id="description"
@@ -89,6 +89,7 @@
                   type="number"
                   id="amout"
                   placeholder="Enter amount"
+                  step="0.01"
                   required
                 />
               </div>
@@ -99,8 +100,18 @@
               <div class="checkbox-group" id="payerCheckboxes"></div>
 
               <!-- Split by Section -->
-              <label>Split By:</label>
+              <label for="split">Split By:</label>
               <div class="checkbox-group" id="splitCheckboxes"></div>
+
+              <!-- Submit form -->
+              <div class="submit-form">
+                <button class="clear-form">
+                  Clear
+                </button>
+                <button class="add-expense">
+                  Add
+                </button>
+              </div>
             </form>
           </div>
         </div>
@@ -109,5 +120,6 @@
       <!-- Add the right panel section -->
       <section class="right-panel"></section>
     </main>
+    <script src="script.js"></script>
   </body>
 </html>
