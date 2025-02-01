@@ -10,7 +10,6 @@ document.addEventListener("DOMContentLoaded", function () {
   addExpenseBtn.addEventListener("click", function () {
     // Get the computed style of the expense form
     const computedStyle = getComputedStyle(expenseForm);
-
     // Check the current display state of the expense form
     if (
       computedStyle.display === "none" ||
@@ -53,7 +52,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
   // Add event listener to the "Not include in previous Expenses" checkbox
-  notIncludePreviousCheckbox.addEventListener('change', function() {
+  notIncludePreviousCheckbox.addEventListener("change", function () {
     if (notIncludePreviousCheckbox.checked) {
       // If this checkbox is checked, uncheck the other one
       includePreviousCheckbox.checked = false;
@@ -64,4 +63,26 @@ document.addEventListener("DOMContentLoaded", function () {
   });
   // Ensure that at least one checkbox is checked on page load
   ensureOneChecked();
+
+  // --- Add the function to hide and show the add participant form on button click
+  //
+  // Retrieve the add participant button
+  const addParticipantBtn = document.querySelector(".add-participant-btn");
+  // Retrieve the add participant form
+  const addParticipantForm = document.querySelector(".add-participant-form");
+  // Add the EventListener at the click of the Add Participant Button
+  addParticipantBtn.addEventListener("click", function () {
+    // Check if the addParticipantForm display visibility is none, if it is set it to block, and vice versa.
+    // - getComputedStyle, which is a function used to get the computed style properties of an element. The computed style is the final set of CSS properties that are applied to an element after all stylesheets, style attributes, and any other CSS rule have been applied.
+    const computedStyleForm = getComputedStyle(addParticipantForm);
+    // Check if the form is showing or not.
+    if (
+      computedStyleForm.display === "none" ||
+      addParticipantForm.style.display === "none"
+    ) {
+      addParticipantForm.style.display = "block";
+    } else {
+      addParticipantForm.style.display = "none";
+    }
+  });
 });

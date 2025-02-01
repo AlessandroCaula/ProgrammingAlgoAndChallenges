@@ -206,6 +206,7 @@ section.left-panel .expense-history::-webkit-scrollbar-track {
 .right-panel {
   /* By setting flex: 1; in both the left and right panels ensure that both the panels take equal space */
   flex: 1; /* Take equal space - Could have put width: 50; */
+  /* width: 50%; */
   border: solid 2px #0000ff;
   padding: 10px;
   display: flex; 
@@ -259,6 +260,7 @@ section.left-panel .expense-history::-webkit-scrollbar-track {
   border-radius: 10px;
   padding: 5px;
   margin-top: 10px;
+  display: none; /* Initially hidden, will be shown dynamically on Add Expense button click */
 }
 
 /* Adding some bottom margin in all the element (.form-group in the form */
@@ -269,7 +271,6 @@ section.left-panel .expense-history::-webkit-scrollbar-track {
 
 /* Target all the labels in the add-participant-forms */
 .add-participant-form label {
-  /* Displaying the element as a block element (like <p>). It starts on a new line, and takes up the whole width */
   display: flex; /* Flexbox layout for label and input alignment */
   align-items: center; /* Center the label and input vertically */
   justify-content: flex-start; /* Align items to the left */
@@ -283,8 +284,9 @@ section.left-panel .expense-history::-webkit-scrollbar-track {
   border-radius: 5px;
   background-color: rgb(233, 243, 255); 
   font-size: 14px;
-  max-width: 100%; /* Prevent the input from exceeding the container's width */
   flex: 1; /* Make inputs grow to fill the available space */
+  width: 100%; /* Ensure the input takes the full width of the container */
+  max-width: 100%; /* Prevent the input from exceeding the container's width */
 }
 
 /* Target the checkboxes inside the add .add-participant-form */

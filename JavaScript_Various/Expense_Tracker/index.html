@@ -127,17 +127,18 @@
           Add Participant <i class="fa-solid fa-plus"></i>
         </button>
         <!-- Add participant form -->
-        <div class="add-participant-form" style="display: block">
+        <div class="add-participant-form">
           <!-- The <form> element is a container fro different types of input elements, such as: text fields, checkboxes, radio buttons, submit buttons, etc. -->
           <form>
             <!-- New participant name -->
             <div class="form-group">
-              <label for="participant-name" required>Participant Name:</label>
+              <label for="participant-name">Participant Name:</label>
               <input
                 type="text"
                 id="participant-name"
                 name="participant-name"
                 placeholder="Name"
+                required
               />
             </div>
             <!-- Include in previous expenses -->
