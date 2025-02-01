@@ -105,12 +105,8 @@
 
               <!-- Submit form -->
               <div class="submit-form">
-                <button class="clear-form">
-                  Clear
-                </button>
-                <button class="add-expense">
-                  Add
-                </button>
+                <button class="clear-form">Clear</button>
+                <button class="add-expense">Add</button>
               </div>
             </form>
           </div>
@@ -123,10 +119,52 @@
           <h2>Participants</h2>
           <ul class="participants-list">
             <!-- Participant items -->
+            <li>Pippo</li>
+            <li>Pluto</li>
           </ul>
-          <button class="add-participant-btn">
-            Add Participant
-          </button>
+        </div>
+        <button class="add-participant-btn">
+          Add Participant <i class="fa-solid fa-plus"></i>
+        </button>
+        <!-- Add participant form -->
+        <div class="add-participant-form" style="display: block">
+          <!-- The <form> element is a container fro different types of input elements, such as: text fields, checkboxes, radio buttons, submit buttons, etc. -->
+          <form>
+            <!-- New participant name -->
+            <div class="form-group">
+              <label for="participant-name" required>Participant Name:</label>
+              <input
+                type="text"
+                id="participant-name"
+                id="participant-name"
+                placeholder="Name"
+              />
+            </div>
+            <!-- Include in previous expenses -->
+            <div class="form-group">
+              <input
+                type="checkbox"
+                id="include-previous"
+                name="include-previous"
+              />
+              <label for="include-previous">Include in Previous Expenses</label>
+            </div>
+            <!-- Not include in previous expenses -->
+            <div class="form-group">
+              <input
+                type="checkbox"
+                id="not-include-previous"
+                name="not-include-previous"
+
+              />
+              <label for="include-previous">Not Include in Previous Expenses</label>
+            </div>
+            <!-- Submit form -->
+            <div class="submit-form">
+              <button class="clear-form">Clear</button>
+              <button class="add-expense">Add</button>
+            </div>
+          </form>
         </div>
       </section>
     </main>

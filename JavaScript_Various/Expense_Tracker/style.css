@@ -47,6 +47,8 @@ main {
   overflow: hidden; /* Prevent overflow */
 }
 
+/* LEFT PANEL */
+
 /* Styling the left panel, which will contain the expenses history and the add expense button */
 .left-panel {
   flex: 1; /* Take equal space - Could have put width: 50; */
@@ -56,18 +58,6 @@ main {
   width: 50%;
   /* height: 100%; */
   display: flex;
-  flex-direction: column;
-  gap: 10px; /* Add space between child elements */
-  box-sizing: border-box; /* Include padding and border in the element's total width and height */
-}
-
-/* Style of the right panel, this will contain all the groups people recap of what they owe and to who */
-.right-panel {
-  /* By setting flex: 1; in both the left and right panels ensure that both the panels take equal space */
-  flex: 1; /* Take equal space - Could have put width: 50; */
-  border: solid 2px #0000ff;
-  padding: 10px;
-  display: flex; 
   flex-direction: column;
   gap: 10px; /* Add space between child elements */
   box-sizing: border-box; /* Include padding and border in the element's total width and height */
@@ -88,7 +78,6 @@ h2 {
   /* border: 1px solid blueviolet; */
   margin: 0;
   text-align: center;
-  /* color: rgb(0, 0, 0); */
   height: 40px; /* Fix the height of the h2 text */
   line-height: 40px; /* Align text vertically within the <h2> */
   font-size: 26px;
@@ -100,7 +89,7 @@ h2 {
   /* border: 1px solid blue; */
   flex: 1; /* Take the remaining space dynamically */
   overflow-y: auto; /* Enable vertical history scrolling */
-  padding: 0 0 0 10px;
+  padding: 0 0 0 1px;
 }
 
 /* Targeting the scroll-bar --> Does NOT work */
@@ -201,4 +190,57 @@ label[for="payer"] {
   cursor: pointer;
   border: 2px solid #287186;
   border-radius: 5px;
+}
+
+/* RIGHT PANEL */
+
+/* Style of the right panel, this will contain all the groups people recap of what they owe and to who */
+.right-panel {
+  /* By setting flex: 1; in both the left and right panels ensure that both the panels take equal space */
+  flex: 1; /* Take equal space - Could have put width: 50; */
+  border: solid 2px #0000ff;
+  padding: 10px;
+  display: flex; 
+  flex-direction: column;
+  gap: 10px; /* Add space between child elements */
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+.participants-recap {
+  /* border: 1px solid orange; */
+  background: linear-gradient(to bottom, #4fb2ce, #87ce8a, #d7e19c);
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px 10px 10px 10px;
+}
+
+.participants-list {
+  /* border: 1px solid black; */
+  list-style-type: none;
+  padding: 0px;
+  margin: 0;
+}
+
+.participants-list li {
+  padding-left: 20px;
+  margin: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #287186;
+}
+
+/* Add participant button */
+.add-participant-btn {
+  height: 40px;
+  border-radius: 10px;
+  border: 2px solid #287186;
+  background-color: #4fb2ce;
+  font-size: 1rem;
+  margin-top: 30px;
+  cursor: pointer;
+}
+
+.add-participant-btn:hover {
+  background-color: #4ba2bd;
+  border-color: #0000ff;
+  box-shadow: 3px 3px rgba(0, 128, 255, 0.588);
 }
