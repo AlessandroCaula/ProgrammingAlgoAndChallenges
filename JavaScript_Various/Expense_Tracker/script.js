@@ -27,9 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
   //
   // Select the checkboxes element for including or nor including in previous expenses
   const includePreviousCheckbox = document.getElementById("include-previous");
-  const notIncludePreviousCheckbox = document.getElementById(
-    "not-include-previous"
-  );
+  const notIncludePreviousCheckbox = document.getElementById("not-include-previous");
   // Function to ensure that at least one checkbox is always checked.
   function ensureOneChecked() {
     // If both the checkboxes are unchecked, by default check the "Include previous expenses" checkbox by default.
@@ -66,6 +64,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // --- Add the function to hide and show the add participant form on button click
   //
+  // Here I cannot use the getElementById(), because the element in the HTML does not have any ID associated to it. I could simply used it, by defining the id="" to the HTML elements. 
   // Retrieve the add participant button
   const addParticipantBtn = document.querySelector(".add-participant-btn");
   // Retrieve the add participant form
@@ -83,6 +82,35 @@ document.addEventListener("DOMContentLoaded", function () {
       addParticipantForm.style.display = "block";
     } else {
       addParticipantForm.style.display = "none";
+    }
+  });
+
+  // --- Handle the participant form submission to add the new participant
+  // 
+  // Retrieve the Add participant button. 
+  const submitParticipantBtn = document.getElementById("add-participant-form");
+  // Add the Event Listener to this submit form button
+  submitParticipantBtn.addEventListener('click', function(event){
+    // Prevent the default form submission
+    event.preventDefault();
+    
+    // Get the input element for the participant name
+    const newParticipantNameInput = document.querySelector("#participant-name");
+    // Get the trimmed (without white spaces) of the participant name
+    const newParticipantName = newParticipantNameInput.value.trim();
+
+    // Check if the participant name is not empty
+    if (newParticipantName){
+      // Get the participants list elements
+      const participantsList = document.querySelector(".participants-list");
+      // Create a new list item element.
+      const listItem = document.createElement("li");
+      // Set the text content of the list item to the new participant name. 
+      listItem.textContent = newParticipantName;
+      // Append the new list item to the participant list. 
+      participantsList.append(listItem);
+
+      // TO BE COMPLETED !!! Asking for defining different styling for the new list element, as well as adding the info about what they own to who.
     }
   });
 });
