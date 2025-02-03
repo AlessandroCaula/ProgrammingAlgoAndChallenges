@@ -27,7 +27,9 @@ document.addEventListener("DOMContentLoaded", function () {
   //
   // Select the checkboxes element for including or nor including in previous expenses
   const includePreviousCheckbox = document.getElementById("include-previous");
-  const notIncludePreviousCheckbox = document.getElementById("not-include-previous");
+  const notIncludePreviousCheckbox = document.getElementById(
+    "not-include-previous"
+  );
   // Function to ensure that at least one checkbox is always checked.
   function ensureOneChecked() {
     // If both the checkboxes are unchecked, by default check the "Include previous expenses" checkbox by default.
@@ -64,7 +66,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // --- Add the function to hide and show the add participant form on button click
   //
-  // Here I cannot use the getElementById(), because the element in the HTML does not have any ID associated to it. I could simply used it, by defining the id="" to the HTML elements. 
+  // Here I cannot use the getElementById(), because the element in the HTML does not have any ID associated to it. I could simply used it, by defining the id="" to the HTML elements.
   // Retrieve the add participant button
   const addParticipantBtn = document.querySelector(".add-participant-btn");
   // Retrieve the add participant form
@@ -85,32 +87,82 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
+  // Fake some data expenses
+  const expenses = [
+    { participant: "Pippo", amount: 300 },
+    { participant: "Pluto", amount: 300 }
+  ];
+
   // --- Handle the participant form submission to add the new participant
-  // 
-  // Retrieve the Add participant button. 
+  //
+  // Retrieve the Add participant button.
   const submitParticipantBtn = document.getElementById("add-participant-form");
   // Add the Event Listener to this submit form button
-  submitParticipantBtn.addEventListener('click', function(event){
+  submitParticipantBtn.addEventListener("click", function (event) {
     // Prevent the default form submission
     event.preventDefault();
-    
+
     // Get the input element for the participant name
     const newParticipantNameInput = document.querySelector("#participant-name");
     // Get the trimmed (without white spaces) of the participant name
     const newParticipantName = newParticipantNameInput.value.trim();
 
     // Check if the participant name is not empty
-    if (newParticipantName){
+    if (newParticipantName) {
       // Get the participants list elements
       const participantsList = document.querySelector(".participants-list");
+      // Check if the number of participant, does not exceed 8.
+      // If it exceeds 8, then set the stile of the Participants list to overflow-y: auto. It it goes over 15 alert the user that he has reached the maximum number of participant.
+      // Get tne number of participants (length of the participants list)
+      const numberOfParticipants = participantsList.children.length;
+      if (numberOfParticipants > 2){
+        // Get the participants-recap <div>
+        const participantRecap = document.querySelector(".participants-recap");
+        // Set the overflow-y property to the participantList
+        participantRecap.style.overflowY = "auto";
+      } else if (numberOfParticipants > 15) {
+        alert("Maximum number of participant already reached");
+        // Get the Clear button element and trigger the click simulation
+        const clearParticipantFormBtn = document.getElementById("clear-participant-form");
+        // Trigger the clear button click action
+        clearParticipantFormBtn.click();
+        // Return in order not to add the participant. 
+        return;
+      } 
+
       // Create a new list item element.
       const listItem = document.createElement("li");
-      // Set the text content of the list item to the new participant name. 
+      // Set the text content of the list item to the new participant name.
       listItem.textContent = newParticipantName;
-      // Append the new list item to the participant list. 
+      // Append the new list item to the participant list.
       participantsList.append(listItem);
 
+      // Clear the form field once submitted.
+      newParticipantNameInput.value = "";
+      includePreviousCheckbox.checked = false;
+      notIncludePreviousCheckbox.checked = false;
+      // Ensure one checkbox is always checked
+      ensureOneChecked();
+
       // TO BE COMPLETED !!! Asking for defining different styling for the new list element, as well as adding the info about what they own to who.
+    } else {
+      // Alert the user if the participant name is empty
+      alert("Please enter a Participant Name");
     }
+  });
+
+  // --- Handle the clear button to reset the form
+  //
+  // Retrieve the clear participant button.
+  const clearParticipantBtn = document.getElementById("clear-participant-form");
+  // Add the event to the Clear participant button.
+  clearParticipantBtn.addEventListener("click", function () {
+    // Clear the participant name input field
+    document.querySelector("#participant-name").value = "";
+    // Uncheck both checkboxes
+    includePreviousCheckbox.checked = false;
+    notIncludePreviousCheckbox.checked = false;
+    // Ensure one checkbox is checked.
+    ensureOneChecked();
   });
 });
