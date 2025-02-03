@@ -115,12 +115,19 @@ document.addEventListener("DOMContentLoaded", function () {
       // If it exceeds 8, then set the stile of the Participants list to overflow-y: auto. It it goes over 15 alert the user that he has reached the maximum number of participant.
       // Get tne number of participants (length of the participants list)
       const numberOfParticipants = participantsList.children.length;
-      if (numberOfParticipants > 2){
+      const triggeringOverflow = 5;
+      const maxParticipants = 15;
+      if (numberOfParticipants > triggeringOverflow && numberOfParticipants <= maxParticipants){
         // Get the participants-recap <div>
         const participantRecap = document.querySelector(".participants-recap");
         // Set the overflow-y property to the participantList
-        participantRecap.style.overflowY = "auto";
-      } else if (numberOfParticipants > 15) {
+        // Retrieve the current height of the participant-recap element
+        const participantRecapHeight = participantRecap.clientHeight;
+        // Set its max height to the current height.
+        participantRecap.style.maxHeight = `${participantRecapHeight}px`;
+        // Set its overflow-Y to true.
+        participantsList.style.overflowY = "scroll";
+      } else if (numberOfParticipants > 8) {
         alert("Maximum number of participant already reached");
         // Get the Clear button element and trigger the click simulation
         const clearParticipantFormBtn = document.getElementById("clear-participant-form");
@@ -135,7 +142,10 @@ document.addEventListener("DOMContentLoaded", function () {
       // Set the text content of the list item to the new participant name.
       listItem.textContent = newParticipantName;
       // Append the new list item to the participant list.
-      participantsList.append(listItem);
+      participantsList.appendChild(listItem);
+
+      // Autoscroll to the last participant added
+      listItem.scrollIntoView({ behavior: "smooth", block: "end" })
 
       // Clear the form field once submitted.
       newParticipantNameInput.value = "";
