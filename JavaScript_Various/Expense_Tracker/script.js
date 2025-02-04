@@ -17,9 +17,12 @@ document.addEventListener("DOMContentLoaded", function () {
     ) {
       // If the form is hidden or has no inline display style, show it
       expenseForm.style.display = "block";
+      // Access to the innerHTML
+      addExpenseBtn.innerHTML = 'Add Expense <i class="fa-solid fa-chevron-up"></i>';
     } else {
       // Otherwise, hide the form
       expenseForm.style.display = "none";
+      addExpenseBtn.innerHTML = 'Add Expense <i class="fa-solid fa-chevron-down"></i>';
     }
   });
 
@@ -85,11 +88,11 @@ document.addEventListener("DOMContentLoaded", function () {
       addParticipantForm.style.display = "block";
       // Also change the "+" symbol on the button, to become a "-"
       // Access to the innerHTML
-      addParticipantBtn.innerHTML = 'Add Participant <i class="fa-solid fa-minus"></i>';
+      addParticipantBtn.innerHTML = 'Add Participant <i class="fa-solid fa-chevron-up"></i>';
     } else {
       addParticipantForm.style.display = "none";
       // Also change the symbol "-" to "+"
-      addParticipantBtn.innerHTML = 'Add Participant <i class="fa-solid fa-plus"></i>'
+      addParticipantBtn.innerHTML = 'Add Participant <i class="fa-solid fa-chevron-down"></i>'
     }
   });
 

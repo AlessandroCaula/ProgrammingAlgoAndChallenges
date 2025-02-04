@@ -51,7 +51,8 @@ main {
 
 /* Styling the left panel, which will contain the expenses history and the add expense button */
 .left-panel {
-  flex: 1; /* Take equal space - Could have put width: 50; */
+  flex: 1; /* Take equal space - Could have put width: 50; */ 
+  /* width: 60%; */
   border: solid 2px #ff0026;
   padding: 10px; /* add some inner space between this panel and the element inside it */
   /* Make sure the left-panel properly accommodates the scrollable section */
@@ -107,6 +108,7 @@ section.left-panel .expense-history::-webkit-scrollbar-track {
 
 /* Style the add expense button */
 .add-expense-btn {
+  position: relative; /* Make the button a position element */
   height: 40px;
   border-radius: 10px;
   border: 2px solid #287186;
@@ -114,6 +116,9 @@ section.left-panel .expense-history::-webkit-scrollbar-track {
   font-size: 1rem;
   margin-top: 30px;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .add-expense-btn:hover {
   background-color: #4ba2bd;
@@ -121,14 +126,21 @@ section.left-panel .expense-history::-webkit-scrollbar-track {
   box-shadow: 3px 3px rgba(0, 128, 255, 0.588); /* Put some shadow for depth */
 }
 
+/* Put the arrow all to the right of the button */
+.add-expense-btn i {
+  position: absolute;
+  right: 20px;
+}
+
 /* Expense Form */
 .expense-form {
-  border: 2px solid #287186;
+  /* border: 2px solid #287186; */
   border-radius: 10px;
   margin-top: 20px; /* Space above the form */
   padding-left: 10px; /* Adding some space on the left */
   display: none; /* Initially hidden, will be shown dynamically on Add Expense button click */
   padding: 5px; /* Adding some space between this container and the children inside it */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.463); /* Put some shadow all around the form */
 }
 
 /* Form Layout */
@@ -207,7 +219,6 @@ section.left-panel .expense-history::-webkit-scrollbar-track {
 .right-panel {
   /* By setting flex: 1; in both the left and right panels ensure that both the panels take equal space */
   flex: 1; /* Take equal space - Could have put width: 50; */
-  /* width: 50%; */
   border: solid 2px #0000ff;
   padding: 10px;
   display: flex; 
@@ -252,12 +263,22 @@ section.left-panel .expense-history::-webkit-scrollbar-track {
   font-size: 1rem;
   margin-top: 30px;
   cursor: pointer;
+  position: relative; /* Make the button a position element */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .add-participant-btn:hover {
   background-color: #4ba2bd;
   border-color: #0000ff;
   box-shadow: 3px 3px rgba(0, 128, 255, 0.588);
+}
+
+/* Add some space between the Text inside the button and the arrow symbol */
+.add-participant-btn i {
+  position: absolute;
+  right: 20px;
 }
 
 /* Add Participant Form */
@@ -267,7 +288,7 @@ section.left-panel .expense-history::-webkit-scrollbar-track {
   padding: 5px;
   margin-top: 10px;
   display: none; /* Initially hidden, will be shown dynamically on Add Expense button click */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.411); /* Put some shadow all around the form */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.463); /* Put some shadow all around the form */
 }
 
 /* Adding some bottom margin in all the element (.form-group in the form */
