@@ -81,9 +81,15 @@ document.addEventListener("DOMContentLoaded", function () {
       computedStyleForm.display === "none" ||
       addParticipantForm.style.display === "none"
     ) {
+      // If it is not showing, then show it.
       addParticipantForm.style.display = "block";
+      // Also change the "+" symbol on the button, to become a "-"
+      // Access to the innerHTML
+      addParticipantBtn.innerHTML = 'Add Participant <i class="fa-solid fa-minus"></i>';
     } else {
       addParticipantForm.style.display = "none";
+      // Also change the symbol "-" to "+"
+      addParticipantBtn.innerHTML = 'Add Participant <i class="fa-solid fa-plus"></i>'
     }
   });
 
@@ -135,7 +141,7 @@ document.addEventListener("DOMContentLoaded", function () {
         clearParticipantFormBtn.click();
         // Return in order not to add the participant. 
         return;
-      } 
+      }
 
       // Create a new list item element.
       const listItem = document.createElement("li");
