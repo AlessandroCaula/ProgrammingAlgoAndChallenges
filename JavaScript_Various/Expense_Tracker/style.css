@@ -72,6 +72,7 @@ main {
   flex-direction: column;
   box-sizing: border-box;
   background: linear-gradient(to bottom, #4fb2ce, #87ce8a, #d7e19c);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add some shadow */
 }
 
 h2 {
@@ -221,6 +222,11 @@ section.left-panel .expense-history::-webkit-scrollbar-track {
   display: flex;
   flex-direction: column;
   border-radius: 10px 10px 0 0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add some shadow */
+  /*  0 - Horizontal offset of the shadow 
+      4px - Vertical offset of the shadow
+      8px - Blur radius of the shadow 
+      rgba(0, 0, 0, 0.1) - Color of the shadow with 10% opacity */
 }
 
 .participants-list {
@@ -256,11 +262,12 @@ section.left-panel .expense-history::-webkit-scrollbar-track {
 
 /* Add Participant Form */
 .add-participant-form {
-  border: 2px solid #287186;
+  /* border: 2px solid #287186; */
   border-radius: 10px;
   padding: 5px;
   margin-top: 10px;
   display: none; /* Initially hidden, will be shown dynamically on Add Expense button click */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.411); /* Put some shadow all around the form */
 }
 
 /* Adding some bottom margin in all the element (.form-group in the form */
