@@ -1,11 +1,25 @@
 // Wait until the DOM is fully loaded before running the script
 document.addEventListener("DOMContentLoaded", function () {
-  // --- Add the function ad event listener to toggle the visibility of the Expense Form. That will be shown only on the button click.
-  //
+
   // Select the "Add Expense" button
   const addExpenseBtn = document.querySelector(".add-expense-btn");
   // Select the expense form that needs to be shown/hidden
   const expenseForm = document.querySelector(".expense-form");
+  // Select the checkboxes element for including or nor including in previous expenses
+  const includePreviousCheckbox = document.getElementById("include-previous");
+  const notIncludePreviousCheckbox = document.getElementById("not-include-previous");
+  // Here I cannot use the getElementById(), because the element in the HTML does not have any ID associated to it. I could simply used it, by defining the id="" to the HTML elements.
+  // Retrieve the add participant button
+  const addParticipantBtn = document.querySelector(".add-participant-btn");
+  // Retrieve the add participant form
+  const addParticipantForm = document.querySelector(".add-participant-form");
+  // Retrieve the Add participant button.
+  const submitParticipantBtn = document.getElementById("add-participant-form");
+  // Retrieve the clear participant button.
+  const clearParticipantBtn = document.getElementById("clear-participant-form");
+
+  // --- Add the function ad event listener to toggle the visibility of the Expense Form. That will be shown only on the button click.
+  //
   // AddExpenseBtn is a variable that store a reference to the "Add Expense" button in the HTML
   addExpenseBtn.addEventListener("click", function () {
     // Get the computed style of the expense form
@@ -18,21 +32,18 @@ document.addEventListener("DOMContentLoaded", function () {
       // If the form is hidden or has no inline display style, show it
       expenseForm.style.display = "block";
       // Access to the innerHTML
-      addExpenseBtn.innerHTML = 'Add Expense <i class="fa-solid fa-chevron-up"></i>';
+      addExpenseBtn.innerHTML =
+        'Add Expense <i class="fa-solid fa-chevron-up"></i>';
     } else {
       // Otherwise, hide the form
       expenseForm.style.display = "none";
-      addExpenseBtn.innerHTML = 'Add Expense <i class="fa-solid fa-chevron-down"></i>';
+      addExpenseBtn.innerHTML =
+        'Add Expense <i class="fa-solid fa-chevron-down"></i>';
     }
   });
 
   // --- Select the checkboxes
   //
-  // Select the checkboxes element for including or nor including in previous expenses
-  const includePreviousCheckbox = document.getElementById("include-previous");
-  const notIncludePreviousCheckbox = document.getElementById(
-    "not-include-previous"
-  );
   // Function to ensure that at least one checkbox is always checked.
   function ensureOneChecked() {
     // If both the checkboxes are unchecked, by default check the "Include previous expenses" checkbox by default.
@@ -44,7 +55,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // Add event listener to the "Include in Previous Expenses" checkbox. The 'change' event is triggered when the value of an input element changes.
+  // --- Add event listener to the "Include in Previous Expenses" checkbox. The 'change' event is triggered when the value of an input element changes.
   includePreviousCheckbox.addEventListener("change", function () {
     if (includePreviousCheckbox.checked) {
       // If this checkbox is checked, uncheck the other one
@@ -54,7 +65,7 @@ document.addEventListener("DOMContentLoaded", function () {
       includePreviousCheckbox.checked = true;
     }
   });
-  // Add event listener to the "Not include in previous Expenses" checkbox
+  // --- Add event listener to the "Not include in previous Expenses" checkbox
   notIncludePreviousCheckbox.addEventListener("change", function () {
     if (notIncludePreviousCheckbox.checked) {
       // If this checkbox is checked, uncheck the other one
@@ -69,11 +80,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // --- Add the function to hide and show the add participant form on button click
   //
-  // Here I cannot use the getElementById(), because the element in the HTML does not have any ID associated to it. I could simply used it, by defining the id="" to the HTML elements.
-  // Retrieve the add participant button
-  const addParticipantBtn = document.querySelector(".add-participant-btn");
-  // Retrieve the add participant form
-  const addParticipantForm = document.querySelector(".add-participant-form");
   // Add the EventListener at the click of the Add Participant Button
   addParticipantBtn.addEventListener("click", function () {
     // Check if the addParticipantForm display visibility is none, if it is set it to block, and vice versa.
@@ -88,24 +94,24 @@ document.addEventListener("DOMContentLoaded", function () {
       addParticipantForm.style.display = "block";
       // Also change the "+" symbol on the button, to become a "-"
       // Access to the innerHTML
-      addParticipantBtn.innerHTML = 'Add Participant <i class="fa-solid fa-chevron-up"></i>';
+      addParticipantBtn.innerHTML =
+        'Add Participant <i class="fa-solid fa-chevron-up"></i>';
     } else {
       addParticipantForm.style.display = "none";
       // Also change the symbol "-" to "+"
-      addParticipantBtn.innerHTML = 'Add Participant <i class="fa-solid fa-chevron-down"></i>'
+      addParticipantBtn.innerHTML =
+        'Add Participant <i class="fa-solid fa-chevron-down"></i>';
     }
   });
 
   // Fake some data expenses
   const expenses = [
     { participant: "Pippo", amount: 300 },
-    { participant: "Pluto", amount: 300 }
+    { participant: "Pluto", amount: 300 },
   ];
 
   // --- Handle the participant form submission to add the new participant
   //
-  // Retrieve the Add participant button.
-  const submitParticipantBtn = document.getElementById("add-participant-form");
   // Add the Event Listener to this submit form button
   submitParticipantBtn.addEventListener("click", function (event) {
     // Prevent the default form submission
@@ -126,7 +132,10 @@ document.addEventListener("DOMContentLoaded", function () {
       const numberOfParticipants = participantsList.children.length;
       const triggeringOverflow = 5;
       const maxParticipants = 15;
-      if (numberOfParticipants > triggeringOverflow && numberOfParticipants <= maxParticipants){
+      if (
+        numberOfParticipants > triggeringOverflow &&
+        numberOfParticipants <= maxParticipants
+      ) {
         // Get the participants-recap <div>
         const participantRecap = document.querySelector(".participants-recap");
         // Set the overflow-y property to the participantList
@@ -139,10 +148,12 @@ document.addEventListener("DOMContentLoaded", function () {
       } else if (numberOfParticipants > 8) {
         alert("Maximum number of participant already reached");
         // Get the Clear button element and trigger the click simulation
-        const clearParticipantFormBtn = document.getElementById("clear-participant-form");
+        const clearParticipantFormBtn = document.getElementById(
+          "clear-participant-form"
+        );
         // Trigger the clear button click action
         clearParticipantFormBtn.click();
-        // Return in order not to add the participant. 
+        // Return in order not to add the participant.
         return;
       }
 
@@ -154,7 +165,7 @@ document.addEventListener("DOMContentLoaded", function () {
       participantsList.appendChild(listItem);
 
       // Autoscroll to the last participant added
-      listItem.scrollIntoView({ behavior: "smooth", block: "end" })
+      listItem.scrollIntoView({ behavior: "smooth", block: "end" });
 
       // Clear the form field once submitted.
       newParticipantNameInput.value = "";
@@ -172,8 +183,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // --- Handle the clear button to reset the form
   //
-  // Retrieve the clear participant button.
-  const clearParticipantBtn = document.getElementById("clear-participant-form");
   // Add the event to the Clear participant button.
   clearParticipantBtn.addEventListener("click", function () {
     // Clear the participant name input field
