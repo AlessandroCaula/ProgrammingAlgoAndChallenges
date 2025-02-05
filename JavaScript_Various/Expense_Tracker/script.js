@@ -1,13 +1,14 @@
 // Wait until the DOM is fully loaded before running the script
 document.addEventListener("DOMContentLoaded", function () {
-
   // Select the "Add Expense" button
   const addExpenseBtn = document.querySelector(".add-expense-btn");
   // Select the expense form that needs to be shown/hidden
   const expenseForm = document.querySelector(".expense-form");
   // Select the checkboxes element for including or nor including in previous expenses
   const includePreviousCheckbox = document.getElementById("include-previous");
-  const notIncludePreviousCheckbox = document.getElementById("not-include-previous");
+  const notIncludePreviousCheckbox = document.getElementById(
+    "not-include-previous"
+  );
   // Here I cannot use the getElementById(), because the element in the HTML does not have any ID associated to it. I could simply used it, by defining the id="" to the HTML elements.
   // Retrieve the add participant button
   const addParticipantBtn = document.querySelector(".add-participant-btn");
@@ -17,6 +18,65 @@ document.addEventListener("DOMContentLoaded", function () {
   const submitParticipantBtn = document.getElementById("add-participant-form");
   // Retrieve the clear participant button.
   const clearParticipantBtn = document.getElementById("clear-participant-form");
+  // Get the participants list elements
+  const participantsList = document.querySelector(".participants-list");
+  // Retrieve the PaidBy container
+  const paidByContainer = document.getElementById("payerCheckboxes");
+  // Retrieve the SplitBy container
+  const splitByContainer = document.getElementById("splitCheckboxes");
+
+  // Fake some data expenses
+  const expenses = [
+    { participant: "Pippo", amount: 300 },
+    { participant: "Pluto", amount: 300 },
+  ];
+
+  // --- Select the checkboxes
+  // Function to ensure that at least one checkbox is always checked.
+  function ensureOneChecked() {
+    // If both the checkboxes are unchecked, by default check the "Include previous expenses" checkbox by default.
+    if (
+      !includePreviousCheckbox.checked &&
+      !notIncludePreviousCheckbox.checked
+    ) {
+      includePreviousCheckbox.checked = true;
+    }
+  }
+
+  // --- Function used to update the "Paid By" and "Split By" sections
+  function updateExpenseFormParticipants() {
+    // Get the array of participant names from the list items
+    const participants = Array.from(participantsList.children).map((li) =>
+      li.textContent.trim()
+    );
+
+    // Clear existing participants in the "Paid By" and "Split By" section
+    paidByContainer.innerHTML = "";
+    splitByContainer.innerHTML = "";
+
+    // Loop through all the participant in the participants array
+    participants.forEach((participant) => {
+      // Create "Paid By" radio button
+      const paidByLabel = document.createElement("label");
+      const paidByRadio = document.createElement("input");
+      paidByRadio.type = "radio";
+      paidByRadio.name = "paid-by"; // Ensure only one radio button can be selected.
+      paidByRadio.value = participant;
+      paidByLabel.appendChild(paidByRadio);
+      paidByLabel.appendChild(document.createTextNode(participant));
+      paidByContainer.appendChild(paidByLabel);
+
+      // Create "Split By" checkbox
+      const splitByLabel = document.createElement("label");
+      const splitByCheckbox = document.createElement("input");
+      splitByCheckbox.type = "checkbox";
+      splitByCheckbox.name = "split-by"; // Allow multiple checkboxes to be selected
+      splitByCheckbox.value = participant;
+      splitByLabel.appendChild(splitByCheckbox);
+      splitByLabel.appendChild(document.createTextNode(participant));
+      splitByContainer.appendChild(splitByLabel);
+    });
+  }
 
   // --- Add the function ad event listener to toggle the visibility of the Expense Form. That will be shown only on the button click.
   //
@@ -41,19 +101,6 @@ document.addEventListener("DOMContentLoaded", function () {
         'Add Expense <i class="fa-solid fa-chevron-down"></i>';
     }
   });
-
-  // --- Select the checkboxes
-  //
-  // Function to ensure that at least one checkbox is always checked.
-  function ensureOneChecked() {
-    // If both the checkboxes are unchecked, by default check the "Include previous expenses" checkbox by default.
-    if (
-      !includePreviousCheckbox.checked &&
-      !notIncludePreviousCheckbox.checked
-    ) {
-      includePreviousCheckbox.checked = true;
-    }
-  }
 
   // --- Add event listener to the "Include in Previous Expenses" checkbox. The 'change' event is triggered when the value of an input element changes.
   includePreviousCheckbox.addEventListener("change", function () {
@@ -104,12 +151,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  // Fake some data expenses
-  const expenses = [
-    { participant: "Pippo", amount: 300 },
-    { participant: "Pluto", amount: 300 },
-  ];
-
   // --- Handle the participant form submission to add the new participant
   //
   // Add the Event Listener to this submit form button
@@ -124,8 +165,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Check if the participant name is not empty
     if (newParticipantName) {
-      // Get the participants list elements
-      const participantsList = document.querySelector(".participants-list");
       // Check if the number of participant, does not exceed 8.
       // If it exceeds 8, then set the stile of the Participants list to overflow-y: auto. It it goes over 15 alert the user that he has reached the maximum number of participant.
       // Get tne number of participants (length of the participants list)
