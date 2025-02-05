@@ -179,9 +179,31 @@ section.left-panel .expense-history::-webkit-scrollbar-track {
   max-width: 100%; /* Prevent the input from exceeding the container's width */
 }
 
-/* label[for="payer"] {
-  margin-top: 10px;
-} */
+.expense-form .checkbox-group {
+  display: flex;
+  gap: 10px;
+  /* overflow: hidden; */
+}
+
+.checkbox-group label {
+  overflow: hidden; /* Avoiding in this way that the labels goes over the checkbox-group */
+}
+
+/* Access the Paid By and Split By labels, in order to give more space between them */
+.expense-form label[for="payer"] {
+  margin: 10px 0 10px 0;
+  font-weight: bold;
+  font-size: large;
+  color: #287186;
+}
+
+/* Access the Paid By and Split By labels, in order to give more space between them */
+.expense-form label[for="split"] {
+  margin: 10px 0 10px 0;
+  font-weight: bold;
+  font-size: large;
+  color: #287186;
+}
 
 .submit-form {
   display: flex;
