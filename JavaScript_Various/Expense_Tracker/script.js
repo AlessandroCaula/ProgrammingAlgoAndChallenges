@@ -255,7 +255,27 @@ document.addEventListener("DOMContentLoaded", function () {
     const expenseAmount = parseFloat(document.getElementById("amount").value);
     const expensePaidBy = document.getElementById("payerCheckboxes");
     // Loop through all the expensePaidBy and retrieve the checked element
-    
+    let payer = null;
+    // !!! Before mapping through all the expensePaidBy elements, we need to convert it to an array.
+    // !!! The expensePaidBy.children returns an HTMLCollection of the child elements, which are the <label> elements containing the radio buttons. To access the radio buttons themselves, we need to query the input elements within each label.
+    // Retrieve the radio buttons
+    Array.from(expensePaidBy.querySelectorAll('input[type="radio"]')).forEach(
+      (participant) => {
+        // If the participant is checked then set it as payer
+        if (participant.checked) {
+          payer = participant.value;
+        }
+      }
+    );
     const expenseSplitBy = document.getElementById("splitCheckboxes");
+    // Loop through all the participants and check between who the expenses has to be split
+    let splitParticipant = [];
+    Array.from(
+      expenseSplitBy.querySelectorAll('input[type="checkbox"]')
+    ).forEach((participant) => {
+      if (participant.checked) {
+        splitParticipant.push(participant.value);
+      }
+    });
   });
 });
