@@ -278,6 +278,7 @@ section.left-panel .expense-history::-webkit-scrollbar-track {
 
 /* Add participant button */
 .add-participant-btn {
+  position: relative; /* Make the button a position element */
   height: 40px;
   border-radius: 10px;
   border: 2px solid #287186;
@@ -285,7 +286,6 @@ section.left-panel .expense-history::-webkit-scrollbar-track {
   font-size: 1rem;
   margin-top: 30px;
   cursor: pointer;
-  position: relative; /* Make the button a position element */
   display: flex;
   align-items: center;
   justify-content: center;
