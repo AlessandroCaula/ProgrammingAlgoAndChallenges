@@ -252,8 +252,10 @@ document.addEventListener("DOMContentLoaded", function () {
     event.preventDefault();
     // Retrieve all the information added in the expense form. Description - Amount - Paid by - Split By
     const expenseDescription = document.getElementById("description").value;
-    const expenseAmount = document.getElementById("number").value;
+    const expenseAmount = parseFloat(document.getElementById("amount").value);
     const expensePaidBy = document.getElementById("payerCheckboxes");
+    // Loop through all the expensePaidBy and retrieve the checked element
+    
     const expenseSplitBy = document.getElementById("splitCheckboxes");
   });
 });
