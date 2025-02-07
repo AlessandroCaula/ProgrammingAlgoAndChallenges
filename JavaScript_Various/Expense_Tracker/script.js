@@ -251,7 +251,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Prevent the default form submission
     event.preventDefault();
     // Retrieve all the information added in the expense form. Description - Amount - Paid by - Split By
-    const expenseDescription = document.getElementById("description").value;
+    const expenseDescription = document.getElementById("description").value ? document.getElementById("description").value : "";
     const expenseAmount = parseFloat(document.getElementById("amount").value);
     const expensePaidBy = document.getElementById("payerCheckboxes");
     // Loop through all the expensePaidBy and retrieve the checked element
@@ -277,5 +277,17 @@ document.addEventListener("DOMContentLoaded", function () {
         splitParticipant.push(participant.value);
       }
     });
+    // Check if there is an expense Amount, otherwise alert the user.
+    if (!expenseAmount) {
+      alert("Insert an Expense Amount");
+    }
+
+    // Create a new list item element for the expense
+    const listItem = document.createElement("li");
+    // Add the text to the listItem
+    listItem.textContent = `Description: ${expenseDescription} Amount: ${expenseAmount} <br /> Paid by: ${payer} <br /> Split by: ${splitParticipant.join(" - ")}`;
+
+    // Append the new list item to the expense history list
+    expenseHistoryList.appendChild(listItem);
   });
 });
