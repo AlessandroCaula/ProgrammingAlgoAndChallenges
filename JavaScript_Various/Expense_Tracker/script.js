@@ -29,11 +29,11 @@ document.addEventListener("DOMContentLoaded", function () {
   // Retrieve the expense history
   const expenseHistoryList = document.querySelector(".expense-history");
 
-  // Fake some data expenses
-  const expenses = [
-    { participant: "Pippo", amount: 300 },
-    { participant: "Pluto", amount: 300 },
-  ];
+  // // Fake some data expenses
+  // const expenses = [
+  //   { participant: "Pippo", amount: 300 },
+  //   { participant: "Pluto", amount: 300 },
+  // ];
 
   // --- Select the checkboxes
   // Function to ensure that at least one checkbox is always checked.
@@ -191,7 +191,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // Retrieve the current height of the participant-recap element
         const participantRecapHeight = participantRecap.clientHeight;
         // Set its max height to the current height.
-        participantRecap.style.maxHeight = `${participantRecapHeight}px`;
+        participantRecap.style.maxHeight =`${participantRecapHeight}px`;
         // Set its overflow-Y to true.
         participantsList.style.overflowY = "scroll";
       } else if (numberOfParticipants > 8) {
@@ -280,14 +280,38 @@ document.addEventListener("DOMContentLoaded", function () {
     // Check if there is an expense Amount, otherwise alert the user.
     if (!expenseAmount) {
       alert("Insert an Expense Amount");
+      return;
     }
 
     // Create a new list item element for the expense
-    const listItem = document.createElement("li");
+    const listItem = document.createElement("p");
     // Add the text to the listItem
-    listItem.textContent = `Description: ${expenseDescription} Amount: ${expenseAmount} <br /> Paid by: ${payer} <br /> Split by: ${splitParticipant.join(" - ")}`;
+    listItem.innerHTML = `${expenseDescription} - ${expenseAmount}€ <br /> Paid by: ${payer} <br /> Split by: ${splitParticipant.join(" - ")}`;
 
     // Append the new list item to the expense history list
     expenseHistoryList.appendChild(listItem);
+
+    // Clear the Expense form
+    clearExpenseInputForm();
   });
+
+  function clearExpenseInputForm() {
+    document.getElementById("description").value = "";
+    document.getElementById("amount").value = "";
+    // Reset the default paid by and split by. 
+    const expensePaidBy = document.getElementById("payerCheckboxes");
+    const expenseSplitBy = document.getElementById("splitCheckboxes");
+    Array.from(expensePaidBy.querySelectorAll('input[type="radio"]')).forEach(
+      (participant, index) => {
+        if (index == 0) {
+          participant.checked = true;
+        };
+      }
+    );
+    Array.from(expenseSplitBy.querySelectorAll('input[type="checkbox"]')).forEach (
+      (participant) => {
+        participant.checked = true;
+      }
+    );    
+  }
 });

@@ -22,7 +22,7 @@ body {
 
 /* Center the header, in which there is the Title */
 header {
-  border: 2px solid #434242;
+  /* border: 2px solid #434242; */
   display: flex;
   justify-content: center; /* Center horizontally */
   align-items: center;
@@ -31,14 +31,14 @@ header {
 }
 
 h1 {
-  border: 2px solid #fffdfd;
+  /* border: 2px solid #fffdfd; */
   font-size: 3rem;
   margin: 0;
 }
 
 /* Main section layout. The one that will contain the left and right panels sections */
 main {
-  border: 2px solid rgb(223, 115, 39);
+  /* border: 2px solid rgb(223, 115, 39); */
   display: flex; /* Arrange the left and right panels side-bu-side */
   width: 100%; /* It will occupy the entire width of the page */
   height: 80%; /* The main section will occupy the remaining height of the page */
@@ -53,7 +53,7 @@ main {
 .left-panel {
   flex: 1; /* Take equal space - Could have put width: 50; */ 
   /* width: 60%; */
-  border: solid 2px #ff0026;
+  /* border: solid 2px #ff0026; */
   padding: 10px; /* add some inner space between this panel and the element inside it */
   /* Make sure the left-panel properly accommodates the scrollable section */
   width: 50%;
@@ -241,7 +241,7 @@ section.left-panel .expense-history::-webkit-scrollbar-track {
 .right-panel {
   /* By setting flex: 1; in both the left and right panels ensure that both the panels take equal space */
   flex: 1; /* Take equal space - Could have put width: 50; */
-  border: solid 2px #0000ff;
+  /* border: solid 2px #0000ff; */
   padding: 10px;
   display: flex; 
   flex-direction: column;
@@ -251,6 +251,7 @@ section.left-panel .expense-history::-webkit-scrollbar-track {
 
 .participants-recap {
   /* border: 1px solid orange; */
+  height: 40%;
   background: linear-gradient(to bottom, #4fb2ce, #87ce8a, #d7e19c);
   display: flex;
   flex-direction: column;
