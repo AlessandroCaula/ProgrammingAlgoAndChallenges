@@ -316,7 +316,7 @@ section.left-panel .expense-history::-webkit-scrollbar-track {
 
 /* Adding some bottom margin in all the element (.form-group in the form */
 .add-participant-form .form-group {
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   display: flex; 
 }
 

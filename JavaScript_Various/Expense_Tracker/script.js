@@ -50,9 +50,15 @@ document.addEventListener("DOMContentLoaded", function () {
   // --- Function used to save participant to local storage.
   //
   function saveParticipantsToLocalStorage() {
-    const participants = Array.from(participantsList.children).map(
-      li => 
-    );
+    const participants = Array.from(participantsList.children).map(li => li.textContent.trim());
+    localStorage.setItem('participants', JSON.stringify(participants));
+  }
+
+  // --- Function used to save expenses to local storage
+  // 
+  function saveExpensesToLocalStorage() {
+    const expenses = Array.from(expenseHistoryList.children).map(li => li.innerHTML)
+    localStorage.setItem('expenses', JSON.stringify(expenses));
   }
 
   // --- Function used to update the "Paid By" and "Split By" sections
@@ -61,7 +67,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const participants = Array.from(participantsList.children).map((li) =>
       li.textContent.trim()
     );
-
     // Clear existing participants in the "Paid By" and "Split By" section
     paidByContainer.innerHTML = "";
     splitByContainer.innerHTML = "";
@@ -230,9 +235,10 @@ document.addEventListener("DOMContentLoaded", function () {
       notIncludePreviousCheckbox.checked = false;
       // Ensure one checkbox is always checked
       ensureOneChecked();
-
-      // TO BE COMPLETED !!! Asking for defining different styling for the new list element, as well as adding the info about what they own to who.
-
+      
+      // Call the function to store the participant in the localStorage
+      saveParticipantsToLocalStorage();
+      
       // --- Call the updateExpenseFormParticipants whenever a new participant is added to the participantsList
       updateExpenseFormParticipants();
     } else {
@@ -302,6 +308,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Append the new list item to the expense history list
     expenseHistoryList.appendChild(listItem);
+
+    // Store expenses in the localStorage
+    saveExpensesToLocalStorage();
 
     // Clear the Expense form
     clearExpenseInputForm();
