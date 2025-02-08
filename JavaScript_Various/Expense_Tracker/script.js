@@ -47,6 +47,14 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
+  // --- Function used to save participant to local storage.
+  //
+  function saveParticipantsToLocalStorage() {
+    const participants = Array.from(participantsList.children).map(
+      li => 
+    );
+  }
+
   // --- Function used to update the "Paid By" and "Split By" sections
   function updateExpenseFormParticipants() {
     // Get the array of participant names from the list items
@@ -191,7 +199,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // Retrieve the current height of the participant-recap element
         const participantRecapHeight = participantRecap.clientHeight;
         // Set its max height to the current height.
-        participantRecap.style.maxHeight =`${participantRecapHeight}px`;
+        participantRecap.style.maxHeight = `${participantRecapHeight}px`;
         // Set its overflow-Y to true.
         participantsList.style.overflowY = "scroll";
       } else if (numberOfParticipants > 8) {
@@ -251,7 +259,9 @@ document.addEventListener("DOMContentLoaded", function () {
     // Prevent the default form submission
     event.preventDefault();
     // Retrieve all the information added in the expense form. Description - Amount - Paid by - Split By
-    const expenseDescription = document.getElementById("description").value ? document.getElementById("description").value : "";
+    const expenseDescription = document.getElementById("description").value
+      ? document.getElementById("description").value
+      : "";
     const expenseAmount = parseFloat(document.getElementById("amount").value);
     const expensePaidBy = document.getElementById("payerCheckboxes");
     // Loop through all the expensePaidBy and retrieve the checked element
@@ -286,7 +296,9 @@ document.addEventListener("DOMContentLoaded", function () {
     // Create a new list item element for the expense
     const listItem = document.createElement("p");
     // Add the text to the listItem
-    listItem.innerHTML = `${expenseDescription} - ${expenseAmount}€ <br /> Paid by: ${payer} <br /> Split by: ${splitParticipant.join(" - ")}`;
+    listItem.innerHTML = `${expenseDescription} - ${expenseAmount}€ <br /> Paid by: ${payer} <br /> Split by: ${splitParticipant.join(
+      " - "
+    )}`;
 
     // Append the new list item to the expense history list
     expenseHistoryList.appendChild(listItem);
@@ -298,20 +310,20 @@ document.addEventListener("DOMContentLoaded", function () {
   function clearExpenseInputForm() {
     document.getElementById("description").value = "";
     document.getElementById("amount").value = "";
-    // Reset the default paid by and split by. 
+    // Reset the default paid by and split by.
     const expensePaidBy = document.getElementById("payerCheckboxes");
     const expenseSplitBy = document.getElementById("splitCheckboxes");
     Array.from(expensePaidBy.querySelectorAll('input[type="radio"]')).forEach(
       (participant, index) => {
         if (index == 0) {
           participant.checked = true;
-        };
+        }
       }
     );
-    Array.from(expenseSplitBy.querySelectorAll('input[type="checkbox"]')).forEach (
-      (participant) => {
-        participant.checked = true;
-      }
-    );    
+    Array.from(
+      expenseSplitBy.querySelectorAll('input[type="checkbox"]')
+    ).forEach((participant) => {
+      participant.checked = true;
+    });
   }
 });
