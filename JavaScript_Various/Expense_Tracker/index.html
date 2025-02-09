@@ -24,18 +24,23 @@
       <section class="left-panel">
         <!-- Adding the section with the past expenses added -->
         <div class="expenses">
-          <h2>Expense History</h2>
+          <div class="recap-header">
+            <h2>Expense History</h2>
+            <!-- <i class="fa-solid fa-trash-can"></i> -->
+          </div>
           <div class="expense-history">
             <!-- Expenses will be dynamically added here -->
             <!-- Adding some placeholders -->
           </div>
+          <!-- Button for Clear all -->
+          <button class="clear-all">Clear All</button>
         </div>
 
         <!-- Section for adding a new expense -->
         <div class="add-expense-form">
           <!-- Button for adding new expenses -->
           <button class="add-expense-btn">
-            Add Expense 
+            Add Expense
             <i class="fa-solid fa-chevron-down"></i>
           </button>
 
@@ -77,7 +82,9 @@
 
               <!-- Submit form -->
               <div class="submit-form">
-                <button class="clear-form" id="clear-expense-form">Clear</button>
+                <button class="clear-form" id="clear-expense-form">
+                  Clear
+                </button>
                 <button class="add-form" id="add-expense-form">Add</button>
               </div>
             </form>
@@ -89,8 +96,9 @@
       <section class="right-panel">
         <div class="participants-recap">
           <h2>Participants</h2>
-          <ul class="participants-list">
-          </ul>
+          <ul class="participants-list"></ul>
+          <!-- Button for Clear all -->
+          <button class="clear-all">Clear All</button>
         </div>
         <button class="add-participant-btn">
           Add Participant <i class="fa-solid fa-chevron-down"></i>
@@ -132,8 +140,16 @@
             </div>
             <!-- Submit form -->
             <div class="submit-form">
-              <button type="button" class="clear-form" id="clear-participant-form">Clear</button>
-              <button type="submit" class="add-form" id="add-participant-form">Add</button>
+              <button
+                type="button"
+                class="clear-form"
+                id="clear-participant-form"
+              >
+                Clear
+              </button>
+              <button type="submit" class="add-form" id="add-participant-form">
+                Add
+              </button>
             </div>
           </form>
         </div>

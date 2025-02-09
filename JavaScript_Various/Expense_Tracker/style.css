@@ -67,7 +67,7 @@ main {
 .expenses {
   height: 40%; /* adjust the height of this expense history inside the left-panel */
   /* border: 2px solid rgb(255, 98, 0); /* Add border to visually define this scrollable expense history */ 
-  border-radius: 10px 10px 0 0; /* Smoothing the corner of the container */
+  border-radius: 10px; /* Smoothing the corner of the container */
   /* padding: 10px; /* Add some inner spacing for content readability */
   display: flex;
   flex-direction: column;
@@ -92,6 +92,13 @@ h2 {
   flex: 1; /* Take the remaining space dynamically */
   overflow-y: auto; /* Enable vertical history scrolling */
   padding: 0 0 0 1px;
+}
+
+/* Style the added expenses p */
+.expense-history p {
+  margin: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #287186;
 }
 
 /* Targeting the scroll-bar --> Does NOT work */
@@ -255,7 +262,7 @@ section.left-panel .expense-history::-webkit-scrollbar-track {
   background: linear-gradient(to bottom, #4fb2ce, #87ce8a, #d7e19c);
   display: flex;
   flex-direction: column;
-  border-radius: 10px 10px 0 0;
+  border-radius: 10px; 
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add some shadow */
   /*  0 - Horizontal offset of the shadow 
       4px - Vertical offset of the shadow
@@ -266,6 +273,7 @@ section.left-panel .expense-history::-webkit-scrollbar-track {
 .participants-list {
   /* border: 1px solid black; */
   list-style-type: none;
+  height: 80%;
   padding: 0px;
   margin: 0;
 }
@@ -350,4 +358,21 @@ section.left-panel .expense-history::-webkit-scrollbar-track {
 .submit-participant-btn:hover {
   background-color: #4ba2bd;
   border-color: #0000ff;
+}
+
+/* Style the clear-all buttons */
+.clear-all {
+  cursor: pointer;
+  border-radius: 0 0 10px 10px;
+  border: solid 3px rgba(255, 0, 0, 0.776);
+  background-color: rgb(241, 115, 73);
+  /* height: 25px; */
+  font-size: 16px;
+  font-weight: bold;
+  color: rgb(100, 0, 0);
+}
+
+.clear-all:hover {
+  background-color: rgb(211, 91, 91);
+  border-color: rgb(187, 0, 0);
 }

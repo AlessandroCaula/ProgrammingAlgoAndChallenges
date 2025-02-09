@@ -87,7 +87,7 @@ document.addEventListener("DOMContentLoaded", function () {
     localStorage.clear();
     console.log('Local Storage cleared');
   }
-
+  
   // --- Call the functions to load participants and expenses when the page loads
   loadParticipantsFromLocalStorage();
   loadExpensesFromLocalStorage();
@@ -102,8 +102,8 @@ document.addEventListener("DOMContentLoaded", function () {
       // Parse the text so that we can extract all the information
       const innerHTMLText = expense.textContent.trim();
       // Split the text by the <br />
-      const innerHTMLSplit = innerHTMLText.split(" ");
-      const amount = 1;
+      const innerHTMLSplit = innerHTMLText.split(":");
+
     })
   }
 
