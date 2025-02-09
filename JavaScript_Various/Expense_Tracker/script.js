@@ -28,12 +28,88 @@ document.addEventListener("DOMContentLoaded", function () {
   const submitExpenseBtn = document.getElementById("add-expense-form");
   // Retrieve the expense history
   const expenseHistoryList = document.querySelector(".expense-history");
+  // Variable that will store all the participants and what they have paid.
+  let participantAccounts = [];
 
-  // // Fake some data expenses
-  // const expenses = [
-  //   { participant: "Pippo", amount: 300 },
-  //   { participant: "Pluto", amount: 300 },
-  // ];
+  // --- Function used to save participant to local storage.
+  //
+  function saveParticipantsToLocalStorage() {
+    const participants = Array.from(participantsList.children).map((li) =>
+      li.textContent.trim()
+    );
+    localStorage.setItem("participants", JSON.stringify(participants));
+  }
+
+  // --- Function used to save expenses to local storage
+  //
+  function saveExpensesToLocalStorage() {
+    const expenses = Array.from(expenseHistoryList.children).map(
+      (li) => li.innerHTML
+    );
+    localStorage.setItem("expenses", JSON.stringify(expenses));
+  }
+
+  // --- Function to load expenses from local storage.
+  // Ensuring that the expenses are loaded from the localStorage and displayed in the UI when the page is loaded
+  //
+  function loadExpensesFromLocalStorage() {
+    // Get the expense stored data from the localStorage if it exists.
+    const expenses = JSON.parse(localStorage.getItem("expenses")) || [];
+    // if (expenses.length != 0) {
+    // Loop through all the expenses and add them to the expenseHistoryList, to render them in the UI
+    expenses.forEach((expense) => {
+      const listItem = document.createElement("p");
+      listItem.innerHTML = expense;
+      expenseHistoryList.appendChild(listItem);
+    });
+    // }
+  }
+
+  // --- Function to load participants from localStorage at first web page load
+  //
+  function loadParticipantsFromLocalStorage() {
+    // Get the participant data stored in the localStorage if it exists.
+    const participants = JSON.parse(localStorage.getItem("participants")) || [];
+    // if (participants.length != 0) {
+    // Loop through all the participants and add them to the UI.
+    participants.forEach((participant) => {
+      const listItem = document.createElement("li");
+      listItem.textContent = participant;
+      participantsList.appendChild(listItem);
+    });
+    // Update the participants checkboxes in the Add Expense Form.
+    updateExpenseFormParticipants();
+    // }
+  }
+
+  // Function to clear the local storage 
+  function clearLocalStorage() {
+    localStorage.clear();
+    console.log('Local Storage cleared');
+  }
+
+  // --- Call the functions to load participants and expenses when the page loads
+  loadParticipantsFromLocalStorage();
+  loadExpensesFromLocalStorage();
+
+  retrieveExpenses();
+
+  function retrieveExpenses() {
+    // Retrieve the expenses from the history
+    const expensesArray = Array.from(expenseHistoryList.children);
+    // Loop through the expense and retrieve the information about how much was the expense, as well as who paid it and between who it needs to be split.
+    expensesArray.forEach(expense => {
+      // Parse the text so that we can extract all the information
+      const innerHTMLText = expense.textContent.trim();
+      // Split the text by the <br />
+      const innerHTMLSplit = innerHTMLText.split(" ");
+      const amount = 1;
+    })
+  }
+
+  function updateAccounts() {
+    // Retrieve the 
+  }
 
   // --- Select the checkboxes
   // Function to ensure that at least one checkbox is always checked.
@@ -45,20 +121,6 @@ document.addEventListener("DOMContentLoaded", function () {
     ) {
       includePreviousCheckbox.checked = true;
     }
-  }
-
-  // --- Function used to save participant to local storage.
-  //
-  function saveParticipantsToLocalStorage() {
-    const participants = Array.from(participantsList.children).map(li => li.textContent.trim());
-    localStorage.setItem('participants', JSON.stringify(participants));
-  }
-
-  // --- Function used to save expenses to local storage
-  // 
-  function saveExpensesToLocalStorage() {
-    const expenses = Array.from(expenseHistoryList.children).map(li => li.innerHTML)
-    localStorage.setItem('expenses', JSON.stringify(expenses));
   }
 
   // --- Function used to update the "Paid By" and "Split By" sections
@@ -235,10 +297,10 @@ document.addEventListener("DOMContentLoaded", function () {
       notIncludePreviousCheckbox.checked = false;
       // Ensure one checkbox is always checked
       ensureOneChecked();
-      
+
       // Call the function to store the participant in the localStorage
       saveParticipantsToLocalStorage();
-      
+
       // --- Call the updateExpenseFormParticipants whenever a new participant is added to the participantsList
       updateExpenseFormParticipants();
     } else {
@@ -302,7 +364,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Create a new list item element for the expense
     const listItem = document.createElement("p");
     // Add the text to the listItem
-    listItem.innerHTML = `${expenseDescription} - ${expenseAmount}€ <br /> Paid by: ${payer} <br /> Split by: ${splitParticipant.join(
+    listItem.innerHTML = `${expenseDescription} - ${expenseAmount} € <br /> Paid by: ${payer} <br /> Split by: ${splitParticipant.join(
       " - "
     )}`;
 
