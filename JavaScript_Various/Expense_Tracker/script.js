@@ -28,8 +28,12 @@ document.addEventListener("DOMContentLoaded", function () {
   const submitExpenseBtn = document.getElementById("add-expense-form");
   // Retrieve the expense history
   const expenseHistoryList = document.querySelector(".expense-history");
-  // Variable that will store all the participants and what they have paid.
-  let participantAccounts = [];
+  // Retrieve the clear-all expenses
+  const clearAllExpensesBtn = document.getElementById("clear-all-expenses");
+  // Retrieve the clear-all participants
+  const clearAllParticipantsBtn = document.getElementById(
+    "clear-all-participants"
+  );
 
   // --- Function used to save participant to local storage.
   //
@@ -82,33 +86,46 @@ document.addEventListener("DOMContentLoaded", function () {
     // }
   }
 
-  // Function to clear the local storage 
-  function clearLocalStorage() {
-    localStorage.clear();
-    console.log('Local Storage cleared');
+  // --- Clear the expense input form.
+  //
+  function clearExpenseInputForm() {
+    document.getElementById("description").value = "";
+    document.getElementById("amount").value = "";
+    // Reset the default paid by and split by.
+    const expensePaidBy = document.getElementById("payerCheckboxes");
+    const expenseSplitBy = document.getElementById("splitCheckboxes");
+    Array.from(expensePaidBy.querySelectorAll('input[type="radio"]')).forEach(
+      (participant, index) => {
+        if (index == 0) {
+          participant.checked = true;
+        }
+      }
+    );
+    Array.from(
+      expenseSplitBy.querySelectorAll('input[type="checkbox"]')
+    ).forEach((participant) => {
+      participant.checked = true;
+    });
   }
-  
+
   // --- Call the functions to load participants and expenses when the page loads
   loadParticipantsFromLocalStorage();
   loadExpensesFromLocalStorage();
 
   retrieveExpenses();
-
   function retrieveExpenses() {
     // Retrieve the expenses from the history
     const expensesArray = Array.from(expenseHistoryList.children);
     // Loop through the expense and retrieve the information about how much was the expense, as well as who paid it and between who it needs to be split.
-    expensesArray.forEach(expense => {
+    expensesArray.forEach((expense) => {
       // Parse the text so that we can extract all the information
       const innerHTMLText = expense.textContent.trim();
       // Split the text by the <br />
       const innerHTMLSplit = innerHTMLText.split(":");
-
-    })
+    });
   }
-
   function updateAccounts() {
-    // Retrieve the 
+    // Retrieve the
   }
 
   // --- Select the checkboxes
@@ -378,23 +395,32 @@ document.addEventListener("DOMContentLoaded", function () {
     clearExpenseInputForm();
   });
 
-  function clearExpenseInputForm() {
-    document.getElementById("description").value = "";
-    document.getElementById("amount").value = "";
-    // Reset the default paid by and split by.
-    const expensePaidBy = document.getElementById("payerCheckboxes");
-    const expenseSplitBy = document.getElementById("splitCheckboxes");
-    Array.from(expensePaidBy.querySelectorAll('input[type="radio"]')).forEach(
-      (participant, index) => {
-        if (index == 0) {
-          participant.checked = true;
-        }
-      }
+  // --- Clearing all the expenses
+  // 
+  clearAllExpensesBtn.addEventListener("click", function () {
+    // Prompt the user for a confirmation
+    const userConfirmed = confirm(
+      "Are you sure you want to clear all the Expenses?"
     );
-    Array.from(
-      expenseSplitBy.querySelectorAll('input[type="checkbox"]')
-    ).forEach((participant) => {
-      participant.checked = true;
-    });
-  }
+    // If the user has confirmed, then clear everything.
+    if (userConfirmed) {
+      // Clear the content of the expense history
+      expenseHistoryList.innerHTML = "";
+      // Remove the expense from the localStorage
+      localStorage.removeItem("expenses");
+    }
+  });
+
+  // --- Clearing all the participants
+  clearAllParticipantsBtn.addEventListener("click", function() {
+    // Prompt the user for a confirmation
+    const userConfirmed = confirm("Are you sure you want to clear all the Participants?");
+    // If the user has confirmed
+    if (userConfirmed) {
+      // Clear the content of the participant list.
+      participantsList.innerHTML = "";
+      // Remove the participants from the localStorage
+      localStorage.removeItem("participants");
+    }
+  });
 });
