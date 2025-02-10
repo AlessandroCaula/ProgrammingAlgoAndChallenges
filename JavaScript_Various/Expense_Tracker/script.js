@@ -34,9 +34,6 @@ document.addEventListener("DOMContentLoaded", function () {
   const clearAllParticipantsBtn = document.getElementById(
     "clear-all-participants"
   );
-  // Array of object that will store all the expenses
-  const expensesTracker = [];
-  
 
   // --- Function used to save participant to local storage.
   //
@@ -115,9 +112,11 @@ document.addEventListener("DOMContentLoaded", function () {
   loadParticipantsFromLocalStorage();
   loadExpensesFromLocalStorage();
 
-  retrieveExpenses();
+  updateAccounts();
 
   function retrieveExpenses() {
+    // Array of object that will store all the expenses
+    const expensesTracker = [];
     // Retrieve the expenses from the history
     const expensesArray = Array.from(expenseHistoryList.children);
     // Loop through the expense and retrieve the information about how much was the expense, as well as who paid it and between who it needs to be split.
@@ -127,13 +126,13 @@ document.addEventListener("DOMContentLoaded", function () {
       // Split the text by the <br />
       const innerHTMLSplit = innerHTMLText.split(":");
       // Retrieve the expense amount
-      const amountList = innerHTMLSplit[1].split(" "); 
+      const amountList = innerHTMLSplit[1].split(" ");
       const amount = amountList[1];
-      // Retrieve who paid the expense 
+      // Retrieve who paid the expense
       const payer = innerHTMLSplit[2].split(" ")[1];
       // Retrieve who split the expenses
       const splitByList = innerHTMLSplit[3].split(" ");
-      // Filter out the elements of the array that are " " or "-" with the .filter function. 
+      // Filter out the elements of the array that are " " or "-" with the .filter function.
       const splitBy = [];
       for (let i = 0; i < splitByList.length; i++) {
         const el = splitByList[i];
@@ -141,17 +140,42 @@ document.addEventListener("DOMContentLoaded", function () {
           splitBy.push(el);
         }
       }
-      // Now that I have all the information I will store each of the expenses in an array of objects 
+      // Now that I have all the information I will store each of the expenses in an array of objects
       const expenseObject = {
         expenseAmount: amount,
         payer: payer,
-        splitBy: splitBy 
+        splitBy: splitBy,
       };
       expensesTracker.push(expenseObject);
     });
+    return expensesTracker;
   }
+
   function updateAccounts() {
-    // Retrieve the
+    // Retrieve the expenses 
+    const expensesTracker = retrieveExpenses();
+    // For the moment just check how much each participant owes or need to receive back.
+    // Retrieve all the participants. 
+    const participantsArray = Array.from(participantsList.children).map((li) =>
+      li.textContent.trim()
+    );
+    const participantBalance = {}
+    // Initialize the balance of each of the participants. 
+    participantsArray.forEach((participant) => {
+      participantBalance[participant] = 0;
+    })
+    expensesTracker.forEach((expense) => {
+      const amount = parseFloat(expense.expenseAmount);
+      const payer = expense.payer;
+      const splitBy = expense.splitBy;
+      const splitAmount = amount / splitBy.length;
+      // Add the expense amount to the payer
+      participantBalance[payer] += amount;
+      // Loop through all the splitter and subtract what they owe
+      expense.splitBy.forEach((splitter) => {
+        participantBalance[splitter] -= splitAmount;
+      })
+    })
   }
 
   // --- Select the checkboxes
@@ -422,7 +446,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   // --- Clearing all the expenses
-  // 
+  //
   clearAllExpensesBtn.addEventListener("click", function () {
     // Prompt the user for a confirmation
     const userConfirmed = confirm(
@@ -438,9 +462,11 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   // --- Clearing all the participants
-  clearAllParticipantsBtn.addEventListener("click", function() {
+  clearAllParticipantsBtn.addEventListener("click", function () {
     // Prompt the user for a confirmation
-    const userConfirmed = confirm("Are you sure you want to clear all the Participants?");
+    const userConfirmed = confirm(
+      "Are you sure you want to clear all the Participants?"
+    );
     // If the user has confirmed
     if (userConfirmed) {
       // Clear the content of the participant list.
