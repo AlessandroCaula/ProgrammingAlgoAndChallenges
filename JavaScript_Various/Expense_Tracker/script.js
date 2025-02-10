@@ -34,6 +34,9 @@ document.addEventListener("DOMContentLoaded", function () {
   const clearAllParticipantsBtn = document.getElementById(
     "clear-all-participants"
   );
+  // Array of object that will store all the expenses
+  const expensesTracker = [];
+  
 
   // --- Function used to save participant to local storage.
   //
@@ -113,6 +116,7 @@ document.addEventListener("DOMContentLoaded", function () {
   loadExpensesFromLocalStorage();
 
   retrieveExpenses();
+
   function retrieveExpenses() {
     // Retrieve the expenses from the history
     const expensesArray = Array.from(expenseHistoryList.children);
@@ -122,6 +126,28 @@ document.addEventListener("DOMContentLoaded", function () {
       const innerHTMLText = expense.textContent.trim();
       // Split the text by the <br />
       const innerHTMLSplit = innerHTMLText.split(":");
+      // Retrieve the expense amount
+      const amountList = innerHTMLSplit[1].split(" "); 
+      const amount = amountList[1];
+      // Retrieve who paid the expense 
+      const payer = innerHTMLSplit[2].split(" ")[1];
+      // Retrieve who split the expenses
+      const splitByList = innerHTMLSplit[3].split(" ");
+      // Filter out the elements of the array that are " " or "-" with the .filter function. 
+      const splitBy = [];
+      for (let i = 0; i < splitByList.length; i++) {
+        const el = splitByList[i];
+        if (el !== "" && el !== "-" && el !== " ") {
+          splitBy.push(el);
+        }
+      }
+      // Now that I have all the information I will store each of the expenses in an array of objects 
+      const expenseObject = {
+        expenseAmount: amount,
+        payer: payer,
+        splitBy: splitBy 
+      };
+      expensesTracker.push(expenseObject);
     });
   }
   function updateAccounts() {
@@ -381,7 +407,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Create a new list item element for the expense
     const listItem = document.createElement("p");
     // Add the text to the listItem
-    listItem.innerHTML = `${expenseDescription} - ${expenseAmount} € <br /> Paid by: ${payer} <br /> Split by: ${splitParticipant.join(
+    listItem.innerHTML = `${expenseDescription}: ${expenseAmount} € <br /> Paid by: ${payer} <br /> Split by: ${splitParticipant.join(
       " - "
     )}`;
 
