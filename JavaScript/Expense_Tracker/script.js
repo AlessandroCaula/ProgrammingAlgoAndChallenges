@@ -473,6 +473,8 @@ document.addEventListener("DOMContentLoaded", function () {
       participantsList.innerHTML = "";
       // Remove the participants from the localStorage
       localStorage.removeItem("participants");
+      // Remove as well all the participants from the Paid By and Split By checkboxes in the Add expenses form
+      updateExpenseFormParticipants();
     }
   });
 });
