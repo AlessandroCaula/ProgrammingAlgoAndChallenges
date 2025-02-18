@@ -1,0 +1,14 @@
+D:\PythonScripts\C#_Test\C#_Project\bin\Debug\net8.0\C#_Project.exe
+D:\PythonScripts\C#_Test\C#_Project\bin\Debug\net8.0\C#_Project.deps.json
+D:\PythonScripts\C#_Test\C#_Project\bin\Debug\net8.0\C#_Project.runtimeconfig.json
+D:\PythonScripts\C#_Test\C#_Project\bin\Debug\net8.0\C#_Project.dll
+D:\PythonScripts\C#_Test\C#_Project\bin\Debug\net8.0\C#_Project.pdb
+D:\PythonScripts\C#_Test\C#_Project\obj\Debug\net8.0\C#_Project.GeneratedMSBuildEditorConfig.editorconfig
+D:\PythonScripts\C#_Test\C#_Project\obj\Debug\net8.0\C#_Project.AssemblyInfoInputs.cache
+D:\PythonScripts\C#_Test\C#_Project\obj\Debug\net8.0\C#_Project.AssemblyInfo.cs
+D:\PythonScripts\C#_Test\C#_Project\obj\Debug\net8.0\C#_Project.csproj.CoreCompileInputs.cache
+D:\PythonScripts\C#_Test\C#_Project\obj\Debug\net8.0\C#_Project.dll
+D:\PythonScripts\C#_Test\C#_Project\obj\Debug\net8.0\refint\C#_Project.dll
+D:\PythonScripts\C#_Test\C#_Project\obj\Debug\net8.0\C#_Project.pdb
+D:\PythonScripts\C#_Test\C#_Project\obj\Debug\net8.0\C#_Project.genruntimeconfig.cache
+D:\PythonScripts\C#_Test\C#_Project\obj\Debug\net8.0\ref\C#_Project.dll

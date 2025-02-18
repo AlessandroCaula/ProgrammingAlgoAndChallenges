@@ -1,0 +1,2 @@
+- New Project &rarr; `dotnet new console`
+- Run Project &rarr; `dotnet run`
