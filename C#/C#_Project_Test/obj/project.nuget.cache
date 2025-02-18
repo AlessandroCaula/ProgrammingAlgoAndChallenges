@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "/h8CUtmq47w=",
+  "dgSpecHash": "flVniq4be8k=",
   "success": true,
-  "projectFilePath": "D:\\PythonScripts\\00_Git\\ProgrammingAlgoAndChallenges\\C#\\C#_Project_Test\\C#_Project.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "/Users/alessandrocaula/Documents/Devs/Repos/ProgrammingAlgoAndChallenges/C#/C#_Project_Test/C#_Project.csproj",
+  "expectedPackageFiles": [
+    "/Users/alessandrocaula/.nuget/packages/microsoft.netcore.app.ref/8.0.13/microsoft.netcore.app.ref.8.0.13.nupkg.sha512",
+    "/Users/alessandrocaula/.nuget/packages/microsoft.aspnetcore.app.ref/8.0.13/microsoft.aspnetcore.app.ref.8.0.13.nupkg.sha512",
+    "/Users/alessandrocaula/.nuget/packages/microsoft.netcore.app.host.osx-arm64/8.0.13/microsoft.netcore.app.host.osx-arm64.8.0.13.nupkg.sha512"
+  ],
   "logs": []
 }
