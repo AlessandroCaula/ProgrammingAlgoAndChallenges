@@ -6,6 +6,36 @@
 # dotenv files
 .env
 
+# Ignore additional build result
+bin/
+obj/
+out/
+
+# Ignore Rider settings
+.idea/
+
+# Ignore VSC settings
+.vscode/
+
+# Ignore logs
+*.log/
+
+# Ignore temporary files
+*.tmp
+*.temp
+
+# Ignore compiled DDLs
+*./dll
+
+# Ignore compiled PDBs
+*.pdb
+
+# Ignore NuGet packages
+*.nupkg
+
+# Ignore coverage results
+coverage/
+
 # User-specific files
 *.rsuser
 *.suo
