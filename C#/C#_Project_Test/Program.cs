@@ -5,7 +5,7 @@ class Program
 {
     static void Main()
     {
-        Logger logger = new Logger("Write To Console this");
+        Logger logger = new Logger("First console log for C# on VSC");
         logger.PrintToConsole();
     }
 }
