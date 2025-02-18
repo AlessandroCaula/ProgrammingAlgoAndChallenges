@@ -16,11 +16,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\PythonScripts\\C#_Test\\C#_Project\\C#_Project.csproj",
+      "projectUniqueName": "D:\\PythonScripts\\00_Git\\ProgrammingAlgoAndChallenges\\C#\\C#_Project_Test\\C#_Project.csproj",
       "projectName": "C#_Project",
-      "projectPath": "D:\\PythonScripts\\C#_Test\\C#_Project\\C#_Project.csproj",
+      "projectPath": "D:\\PythonScripts\\00_Git\\ProgrammingAlgoAndChallenges\\C#\\C#_Project_Test\\C#_Project.csproj",
       "packagesPath": "C:\\Users\\alessandro.caula.3BRAIN\\.nuget\\packages\\",
-      "outputPath": "D:\\PythonScripts\\C#_Test\\C#_Project\\obj\\",
+      "outputPath": "D:\\PythonScripts\\00_Git\\ProgrammingAlgoAndChallenges\\C#\\C#_Project_Test\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\DevExpress 23.2\\Components\\Offline Packages",
