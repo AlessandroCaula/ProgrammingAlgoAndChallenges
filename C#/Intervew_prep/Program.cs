@@ -1,4 +1,5 @@
 ﻿using Inventory;
+using SensorSystem;
 
 class Program
 {
@@ -12,5 +13,8 @@ class Program
 
         Console.WriteLine("\n-- Inventory Management system");
         InventoryManagementSystem inventoryManagementSystem = new InventoryManagementSystem();
+
+        Console.WriteLine("\n-- Sensor Data");
+        SensorDataProcessingSystem sensorDataProcessingSystem = new SensorDataProcessingSystem();
     }
 }
