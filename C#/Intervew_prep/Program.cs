@@ -1,4 +1,6 @@
-﻿class Program
+﻿using Inventory;
+
+class Program
 {
     static void Main()
     {
@@ -7,5 +9,8 @@
 
         Console.WriteLine("\n-- LINQ");
         LinqClass linqClass = new LinqClass();
+
+        Console.WriteLine("\n-- Inventory Management system");
+        InventoryManagementSystem inventoryManagementSystem = new InventoryManagementSystem();
     }
 }

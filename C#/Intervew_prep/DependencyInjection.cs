@@ -33,6 +33,7 @@ public class NotificationService
     // private -> This field is accessible only within the NotificationServices
     // readonly -> This ensures that the field can only be assigned once, either when declared or inside the constructor. This prevents accidental notification after object creation.
     // IEmailSender -> This is an interface type, allowing the class to work with any implementation of IEmailSender
+    // _emailSender -> The naming convention (underscore _) is commonly used for private fields in C#
     private readonly IEmailSender _emailSender;
 
     // Constructor Injection: The email sender dependency is injected into the service.
