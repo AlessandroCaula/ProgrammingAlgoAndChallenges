@@ -10,6 +10,7 @@ namespace SensorSystem
     {
         public SensorDataProcessingSystem()
         {
+            // Tunning the Running simulation method asynchronously and wait for its completion.
             Task.Run(async () => await RunningSimulation()).Wait();
         }
 
@@ -27,7 +28,7 @@ namespace SensorSystem
             SensorProcessor processor = new SensorProcessor(15, 35);
 
             // Run the simulation for 10 seconds
-            int simulationDurationMs = 10000;
+            int simulationDurationMs = 3000;
             int readingIntervalMs = 1000; // Each sensor generates a reading every second
 
             // Get a cancellation token that cancels after simulationDurationMs

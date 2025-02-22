@@ -16,5 +16,8 @@ class Program
 
         Console.WriteLine("\n-- Sensor Data");
         SensorDataProcessingSystem sensorDataProcessingSystem = new SensorDataProcessingSystem();
+
+        Console.WriteLine("\n-- Delegate and Events");
+        EventsAndDelegates eventsAndDelegates = new EventsAndDelegates();
     }
 }
