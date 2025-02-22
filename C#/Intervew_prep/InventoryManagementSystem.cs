@@ -19,6 +19,19 @@ namespace Inventory
             {
                 Console.WriteLine($"Id: {prod.ID} - Name: {prod.Name} - Price: {prod.Price} $");
             }
+
+            // Create an order and add some products
+            Order order = new Order();
+            order.AddProduct(prod2);
+            order.AddProduct(prod3);
+
+            // Calculate and display order costs
+            double totalCost = order.GetTotalCost();
+            double discountedCost = order.GetTotalCostWithDiscount();
+
+            Console.WriteLine("\nOrder Summary");
+            Console.WriteLine($"Total order cost: ${totalCost}");
+            Console.WriteLine($"Discounted order cost: ${discountedCost}");
         }
     }
 
@@ -95,20 +108,17 @@ namespace Inventory
         /// <summary>
         /// Method to update the product details
         /// </summary>
-        public void UpdateProductDetails(Guid productID, string productNewName, double productNewPrice = double.NaN)
+        public bool UpdateProduct(Product updatedProduct)
         {
-            // Retrieve the product with the specific ID
-            var productToUpdate = productCollection?.FirstOrDefault(p => p.ID == productID);
-
-            if (productToUpdate == null)
-                return;
-
-            // Rename the product 
-            if (productNewName != null)
-                productToUpdate.Name = productNewName;
-            // Reprice the product
-            if (!double.IsNaN(productNewPrice))
-                productToUpdate.Price = productNewPrice;
+            // Retrieve the product to update index
+            int index = productCollection.FindIndex(p => p.ID == updatedProduct.ID);
+            // If the product has been found, update it
+            if (index != -1)
+            {
+                productCollection[index] = updatedProduct;
+                return true;
+            }
+            return false;
         }
 
         // Return all the products in the inventory
@@ -159,7 +169,7 @@ namespace Inventory
             {
                 total = total - (total * 0.1);
             }
-            return total;
+            return Math.Round(total, 2);
         }
     }
 }
