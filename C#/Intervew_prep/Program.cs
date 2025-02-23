@@ -1,5 +1,6 @@
 ﻿using Inventory;
 using SensorSystem;
+using Analyzer;
 
 class Program
 {
@@ -19,5 +20,8 @@ class Program
 
         Console.WriteLine("\n-- Delegate and Events");
         EventsAndDelegates eventsAndDelegates = new EventsAndDelegates();
+
+        Console.WriteLine("\n-- Log Analyzer");
+        LogAnalyzerEntryPoint logAnalyzerEntryPoint = new LogAnalyzerEntryPoint();
     }
 }
