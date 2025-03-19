@@ -20,30 +20,9 @@
 def bridge_shuffle1(array1: list, array2: list): 
     final_array = []
     i = 0
-    j = 0
-    for z in range(len(array1) + len(array2)):
-        if (i > len(array1)):
-            final_array.append(array2[j])
-            j += 1
-        elif (z % 2 == 0):
-            final_array.append(array1[i])
-            i += 1
-        elif (j > len(array2)):
-            final_array.append(array1[i])
-            i += 1
-        elif (z % 2 != 0):
-            final_array.append(array2[j])
-            j += 1
-
-    return final_array
-
-
-def bridge_shuffle(array1: list, array2: list): 
-    final_array = []
-    i = 0
     j = 0    
     for z in range(len(array1) + len(array2)):
-        if (i < len(array1) or j < len(array2)):
+        if (i < len(array1) and j < len(array2)):
             if (z % 2 == 0):
                 final_array.append(array1[i])
                 i += 1
@@ -60,10 +39,33 @@ def bridge_shuffle(array1: list, array2: list):
 
     return final_array
 
+def bridge_shuffle(array1: list, array2: list): 
+    final_array = []
+    i = 0
+    j = 0
+    z = 0
+    while i < len(array1) or j < len(array2):
+        if i > len(array1) - 1:
+            final_array.append(array2[j])
+            j += 1
+        elif j > len(array2) - 1:
+            final_array.append(array1[i])
+            i += 1
+        else:
+            if z % 2 == 0:
+                final_array.append(array1[i])
+                i += 1
+            else:
+                final_array.append(array2[j])
+                j += 1
+        z += 1
+        
+    return final_array
+
 array1 = ["A", "A", "A"]
 array2 = ["B", "B", "B"]
 print(bridge_shuffle(array1, array2))
 
-# array1 = ["C", "C", "C", "C"]
-# array2 = ["D"]
-# print(bridge_shuffle(array1, array2))
+array1 = ["C", "C", "C", "C"]
+array2 = ["D"]
+print(bridge_shuffle(array1, array2))
