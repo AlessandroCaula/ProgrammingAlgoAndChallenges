@@ -64,6 +64,8 @@ def lemonade(arr: list) -> bool:
                 for c in change:
                     if c <= tot_change_to_give and c + sum(change_to_give) <= tot_change_to_give:
                         change_to_give.append(c)
+                    if tot_change_to_give == sum(change_to_give):
+                        break
                 if len(change_to_give) > 0 and sum(change_to_give) == tot_change_to_give:
                     for el in change_to_give:
                         change.remove(el)
@@ -73,3 +75,49 @@ def lemonade(arr: list) -> bool:
     return True
 
 print(lemonade([5, 5, 5, 10, 20]))
+# print(lemonade([5, 5, 10, 10, 20]))
+# print(lemonade([10, 10]))
+# print(lemonade([5, 5, 10]))
+
+
+# IMPROVEMENT
+#
+# Code inefficiencies
+# 1. Sorting in Every iteration
+#   - Sorting has an average time complexity of O(n log n). Since sort in every loop iteration, this makes the solution significantly slower than needed.
+#   - Instead, it's better to use two counter (five and ten) instead of storing all bills in a list and sorting them.
+# 2. Summing the Change List
+#   - Summing a list takes O(n) time. 
+#   - Since it is done repeatedly inside the loop, it makes the solution inefficient
+#   - Instead, maintaining separate counter for $5 and $10 bills allows constant-time lookups
+# 3. Looping through `change` to find change (for c in change)
+#   - This is an unnecessary check when you can just use conditional logic to reduce the correct bills.
+#   - The greedy approach (prioritizing $10 bills before $5 bills) ensures an optimal solution. 
+
+def lemonade1(arr: list) -> bool:
+    count_five, count_ten = 0, 0
+    tot_change = 0
+    
+    for money in arr:
+        if money == 5:
+            count_five += 1
+        elif money == 10:
+            if count_five > 0:
+                count_ten += 1
+                count_five -= 1
+            else:
+                return False
+        else: # if money is equal to 20
+            # 15 $ change
+            if count_ten > 0 and count_five > 0:
+                count_five -= 1
+                count_ten -=1
+            elif count_five >= 3:
+                count_five -= 3
+            else:
+                # There is no change 
+                return False
+    return True
+
+# print(lemonade1([5, 5, 5, 10, 20]))
+print(lemonade1([5, 5, 10, 10, 20]))
