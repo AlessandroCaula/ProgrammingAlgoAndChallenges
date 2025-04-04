@@ -1,3 +1,3 @@
 # LeetCode
 
-LeetCode and InstaByte coding challenges.
+LeetCode and InstaByte newsletter coding challenges.
