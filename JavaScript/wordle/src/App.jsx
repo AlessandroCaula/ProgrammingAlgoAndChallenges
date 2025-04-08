@@ -10,8 +10,12 @@ function App() {
   useEffect(() => {
     // Creating an async function to fetch the data
     const fetchWords = async () => {
-      // Fetching the data from the api
-      const response = await fetch('https://api.frontendexpert.io/api/fe/wordle-words')()
+      // // Fetching the data from the api
+      // const response = await fetch('https://api.frontendexpert.io/api/fe/wordle-words')()
+
+      const response = await fetch('http://localhost:3001/')
+      console.log(response.body)
+
       // Get the json from the response, with all the words
       const words = await response.json()
       // Pick one random world from the array 
