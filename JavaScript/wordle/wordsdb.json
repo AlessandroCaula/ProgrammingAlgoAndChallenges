@@ -1,7 +1,7 @@
 {
   "words": [
-    { "id": 1, "text": "hello" },
-    { "id": 2, "text": "world" },
-    { "id": 3, "text": "apple" }
+    "HELLO",
+    "ALBUM",
+    "MONEY"
   ]
 }
