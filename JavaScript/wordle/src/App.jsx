@@ -1,9 +1,8 @@
+/* eslint-disable no-unused-vars */
 import { useEffect, useState } from "react"
 import { words } from "./utils/words"
 import { Line } from "./components/Line"
 
-const WORD_LENGTH = 5
-const MAX_GUESSES = 6
 
 function App() {
 
