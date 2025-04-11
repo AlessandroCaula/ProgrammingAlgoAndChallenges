@@ -27,7 +27,8 @@
 # isLongPressed("laiden", "laiden") 
 # output = true
 
-
+# FIRST SOLUTION
+#
 def isLongPressed(original: str, typed: str) -> bool:
     original_letters, original_count = count_occurrence(original)
     typed_letters, typed_count = count_occurrence(typed)
@@ -66,9 +67,26 @@ def count_occurrence(world: str) -> list:
 # print(isLongPressed("leelee", "lleeelee")) 
 print(isLongPressed("Tokyo", "TTokkyoh"))
 
-
-
+# BETTER SOLUTION
 def isLongPressed1(original: str, typed: str) -> bool:
+    i = j = 0
+    while j < len(typed):
+        if i < len(original) and original[i] == typed[j]:
+            i += 1
+            j += 1
+        elif j > 0 and typed[j] == typed[j - 1]:
+            j += 1
+        else:
+            return False
+    return i == len(original)
+
+# print(isLongPressed("alex", "aaleex"))
+# print(isLongPressed("saeed", "ssaaedd"))
+# print(isLongPressed("leelee", "lleeelee")) 
+print(isLongPressed1("Tokyo", "TTokkyoh"))
+
+
+def isLongPressed3(original: str, typed: str) -> bool:
     # If the typed string has more different letters than the original. False needs to be returned
     if len(set(typed)) > len(set(original)):
         return False
@@ -82,10 +100,10 @@ def isLongPressed1(original: str, typed: str) -> bool:
     return True
 
 
-# print(isLongPressed1("alex", "aaleex"))
-# print(isLongPressed1("saeed", "ssaaedd"))
-# print(isLongPressed1("leelee", "lleeelee")) 
-# print(isLongPressed1("Tokyo", "TTokkyoh"))
+# print(isLongPressed3("alex", "aaleex"))
+# print(isLongPressed3("saeed", "ssaaedd"))
+# print(isLongPressed3("leelee", "lleeelee")) 
+# print(isLongPressed3("Tokyo", "TTokkyoh"))
 
 
 def isLongPressed2(original: str, typed: str) -> bool:
