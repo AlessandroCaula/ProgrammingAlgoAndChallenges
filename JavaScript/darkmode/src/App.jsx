@@ -1,34 +1,39 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import Switch from '@mui/material/Switch';
+import { createGlobalStyle, ThemeProvider } from "styled-components";
+
+import { useDarkMode } from "./utils/useDarkMode"
+
+const GlobalStyles = createGlobalStyle`
+  html {
+    background: ${({ theme }) => theme.background};
+    color: ${({ theme }) => theme.text};
+    font-family: Arial, Helvetica, sans-serif;
+    transition: all 0.3s;
+    text-align: center;
+  }
+`;
 
 function App() {
-  const [count, setCount] = useState(0)
+  const { theme, toggleTheme, isDarkMode } = useDarkMode();
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
+    <div className="App">
+      <ThemeProvider theme={theme}>
+        <GlobalStyles />
+        <h1>Switch themes</h1>
+        <h2>With useDarkMode hook</h2>
+        <h2>and styled-components!</h2>
         <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
+          <strong>{isDarkMode ? "Dark Mode" : "Light Mode"}</strong>
         </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+        <Switch
+          checked={isDarkMode}
+          onChange={toggleTheme}
+          name="darkModeSwitch"
+          color="primary"
+        />
+      </ThemeProvider>
+    </div>
   )
 }
 
