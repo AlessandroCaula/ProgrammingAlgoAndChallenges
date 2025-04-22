@@ -41,14 +41,13 @@ function App() {
 
   const handleTyping = (event) => {
     setInputGuess(event.target.value)
-    console.log(inputGuess)
+    // console.log(inputGuess)
   }
 
   const handleEnterKeyPress = (event) => {
     // Check if the key pressed is the Enter key
     if (event.key === "Enter") {
       console.log("Enter pressed")
-
       // Validate the guess word
       validateGuess()
     }
@@ -64,13 +63,12 @@ function App() {
       return
     } else {
       // Add it to the list of guesses
-      const new_guesses = guesses
+      const new_guesses = [...guesses] // Create a shallow copy of the guesses array
       // Find the index of the first null value in guesses
       const firstNullIdx = guesses.findIndex(val => val === null)
-      new_guesses[firstNullIdx] = inputGuess
+      new_guesses[firstNullIdx] = inputGuess.toUpperCase()
       setGuesses(new_guesses)
       setInputGuess('')
-      console.log(inputGuess)
     }
   }
 
@@ -79,9 +77,8 @@ function App() {
       {/* Map through all the guesses and return a single line (component) */}
       {guesses.map((guess, i) => (
         <div key={i}>
-          <p>{guess}</p>
           {/* Rendering the Line component */}
-          {/* <Line guess={guess} /> */}
+          <Line guess={guess} />
         </div>
       ))}
 
