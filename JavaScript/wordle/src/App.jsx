@@ -39,10 +39,39 @@ function App() {
     setSolution(randomWord)
   }, [])
 
-  const HandleTyping = (event) => {
+  const handleTyping = (event) => {
     setInputGuess(event.target.value)
-
     console.log(inputGuess)
+  }
+
+  const handleEnterKeyPress = (event) => {
+    // Check if the key pressed is the Enter key
+    if (event.key === "Enter") {
+      console.log("Enter pressed")
+
+      // Validate the guess word
+      validateGuess()
+    }
+  }
+  
+  const validateGuess = () => {
+    // The guess needs to be 5 char in length
+    if (inputGuess.length > 5) {
+      alert("Guess is too long. It needs to be 5 char long")
+      return
+    } else if (inputGuess.length < 5) {
+      alert("Guess is too short. It needs to be 5 char long")
+      return
+    } else {
+      // Add it to the list of guesses
+      const new_guesses = guesses
+      // Find the index of the first null value in guesses
+      const firstNullIdx = guesses.findIndex(val => val === null)
+      new_guesses[firstNullIdx] = inputGuess
+      setGuesses(new_guesses)
+      setInputGuess('')
+      console.log(inputGuess)
+    }
   }
 
   return (
@@ -50,15 +79,18 @@ function App() {
       {/* Map through all the guesses and return a single line (component) */}
       {guesses.map((guess, i) => (
         <div key={i}>
+          <p>{guess}</p>
           {/* Rendering the Line component */}
-          <Line guess={guess} />
+          {/* <Line guess={guess} /> */}
         </div>
       ))}
 
       {/* Adding the text input component */}
       <input 
         className="input"
-        onChange={HandleTyping}
+        value={inputGuess}
+        onChange={handleTyping}
+        onKeyDown={handleEnterKeyPress}
         placeholder="Type your guess here"
       />
 
