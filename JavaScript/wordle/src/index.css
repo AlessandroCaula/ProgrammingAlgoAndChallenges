@@ -20,9 +20,22 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: large;
+}
+
+/* Tile color when the letter is in the correct position */
+.tile.correct {
+    background-color: green;
+}
+
+/* Tile color when the letter is present but in the wrong position */
+.tile.present {
+    background-color: yellow;
 }
 
 .input {
     margin-top: 30px;
     height: 20px;
+    font-size: medium;
 }

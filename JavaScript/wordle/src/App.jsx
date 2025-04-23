@@ -12,6 +12,10 @@ function App() {
   const [guesses, setGuesses] = useState(Array(6).fill(null))
   // useState that will store the current input guess. 
   const [inputGuess, setInputGuess] = useState('')
+  // // State for endgame.
+  // const [isGameWon, setIsGameWon] = useState(false)
+  const [resetGame, setResetGame] = useState(false)
+
 
   // // Fetching the list with all the 5 words from which we are gonna choose a random one. It is gonna run at mount time (cause we have an empty array)
   // useEffect(() => {
@@ -37,7 +41,8 @@ function App() {
     const randomWord = words[Math.floor(Math.random() * words.length)]
     // Store it in a state
     setSolution(randomWord)
-  }, [])
+    console.log("------ Solution:", randomWord)
+  }, [resetGame])
 
   const handleTyping = (event) => {
     setInputGuess(event.target.value)
@@ -47,7 +52,6 @@ function App() {
   const handleEnterKeyPress = (event) => {
     // Check if the key pressed is the Enter key
     if (event.key === "Enter") {
-      console.log("Enter pressed")
       // Validate the guess word
       validateGuess()
     }
@@ -64,12 +68,32 @@ function App() {
     } else {
       // Add it to the list of guesses
       const new_guesses = [...guesses] // Create a shallow copy of the guesses array
-      // Find the index of the first null value in guesses
-      const firstNullIdx = guesses.findIndex(val => val === null)
+      const firstNullIdx = guesses.findIndex(val => val === null) // Find the index of the first null value in guesses
       new_guesses[firstNullIdx] = inputGuess.toUpperCase()
       setGuesses(new_guesses)
       setInputGuess('')
+
+      // Now check for the end game.
+      // If the word added is equal to the solution.
+      if (inputGuess.toUpperCase() === solution.toUpperCase()) {
+        setTimeout(() => {
+          confirm("CORRECT ANSWER!!!! \n\nRestart Game")
+          gameReset()
+        }, 300)
+      } else if (new_guesses.findIndex(val => val === null) === -1) {
+        // Check if this is the last possible attempt
+        setTimeout(() => {
+          confirm("NO MORE ATTEMPTS!!!!! \n\nTry Again")
+          gameReset()
+        }, 300)
+      }
     }
+  }
+
+  const gameReset = () => {
+    setResetGame(!resetGame)
+    setGuesses(Array(6).fill(null))
+    setInputGuess('')
   }
 
   return (
@@ -78,7 +102,7 @@ function App() {
       {guesses.map((guess, i) => (
         <div key={i}>
           {/* Rendering the Line component */}
-          <Line guess={guess} />
+          <Line guess={guess} solution={solution} />
         </div>
       ))}
 
