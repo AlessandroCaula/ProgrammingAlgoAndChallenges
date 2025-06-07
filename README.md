@@ -1,4 +1,4 @@
 # Programming and Challenges
 
-Repository that contains Small Funcitonal Challenges, Algorithm Implementations, Code Tests and small Projects.     
-Different programming languages are included. 
+Repository that contains Small Functional Challenges, Algorithm Implementations, Code Tests and Small Projects.     
+Different programming languages and technologies are included. 
