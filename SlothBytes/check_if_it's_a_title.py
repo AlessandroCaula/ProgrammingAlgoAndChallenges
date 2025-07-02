@@ -1,4 +1,6 @@
+#############################
 ### Check If It's a Title ###
+#############################
 # Check if a string is formatted as a title. A itle string is when every word of the string start with a upper case letter. 
 #
 # Example

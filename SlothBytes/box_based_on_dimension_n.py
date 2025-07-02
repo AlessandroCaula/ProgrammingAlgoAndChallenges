@@ -1,5 +1,5 @@
 ######################
-# Challenge 25/06/2024
+# box based on dimension n
 ######################
 
 # Create a function that creates a box based on dimension n.
