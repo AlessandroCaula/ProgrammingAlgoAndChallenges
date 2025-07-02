@@ -1,3 +1,7 @@
+##############################
+## phrase into word buckets ##
+##############################
+
 # Write a function that divides a phrase into word buckets, with each bucket containing
 # n or fewer character. Only includes full words inside each bucket.
 #

@@ -1,3 +1,5 @@
+phrase_into_word_buckets.py -> 24-04-2025
+check_if_it's_a_title.py -> title
 splitting_numbers.py -> numbers
 lemonade_stand.py -> stand
 ctrl__c_ctrl__v.py -> v
@@ -10,7 +12,6 @@ next_in_alphabet.py -> alphabet
 phone_number_formatting.py -> formatting
 12_vs_24_hours.py -> hours
 shuffled_properly.py -> properly
-check_if_it's_a_title.py -> 24-07-2024
 not_yelling.py -> yelling
 rhyme_time.py -> time
 how_many_digits_between_1_and_n.py -> n
@@ -24,6 +25,7 @@ convenience_store.py -> store
 message_from_space.py -> space
 box_based_on_dimension_n.py -> n
 spiral_matrix.py -> matrix
+advanced_sort.py -> 10-07-2024
 is_the_phone_number_formatted_correctly.py -> correctly
 the_actual_memory_size_of_your_usb_flash_drive.py -> drive
 factorial_of_factorial.py -> factorial
