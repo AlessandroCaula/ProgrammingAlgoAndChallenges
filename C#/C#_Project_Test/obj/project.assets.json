@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/alessandrocaula/Documents/Devs/Repos/ProgrammingAlgoAndChallenges/C#/C#_Project_Test/C#_Project.csproj",
+      "projectUniqueName": "/Users/alessandrocaula/Documents/Devs/Git_Repos/ProgrammingAlgoAndChallenges/C#/C#_Project_Test/C#_Project.csproj",
       "projectName": "C#_Project",
-      "projectPath": "/Users/alessandrocaula/Documents/Devs/Repos/ProgrammingAlgoAndChallenges/C#/C#_Project_Test/C#_Project.csproj",
+      "projectPath": "/Users/alessandrocaula/Documents/Devs/Git_Repos/ProgrammingAlgoAndChallenges/C#/C#_Project_Test/C#_Project.csproj",
       "packagesPath": "/Users/alessandrocaula/.nuget/packages/",
-      "outputPath": "/Users/alessandrocaula/Documents/Devs/Repos/ProgrammingAlgoAndChallenges/C#/C#_Project_Test/obj/",
+      "outputPath": "/Users/alessandrocaula/Documents/Devs/Git_Repos/ProgrammingAlgoAndChallenges/C#/C#_Project_Test/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/alessandrocaula/.nuget/NuGet/NuGet.Config"
