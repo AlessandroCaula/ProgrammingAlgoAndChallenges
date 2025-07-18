@@ -1,6 +1,6 @@
 // Tic Tac Toe Board
 let board = [
-  ["X", "", ""],
+  ["", "", ""],
   ["", "", ""],
   ["", "", ""],
 ]
@@ -14,10 +14,12 @@ player2 = 'O'
 let currentPlayer;
 let available = []
 
+// --- SETUP
+// 
 function setup() {
   createCanvas(400, 400);
   // Change the frame rate
-  frameRate(30);
+  frameRate(5);
 
   // Randomize the initial player 
   currentPlayer = floor(random(players.length))
@@ -85,9 +87,13 @@ function nextTurn() {
   currentPlayer = (currentPlayer + 1) % players.length
 }
 
+// --- DRAW
+// 
 function draw() {
   background(255);
 
+  // Increase the width of the line
+  strokeWeight(4)
   // Define the width and height of each single cell
   const w = width / 3
   const h = height / 3
@@ -96,8 +102,6 @@ function draw() {
   line(w*2, 0, w*2, height)
   line(0, h, width, h)
   line(0, h*2, width, h*2)
-  // Increase the width of the line
-  strokeWeight(4)
 
   // Draw the board
   for (let i = 0; i < 3; i++) {
@@ -120,5 +124,24 @@ function draw() {
         line(x - xr, y + xr, x + xr, y - xr)
       }
     }
+  }
+
+  // Check for the winner
+  const result = checkWinner()
+  // If there is a winner
+  if (result !== null) {
+    // Stop the loop 
+    noLoop()
+    // Text to print
+    let resultP = createP('')
+    resultP.style('font-size', '32pt')
+    if (result === 'tie') {
+      resultP.html("Tie!")
+    } else {
+      resultP.html(`${result} wins!`)
+    }
+  } else {
+    // Otherwise run next move
+    nextTurn()
   }
 }
