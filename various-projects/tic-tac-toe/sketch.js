@@ -1,27 +1,88 @@
 // Tic Tac Toe Board
 let board = [
-  ["", "", ""],
+  ["X", "", ""],
   ["", "", ""],
   ["", "", ""],
 ]
 
 // Players
-const player1 = 'X'
-const player2 = 'O'
+const players = ['X', 'O']
+player1 = 'X'
+player2 = 'O'
 
 // Play the game
 let currentPlayer;
-
+let available = []
 
 function setup() {
   createCanvas(400, 400);
+  // Change the frame rate
+  frameRate(30);
 
-  // Let's randomly pick a starting player, 1 or 2
-  if (random(1) < 0.5) {
-    currentPlayer = player1
-  } else {
-    currentPlayer = player2
+  // Randomize the initial player 
+  currentPlayer = floor(random(players.length))
+
+  // Define a collection with the available/free cells in which it is possible to add a new symbol
+  for (let i = 0; i < 3; i++) {
+    for (let j = 0; j < 3; j++) {
+      available.push([i, j])
+    }
   }
+}
+
+// Define the function that will be used to check diagonal equality
+function equals3(a, b, c) {
+  // Return true if they are all equal
+  return (a === b && b === c && a != '')
+}
+
+// Check of we have a winner
+function checkWinner() {
+  let winner = null
+
+  // Check if there are 3 of the same symbols horizontally 
+  for (let i = 0; i < 3; i++) {
+    if (equals3(board[i][0], board[i][1], board[i][2])) {
+      winner = board[i][0]
+    }
+  }
+
+  // Check if there are 3 of the same symbols vertically
+  for (let j = 0; j < 3; j++) {
+    if (equals3(board[0][j], board[1][j], board[2][j])) {
+      winner = board[0][j]
+    }
+  }
+
+  // Check diagonals
+  if (equals3(board[0][0], board[1][1], board[2][2])) {
+    winner = board[0][0]
+  }
+  if (equals3(board[0][2], board[1][1], board[2][0])) {
+    winner = board[0][2]
+  }
+
+  // If there is no winner and there are no available cells
+  if (winner === null && available.length === 0) {
+    return 'tie'
+  } else {
+    return winner
+  }
+}
+
+// Function that will be called on the next turn, so that the new player can randomly play it's move
+function nextTurn() {
+  // Randomize a cell within the available ones
+  const index = floor(random(available.length))
+  // Remove the spot/cell from the available ones and remove it from the available
+  const spot = available.splice(index, 1)[0]  // index -> is the position in the array where to start. 1 -> number of elements to remove from the array
+  // Extract row (i) and col (j) from the available randomized spot
+  const i = spot[0]
+  const j = spot[1]
+  // Add the symbol to the board
+  board[i][j] = players[currentPlayer]
+  // Change the player
+  currentPlayer = (currentPlayer + 1) % players.length
 }
 
 function draw() {
@@ -35,6 +96,8 @@ function draw() {
   line(w*2, 0, w*2, height)
   line(0, h, width, h)
   line(0, h*2, width, h*2)
+  // Increase the width of the line
+  strokeWeight(4)
 
   // Draw the board
   for (let i = 0; i < 3; i++) {
@@ -45,8 +108,6 @@ function draw() {
       const y = h * j + h/2
       // Retrieve what's the symbol in the current cell
       const spot = board[i][j]
-      // Increase the width of the line
-      strokeWeight(4)
       // If in the cell there is a "O"
       if (spot === player2) {
         // Draw a circle
