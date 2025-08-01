@@ -5,13 +5,20 @@ let board = [
   ["", "", ""],
 ]
 
-// Players
-const players = ['X', 'O']
-player1 = 'X'
-player2 = 'O'
+// // Players
+// const players = ['X', 'O']
+// player1 = 'X'
+// player2 = 'O'
 
-// Play the game
-let currentPlayer;
+// Define the number of rows and columns
+let w   // = width / 3
+let h   // = height / 3
+
+// Players
+let ai = 'X' // the computer
+let human = 'O' // The human
+let currentPlayer = human;
+
 let available = []
 
 // --- SETUP
@@ -21,12 +28,13 @@ function setup() {
   // Change the frame rate
   frameRate(5);
 
-  // Randomize the initial player 
-  currentPlayer = floor(random(players.length))
+  // // Randomize the initial player 
+  // currentPlayer = floor(random(players.length))
+  currentPlayer = human
 
   // Define a collection with the available/free cells in which it is possible to add a new symbol
   for (let i = 0; i < 3; i++) {
-    for (let j = 0; j < 3; j++) {
+    for (let j = 0; j < 3; j++) {  
       available.push([i, j])
     }
   }
@@ -72,7 +80,7 @@ function checkWinner() {
   }
 }
 
-// Function that will be called on the next turn, so that the new player can randomly play it's move
+// Function that will be called on the next turn, so that the new player (ai) can randomly play it's move
 function nextTurn() {
   // Randomize a cell within the available ones
   const index = floor(random(available.length))
@@ -87,6 +95,38 @@ function nextTurn() {
   currentPlayer = (currentPlayer + 1) % players.length
 }
 
+function nextTurn() {
+  // AI to make its turn
+  const index = floor(random(available.length))
+  const move = available.splice(index, 1)[0] // random(available)
+  // Remove the ai selected cell from the available
+  board[move[0]][move[1]] = ai
+  // Human turn
+  currentPlayer = human
+}
+
+// Mouse click for the interaction with the user
+function mousePressed() {
+  if (currentPlayer == human) {
+    // Human make the turn. Find the cell coordinate based on where the human clicked with the mouse 
+    const c = floor(mouseX / w)
+    const r = floor(mouseY / h)
+    // Check if there is nothing yet in the selected cell
+    if (board[r][c] == '') {
+      board[r][c] = human
+      // Remove the cell from the available ones
+      const cellToRemoveIdx = available.findIndex(cell => cell[0] === r && cell[1] === c)
+      if (cellToRemoveIdx !== -1) {
+        // Remove the cell from the available ones
+        available.splice(cellToRemoveIdx, 1)
+      }
+      // Change the player back to the machine
+      currentPlayer = ai
+      nextTurn()
+    }
+  }
+}
+
 // --- DRAW
 // 
 function draw() {
@@ -95,8 +135,8 @@ function draw() {
   // Increase the width of the line
   strokeWeight(4)
   // Define the width and height of each single cell
-  const w = width / 3
-  const h = height / 3
+  w = width / 3
+  h = height / 3
   // Draw the lines dividing the cells
   line(w, 0, w, height)
   line(w*2, 0, w*2, height)
@@ -104,20 +144,20 @@ function draw() {
   line(0, h*2, width, h*2)
 
   // Draw the board
-  for (let i = 0; i < 3; i++) {
-    for (let j = 0; j < 3; j++) {
+  for (let r = 0; r < 3; r++) {
+    for (let c = 0; c < 3; c++) {
       // x coordinate centered in the cell
-      const x = w * i + w/2
+      const x = w * c + w/2
       // y coordinate centered in the cell
-      const y = h * j + h/2
+      const y = h * r + h/2
       // Retrieve what's the symbol in the current cell
-      const spot = board[i][j]
+      const spot = board[r][c]
       // If in the cell there is a "O"
-      if (spot === player2) {
+      if (spot === human) {
         // Draw a circle
         noFill()
         ellipse(x, y, w/2)
-      } else if (spot === player1) {
+      } else if (spot === ai) {
         // Otherwise draw the X symbol
         const xr = w/4    // Length of half the line
         line(x - xr, y - xr, x + xr, y + xr)
@@ -140,8 +180,8 @@ function draw() {
     } else {
       resultP.html(`${result} wins!`)
     }
-  } else {
-    // Otherwise run next move
-    nextTurn()
-  }
+  }  // else {
+  //   // Otherwise run next move
+  //   nextTurn()
+  // }
 }
