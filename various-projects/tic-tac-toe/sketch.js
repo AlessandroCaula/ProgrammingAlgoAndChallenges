@@ -5,11 +5,6 @@ let board = [
   ["", "", ""],
 ]
 
-// // Players
-// const players = ['X', 'O']
-// player1 = 'X'
-// player2 = 'O'
-
 // Define the number of rows and columns
 let w   // = width / 3
 let h   // = height / 3
@@ -29,7 +24,6 @@ function setup() {
   frameRate(5);
 
   // // Randomize the initial player 
-  // currentPlayer = floor(random(players.length))
   currentPlayer = human
 
   // Define a collection with the available/free cells in which it is possible to add a new symbol
@@ -80,26 +74,27 @@ function checkWinner() {
   }
 }
 
-// Function that will be called on the next turn, so that the new player (ai) can randomly play it's move
-function nextTurn() {
-  // Randomize a cell within the available ones
-  const index = floor(random(available.length))
-  // Remove the spot/cell from the available ones and remove it from the available
-  const spot = available.splice(index, 1)[0]  // index -> is the position in the array where to start. 1 -> number of elements to remove from the array
-  // Extract row (i) and col (j) from the available randomized spot
-  const i = spot[0]
-  const j = spot[1]
-  // Add the symbol to the board
-  board[i][j] = players[currentPlayer]
-  // Change the player
-  currentPlayer = (currentPlayer + 1) % players.length
-}
+// // Function that will be called on the next turn, so that the new player (ai) can randomly play it's move
+// function nextTurn() {
+//   // Randomize a cell within the available ones
+//   const index = floor(random(available.length))
+//   // Remove the spot/cell from the available ones and remove it from the available
+//   const spot = available.splice(index, 1)[0]  // index -> is the position in the array where to start. 1 -> number of elements to remove from the array
+//   // Extract row (i) and col (j) from the available randomized spot
+//   const i = spot[0]
+//   const j = spot[1]
+//   // Add the symbol to the board
+//   board[i][j] = players[currentPlayer]
+//   // Change the player
+//   currentPlayer = (currentPlayer + 1) % players.length
+// }
 
 function nextTurn() {
   // AI to make its turn
   const index = floor(random(available.length))
+  // Retrieve and Remove the ai selected cell from the available
   const move = available.splice(index, 1)[0] // random(available)
-  // Remove the ai selected cell from the available
+  // Add the symbol to the board
   board[move[0]][move[1]] = ai
   // Human turn
   currentPlayer = human
@@ -180,8 +175,5 @@ function draw() {
     } else {
       resultP.html(`${result} wins!`)
     }
-  }  // else {
-  //   // Otherwise run next move
-  //   nextTurn()
-  // }
+  }
 }
