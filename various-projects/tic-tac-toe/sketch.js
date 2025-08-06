@@ -25,13 +25,6 @@ function setup() {
 
   // // Randomize the initial player 
   currentPlayer = human
-
-  // Define a collection with the available/free cells in which it is possible to add a new symbol
-  for (let i = 0; i < 3; i++) {
-    for (let j = 0; j < 3; j++) {  
-      available.push([i, j])
-    }
-  }
 }
 
 // Define the function that will be used to check diagonal equality
@@ -66,38 +59,21 @@ function checkWinner() {
     winner = board[0][2]
   }
 
+  let openSpots = 0
+  for (let r = 0; r < 3; r++) {
+    for (let c = 0; c < 3; c++) {
+      if (board[r][c] === '') {
+        openSpots++
+      }
+    }
+  }
+
   // If there is no winner and there are no available cells
-  if (winner === null && available.length === 0) {
+  if (winner === null && openSpots === 0) {
     return 'tie'
   } else {
     return winner
   }
-}
-
-// // Function that will be called on the next turn, so that the new player (ai) can randomly play it's move
-// function nextTurn() {
-//   // Randomize a cell within the available ones
-//   const index = floor(random(available.length))
-//   // Remove the spot/cell from the available ones and remove it from the available
-//   const spot = available.splice(index, 1)[0]  // index -> is the position in the array where to start. 1 -> number of elements to remove from the array
-//   // Extract row (i) and col (j) from the available randomized spot
-//   const i = spot[0]
-//   const j = spot[1]
-//   // Add the symbol to the board
-//   board[i][j] = players[currentPlayer]
-//   // Change the player
-//   currentPlayer = (currentPlayer + 1) % players.length
-// }
-
-function nextTurn() {
-  // AI to make its turn
-  const index = floor(random(available.length))
-  // Retrieve and Remove the ai selected cell from the available
-  const move = available.splice(index, 1)[0] // random(available)
-  // Add the symbol to the board
-  board[move[0]][move[1]] = ai
-  // Human turn
-  currentPlayer = human
 }
 
 // Mouse click for the interaction with the user
@@ -109,15 +85,10 @@ function mousePressed() {
     // Check if there is nothing yet in the selected cell
     if (board[r][c] == '') {
       board[r][c] = human
-      // Remove the cell from the available ones
-      const cellToRemoveIdx = available.findIndex(cell => cell[0] === r && cell[1] === c)
-      if (cellToRemoveIdx !== -1) {
-        // Remove the cell from the available ones
-        available.splice(cellToRemoveIdx, 1)
-      }
       // Change the player back to the machine
       currentPlayer = ai
-      nextTurn()
+      // nextTurn()
+      bestMove()
     }
   }
 }
