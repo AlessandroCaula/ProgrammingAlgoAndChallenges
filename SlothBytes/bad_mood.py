@@ -63,7 +63,7 @@ def greatest_impact(days: list[list[int]]) -> str:
         else:
             more_impact_value = ''
             perc_value = 2
-            # find the greatest impact
+            # Find the greatest impact
             for i, val in enumerate(day[1:]):
                 if moods[i] == "Meals":
                     perc_local = val / 3
