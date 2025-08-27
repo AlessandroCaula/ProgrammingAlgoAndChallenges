@@ -38,14 +38,14 @@
 # # Missing #
 
 def is_valid_hex_code(code: str) -> bool:
-    not_valid_char = ['G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+    valid_char = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', 'A', 'B', 'C', 'D', 'E', 'F']
 
     if code[0] != "#":
         return False
     if len(code[1:]) != 6:
         return False
-    for c in not_valid_char:
-        if c in code.upper():
+    for c in code[1:]:
+        if c.upper() not in valid_char:
             return False
 
     return True
@@ -57,3 +57,4 @@ print(is_valid_hex_code("#eaecee"))
 print(is_valid_hex_code("#CD5C58C"))
 print(is_valid_hex_code("#CD5C5Z"))
 print(is_valid_hex_code("CD5C5C"))
+print(is_valid_hex_code("#CD5C&C"))
