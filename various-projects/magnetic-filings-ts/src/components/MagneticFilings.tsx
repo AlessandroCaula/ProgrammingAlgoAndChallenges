@@ -46,8 +46,8 @@ const MagneticFilings = () => {
 
     const lineLength = 20;
     const lineWidth = 2;
-    const horizontalSpaceBetweenLines = 45;
-    const verticalSpaceBetweenLines = 45;
+    const horizontalSpaceBetweenLines = 50;
+    const verticalSpaceBetweenLines = 50;
 
     // Function to resize the canvas whenever window size changes.
     const resize = () => {
@@ -129,16 +129,35 @@ const MagneticFilings = () => {
 
       // Loop through all the lines
       linesRef.current.forEach((line) => {
-        // Compute the direction from the start point of the line and the mouse
-        const dx = mouseX - line.startX;
-        const dy = mouseY - line.startY;
+        // // Compute the direction from the start point of the line and the mouse
+        // const dx = mouseX - line.startX;
+        // const dy = mouseY - line.startY;
 
-        // Compute the angle in radians
+        // // Compute the angle in radians
+        // const angle = Math.atan2(dy, dx);
+
+        // // Now compute the endpoint coordinates using the line's fixed length
+        // line.endX = line.startX + Math.cos(angle) * lineLength;
+        // line.endY = line.startY + Math.sin(angle) * lineLength;
+
+        // Compute the line center
+        const centerX = (line.startX + line.endX) / 2;
+        const centerY = (line.startY + line.endY) / 2;
+
+        // Direction from the center of the mouse
+        const dx = mouseX - centerX;
+        const dy = mouseY - centerY;
+
+        // Angle 
         const angle = Math.atan2(dy, dx);
 
-        // Now compute the endpoint coordinates using the line's fixed length
-        line.endX = line.startX + Math.cos(angle) * lineLength;
-        line.endY = line.startY + Math.sin(angle) * lineLength;
+        // Recompute endpoints centered on center
+        line.startX = centerX - Math.cos(angle) * (lineLength / 2);
+        line.startY = centerY - Math.sin(angle) * (lineLength / 2);
+
+        line.endX = centerX + Math.cos(angle) * (lineLength / 2);
+        line.endY = centerY + Math.sin(angle) * (lineLength / 2);
+
       });
     };
 
@@ -159,7 +178,7 @@ const MagneticFilings = () => {
       });
     };
 
-    // Example of an animation loop
+    // Animation loop
     const loop = () => {
       draw();
 
