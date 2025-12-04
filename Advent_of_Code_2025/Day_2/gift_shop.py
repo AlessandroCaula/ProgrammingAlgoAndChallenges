@@ -1,25 +1,25 @@
 import argparse
 
-# def find_duplicates(curr_number: str):
-#     print("-- New number", curr_number)
-#     found = False
-#     for i in range(1, (len(curr_number) // 2) + 1):
-#         # print(curr_number[0:i])
-#         curr_subseq = curr_number[0: i]
-#         start = i
-#         end = start + i
-#         next_sub = curr_number[start: end]
-#         if len(curr_number) % i == 0:
-#             while end <= len(curr_number):
-#                 if curr_subseq != curr_number[start: end]:
-#                     break
-#                 if end == len(curr_number):
-#                     found = True
-#                 start += i
-#                 end += i
-#     return curr_number if found else None
+def find_all_duplicates(curr_number: str):
+    # print("-- New number", curr_number)
+    found = False
+    for i in range(1, (len(curr_number) // 2) + 1):
+        # print(curr_number[0:i])
+        curr_subseq = curr_number[0: i]
+        start = i
+        end = start + i
+        next_sub = curr_number[start: end]
+        if len(curr_number) % i == 0:
+            while end <= len(curr_number):
+                if curr_subseq != curr_number[start: end]:
+                    break
+                if end == len(curr_number):
+                    found = True
+                start += i
+                end += i
+    return int(curr_number) if found else 0
 
-def find_duplicates(curr_number: str) -> int:
+def find_twice_duplicates(curr_number: str) -> int:
     if len(curr_number) % 2 != 0:
         return 0
     mid = len(curr_number) // 2
@@ -28,7 +28,7 @@ def find_duplicates(curr_number: str) -> int:
 
     return int(curr_number) if first_half == second_half else 0
 
-def gift_shop_part1(input_path: str) -> int:
+def gift_shop_part(input_path: str, is_first_part: bool) -> int:
     with open(input_path) as f:
         input_ranges = f.readline().strip()
         # Split to obtain all the ranges
@@ -42,8 +42,12 @@ def gift_shop_part1(input_path: str) -> int:
             # Loop through each value between the start and end ranges values and check for repetitions
             curr = start_r
             while curr <= end_r:
-                # print(str(curr))
-                sum_invalid_id += find_duplicates(str(curr))
+                
+                if (is_first_part):
+                    sum_invalid_id += find_twice_duplicates(str(curr))
+                else:
+                    sum_invalid_id += find_all_duplicates(str(curr))
+                
                 curr += 1
 
     return sum_invalid_id
@@ -61,12 +65,12 @@ def main():
     # input_path = "/Users/alessandrocaula/Documents/Devs/Git-Repos/ProgrammingAlgoAndChallenges/Advent_of_Code_2025/Day_2/input_test.txt"
 
     # Part 1 result
-    part_1_res = gift_shop_part1(input_path)
+    part_1_res = gift_shop_part(input_path, is_first_part = True)
     print("Part 1: ", part_1_res)
-
-    # test = "123456"
-    # print(test[0: len(test) // 2])
-    # print(test[len(test) // 2: len(test)])
+    
+    # Part 2 result
+    part_1_res = gift_shop_part(input_path, is_first_part = False)
+    print("Part 1: ", part_1_res)
 
 if __name__ == "__main__":
     main() 
