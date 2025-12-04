@@ -1,7 +1,7 @@
 import argparse
 import math
 
-def secret_entrance_part1(input_path: str):
+def secret_entrance_part1(input_path: str) -> int:
     input_sequence = open(input_path)
     pointer = 50
     number_of_zeros = 0
@@ -33,7 +33,7 @@ def secret_entrance_part1(input_path: str):
     input_sequence.close()
     return number_of_zeros
 
-def secret_entrance_part2(input_path: str):
+def secret_entrance_part2(input_path: str) -> int:
     input_sequence = open(input_path)
     pointer = 50
     number_of_zeros = 0
@@ -91,11 +91,11 @@ def main():
 
     # Part 1 result
     part_1_res = secret_entrance_part1(input_path)
-    print("Part 1: ", part_1_res)
+    print("Secret Entrance code - Part 1: ", part_1_res)
 
     # Part 2 result
     part_2_res = secret_entrance_part2(input_path)
-    print("Part 2: ", part_2_res)
+    print("Secret Entrance code - Part 2: ", part_2_res)
 
 
 if __name__ == "__main__":
