@@ -1,10 +1,8 @@
 import argparse
 
 def find_all_duplicates(curr_number: str):
-    # print("-- New number", curr_number)
     found = False
     for i in range(1, (len(curr_number) // 2) + 1):
-        # print(curr_number[0:i])
         curr_subseq = curr_number[0: i]
         start = i
         end = start + i
@@ -42,12 +40,10 @@ def gift_shop_part(input_path: str, is_first_part: bool) -> int:
             # Loop through each value between the start and end ranges values and check for repetitions
             curr = start_r
             while curr <= end_r:
-                
                 if (is_first_part):
                     sum_invalid_id += find_twice_duplicates(str(curr))
                 else:
                     sum_invalid_id += find_all_duplicates(str(curr))
-                
                 curr += 1
 
     return sum_invalid_id
@@ -55,14 +51,10 @@ def gift_shop_part(input_path: str, is_first_part: bool) -> int:
 def main():
     parser = argparse.ArgumentParser()
 
-    parser.add_argument(
-        "input",
-        help="Path to input file"
-    )
+    parser.add_argument("input", help="Path to input file")
+    
     args = parser.parse_args()
     input_path = args.input
-
-    # input_path = "/Users/alessandrocaula/Documents/Devs/Git-Repos/ProgrammingAlgoAndChallenges/Advent_of_Code_2025/Day_2/input_test.txt"
 
     # Part 1 result
     part_1_res = gift_shop_part(input_path, is_first_part = True)
