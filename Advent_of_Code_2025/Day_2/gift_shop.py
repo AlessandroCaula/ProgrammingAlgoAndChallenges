@@ -17,6 +17,16 @@ def find_all_duplicates(curr_number: str):
                 end += i
     return int(curr_number) if found else 0
 
+def find_all_duplicates_string_multiplication(curr_number: str):
+    found = False
+    n = len(curr_number)
+    for size in range(1, n // 2 + 1):
+        if n % size == 0:
+            base = curr_number[:size]
+            if base * (n // size) == curr_number:
+                found = True
+    return int(curr_number) if found else 0
+
 def find_twice_duplicates(curr_number: str) -> int:
     if len(curr_number) % 2 != 0:
         return 0
@@ -26,7 +36,7 @@ def find_twice_duplicates(curr_number: str) -> int:
 
     return int(curr_number) if first_half == second_half else 0
 
-def gift_shop_part(input_path: str, is_first_part: bool) -> int:
+def gift_shop(input_path: str, is_first_part: bool) -> int:
     with open(input_path) as f:
         input_ranges = f.readline().strip()
         # Split to obtain all the ranges
@@ -43,7 +53,8 @@ def gift_shop_part(input_path: str, is_first_part: bool) -> int:
                 if (is_first_part):
                     sum_invalid_id += find_twice_duplicates(str(curr))
                 else:
-                    sum_invalid_id += find_all_duplicates(str(curr))
+                    # sum_invalid_id += find_all_duplicates(str(curr))
+                    sum_invalid_id += find_all_duplicates_string_multiplication(str(curr))
                 curr += 1
 
     return sum_invalid_id
@@ -57,11 +68,11 @@ def main():
     input_path = args.input
 
     # Part 1 result
-    part_1_res = gift_shop_part(input_path, is_first_part = True)
+    part_1_res = gift_shop(input_path, is_first_part = True)
     print("Part 1: ", part_1_res)
     
     # Part 2 result
-    part_1_res = gift_shop_part(input_path, is_first_part = False)
+    part_1_res = gift_shop(input_path, is_first_part = False)
     print("Part 1: ", part_1_res)
 
 if __name__ == "__main__":
