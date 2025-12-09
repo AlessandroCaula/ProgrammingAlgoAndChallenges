@@ -37,6 +37,37 @@ def laboratories_part1(input_path: str) -> int:
 
     return n_splits
 
+def laboratories_part2(input_path: str) -> int:
+    diagram = []
+    with open(input_path) as f:
+        for line in f:
+            diagram.append(list(line.strip()))
+    
+    n_cols = len(diagram[0])
+
+    active_beams = [0] * n_cols
+
+    # Find start position
+    start_col = diagram[0].index("S")
+    active_beams[start_col] = 1
+
+    for r in range(1, len(diagram)):
+        next_beams = [0] * n_cols
+        for c, count in enumerate(active_beams):
+            if count == 0:
+                continue
+            if diagram[r][c] == "^":
+                # Split left and right
+                if c - 1 >= 0:
+                    next_beams[c - 1] += count
+                if c + 1 < n_cols:
+                    next_beams[c + 1] += count
+            else:
+                # Beam continues straight down
+                next_beams[c] += count
+        active_beams = next_beams
+
+    return sum(active_beams)
 
 def main():
     parser = argparse.ArgumentParser()
@@ -48,6 +79,9 @@ def main():
     
     part_1_res = laboratories_part1(input_path)
     print("Part 1: ", part_1_res)
+
+    part_2_res = laboratories_part2(input_path)
+    print("Part 2: ", part_2_res)
 
 if __name__ == "__main__":
     main()
