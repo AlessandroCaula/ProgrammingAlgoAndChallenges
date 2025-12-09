@@ -123,19 +123,17 @@ def trash_compactor_part2_GPT(path):
     return total
 
 def main():
-    # parser = argparse.ArgumentParser()
-    # parser.add_argument("input", help="Path to input file")
-    # args = parser.parse_args()
-    # input_path = args.input
+    parser = argparse.ArgumentParser()
+    parser.add_argument("input", help="Path to input file")
+    args = parser.parse_args()
+    input_path = args.input
     
-    # part_1_res = trash_compactor_part1(input_path)
-    # print("Part 1: ", part_1_res)
+    part_1_res = trash_compactor_part1(input_path)
+    print("Part 1: ", part_1_res)
     
-    # part_2_res = trash_compactor_part2(input_path)
-    # print("Part 2: ", part_2_res)
-
-    input_path = "/Users/alessandrocaula/Documents/Devs/Git-Repos/ProgrammingAlgoAndChallenges/Advent_of_Code_2025/Day_6/input_test.txt"
-    
+    part_2_res = trash_compactor_part2(input_path)
+    print("Part 2: ", part_2_res)
+        
     part_2_res = trash_compactor_part2_GPT(input_path)
     print("Part 2: ", part_2_res)
 
