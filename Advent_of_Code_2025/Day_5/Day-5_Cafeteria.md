@@ -10,6 +10,7 @@ The Elves in the kitchen explain the situation: because of their complicated new
 
 The database operates on **ingredient IDs**. It consists of a list of **fresh ingredient ID ranges**, a blank line, and a list of available ingredient IDs. For example:
 
+```
 3-5
 10-14
 16-20
@@ -21,6 +22,7 @@ The database operates on **ingredient IDs**. It consists of a list of **fresh in
 11
 17
 32
+```
 
 The fresh ID ranges are **inclusive**: the range 3-5 means that ingredient IDs 3, 4, and 5 are all **fresh**. The ranges can also **overlap**; an ingredient ID is fresh if it is in **any** range.
 
@@ -47,10 +49,12 @@ So that they can stop bugging you when they get new inventory, the Elves would l
 
 Now, the second section of the database (the available ingredient IDs) is irrelevant. Here are the fresh ingredient ID ranges from the above example:
 
+```
 3-5
 10-14
 16-20
 12-18
+```
 
 The ingredient IDs that these ranges consider to be fresh are 3, 4, 5, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, and 20. So, in this example, the fresh ingredient ID ranges consider a total of **14** ingredient IDs to be fresh.
 

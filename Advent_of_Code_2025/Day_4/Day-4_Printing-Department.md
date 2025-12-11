@@ -12,6 +12,7 @@ The rolls of paper (@) are arranged on a large grid; the Elves even have a helpf
 
 For example:
 
+```
 ..@@.@@@@.
 @@@.@.@.@@
 @@@@@.@.@@
@@ -22,11 +23,13 @@ For example:
 @.@@@.@@@@
 .@@@@@@@@.
 @.@.@@@.@.
+```
 
 The forklifts can only access a roll of paper if there are **fewer than four** rolls of paper in the eight adjacent positions. If you can figure out which rolls of paper the forklifts can access, they'll spend less time looking and more time breaking down the wall to the cafeteria.
 
 In this example, there are **13** rolls of paper that can be accessed by a forklift (marked with x):
 
+```
 ..xx.xx@x.
 x@@.@.@.@@
 @@@@@.x.@@
@@ -37,6 +40,7 @@ x@.@@@@.@x
 x.@@@.@@@@
 .@@@@@@@@.
 x.x.@@@.x.
+```
 
 Consider your complete diagram of the paper roll locations. **How many rolls of paper can be accessed by a forklift?**
 
@@ -51,6 +55,7 @@ Once a roll of paper can be accessed by a forklift, if can be **removed**. Once 
 Starting with the same example as above, here is one way you could remove as many rolls of paper as possible, using highlighted **@** to indicate that a roll of paper is about to be removed, ans using x to indicate that a roll of paper was just removed. 
 
 Initial state:
+```
 ..@@.@@@@.
 @@@.@.@.@@
 @@@@@.@.@@
@@ -61,8 +66,10 @@ Initial state:
 @.@@@.@@@@
 .@@@@@@@@.
 @.@.@@@.@.
+```
 
 Remove 13 rolls of paper:
+```
 ..xx.xx@x.
 x@@.@.@.@@
 @@@@@.x.@@
@@ -73,8 +80,10 @@ x@.@@@@.@x
 x.@@@.@@@@
 .@@@@@@@@.
 x.x.@@@.x.
+```
 
 Remove 12 rolls of paper:
+```
 .......x..
 .@@.x.x.@x
 x@@@@...@@
@@ -85,8 +94,10 @@ x.@@@@..x.
 ..@@@.@@@@
 .x@@@@@@@.
 ....@@@...
+```
 
 Remove 7 rolls of paper:
+```
 ..........
 .x@.....x.
 .@@@@...xx
@@ -97,8 +108,10 @@ Remove 7 rolls of paper:
 ..@@@.@@@@
 ..x@@@@@@.
 ....@@@...
+```
 
 Remove 5 rolls of paper:
+```
 ..........
 ..x.......
 .x@@@.....
@@ -109,8 +122,10 @@ Remove 5 rolls of paper:
 ..x@@.@@@x
 ...@@@@@@.
 ....@@@...
+```
 
 Remove 2 rolls of paper:
+```
 ..........
 ..........
 ..x@@.....
@@ -121,8 +136,10 @@ Remove 2 rolls of paper:
 ...@@.@@@.
 ...@@@@@x.
 ....@@@...
+```
 
 Remove 1 roll of paper:
+```
 ..........
 ..........
 ...@@.....
@@ -133,8 +150,10 @@ Remove 1 roll of paper:
 ...@@.@@@.
 ...@@@@@..
 ....@@@...
+```
 
 Remove 1 roll of paper:
+```
 ..........
 ..........
 ...x@.....
@@ -145,8 +164,10 @@ Remove 1 roll of paper:
 ...@@.@@@.
 ...@@@@@..
 ....@@@...
+```
 
 Remove 1 roll of paper:
+```
 ..........
 ..........
 ....x.....
@@ -157,8 +178,10 @@ Remove 1 roll of paper:
 ...@@.@@@.
 ...@@@@@..
 ....@@@...
+```
 
 Remove 1 roll of paper:
+```
 ..........
 ..........
 ..........
@@ -169,6 +192,7 @@ Remove 1 roll of paper:
 ...@@.@@@.
 ...@@@@@..
 ....@@@...
+```
 
 Stop once no more rolls of paper are accessible by a forklift. In this example, a total of **43** rolls of paper can be removed.
 
