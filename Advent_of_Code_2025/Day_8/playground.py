@@ -137,6 +137,85 @@ def playground_part1(input_path) -> int:
 
     return sorted_circuit_length[0] * sorted_circuit_length[1] * sorted_circuit_length[2]
 
+# Part 1 - with Disjoint Set Union
+class DSU:
+    def __init__(self, n):
+        # Each node starts as its own parent (n single-element sets)
+        self.parent = list(range(n))
+        # Track component sizes so we can union by size
+        self.size = [1] * n
+    
+    def find(self, x):
+        # Find the root of x with path compression
+        # Every time we climb up one level, we also shortcut the path
+        while x != self.parent[x]:
+            # Point x directly to its grandparent. Speeds things up a lot
+            self.parent[x] = self.parent[self.parent[x]]
+            x = self.parent[x]
+        return x
+    
+    def union(self, a, b):
+        # Connect the sets containing a and b
+        pa = self.find(a)
+        pb = self.find(b)
+
+        # If they have the same root means that they are already connected
+        if pa == pb:
+            return False
+
+        # Make sure pa is the root of the larger component
+        if self.size[pa] < self.size[pb]:
+            pa, pb = pb, pa
+
+        # Attach the smaller tree (pb) under the bigger one (pa)
+        self.parent[pb] = pa
+        self.size[pa] += self.size[pb]
+
+        return True
+
+def playground_part1_DSU(input_path):
+    circuits = []
+    with open(input_path) as f:
+        for line in f:
+            x, y, z = map(int, line.strip().split(","))
+            circuits.append((x, y, z))
+    
+    n = len(circuits)
+    edges = []
+
+    # Compute all distances between pairs of circuits
+    # Each entry is (distance, i, j)
+    for i in range(n):
+        x1, y1, z1 = circuits[i]
+        for j in range(i + 1, n):
+            x2, y2, z2 = circuits[j]
+            dx = x1 - x2
+            dy = y1 - y2
+            dz = z1 - z2
+            dist = math.sqrt(dx*dx + dy*dy + dz*dz)
+            edges.append((dist, i, j))
+    
+    # Sort edges so we process closest circuits first
+    edges.sort(key=lambda e: e[0])
+
+    dsu = DSU(n)
+
+    # Krustal-style: take the first 1000 closest edges and unify their components
+    for k in range(1000):
+        _, a, b = edges[k]
+        dsu.union(a, b)
+    
+    # Count the size of each final connected component
+    comp = {}
+    for node in range(n):
+        root = dsu.find(node)
+        comp[root] = comp.get(root, 0) + 1
+    
+    # Sort component sizes form largest to smallest
+    biggest = sorted(comp.values(), reverse=True)
+
+    return biggest[0] * biggest[1] * biggest[2]
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("input", help="Path to input file")
@@ -147,6 +226,9 @@ def main():
     
     part_1_res = playground_part1(input_path)
     print("Part 1: ", part_1_res)
+    
+    part_1_res = playground_part1_DSU(input_path)
+    print("Part 1 - DSU: ", part_1_res)
 
     # part_2_res = laboratories_part2(input_path)
     # print("Part 2: ", part_2_res)
