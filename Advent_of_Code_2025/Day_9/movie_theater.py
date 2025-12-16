@@ -1,5 +1,6 @@
 import argparse
 import math
+from collections import deque
 
 
 def movie_theater_part1(input_path: str):
@@ -26,59 +27,6 @@ def movie_theater_part1(input_path: str):
                 biggest_square = curr_rect_area
 
     return biggest_square
-
-
-# def movie_theater_part2(input_path: str):
-
-#     def point_in_polygon(x, y, polygon):
-#         inside = False
-#         n = len(polygon)
-
-#         for i in range(n):
-#             x1, y1 = polygon[i]
-#             x2, y2 = polygon[(i + 1) % n]
-
-#             # Check if the edge crosses the horizontal ray at y
-#             intersects = ((y1 > y) != (y2 > y))
-#             if intersects:
-#                 # Compute x-coordinate of intersection
-#                 x_intersect = x1 + (y - y1) * (x2 - x1) / (y2 - y1)
-
-#                 if x_intersect > x:
-#                     inside = not inside
-
-#         return inside
-
-#     red_tiles_pos = []
-#     with open(input_path) as f:
-#         for line in f:
-#             x, y = map(int, line.strip().split(","))
-#             red_tiles_pos.append((x, y))
-
-#     best = 0
-#     n = len(red_tiles_pos)
-
-#     for i in range(n):
-#         x1, y1 = red_tiles_pos[i]
-#         for j in range(i + 1, n):
-#             x2, y2 = red_tiles_pos[j]
-
-#             # Rectangle area
-#             width = abs(x2 - x1) + 1
-#             height = abs(y2 - y1) + 1
-#             area = width * height
-
-#             if area <= best:
-#                 continue
-
-#             # Rectangle center
-#             cx = (x1 + x2) / 2
-#             cy = (y1 + y2) / 2
-
-#             if point_in_polygon(cx, cy, red_tiles_pos):
-#                 best = area
-
-#     return best
 
 
 def movie_theater_part2(input_path: str):
@@ -146,82 +94,88 @@ def movie_theater_part2(input_path: str):
     x2, y2 = map(int, red_tiles_pos[len(red_tiles_pos) - 1])
     fill_contour(validity_matrix, x1, x2, y1, y2)
 
-    # Fill the contour
-    # for r in range(len(validity_matrix)):
-    # start, end = -1, -1
-    # for c in range(len(validity_matrix[r])):
-    #     curr = validity_matrix[r][c]
-    #     if start == -1 and curr == "#":
-    #         start = c
-    #     elif start != -1 and curr == "#":
-    #         end = c
+    # Create the mask around the validity geometrical space, if the square then crosses this, it means that is it outside the validity region
+    #
+    # Add one vertical row to the left and right
+    for l in validity_matrix:
+        l.insert(0, ".")
+        l.append(".")
+    new_len = len(validity_matrix[0])
+    # Add one horizontal row to the top and button
+    validity_matrix.insert(0, ["." for n in range(new_len)])
+    validity_matrix.append(["." for n in range(new_len)])
 
-    # for i in range(start, end):
-    #     if validity_matrix[r][i] != "#":
-    #         validity_matrix[r][i] = "#"
+    # Get dimensions
+    height = len(validity_matrix)
+    width = len(validity_matrix[0])
 
-    # start_end = []
-    # started = False
-    # can_be_closed = False
-    # curr_start = -1
-    # for c in range(len(validity_matrix[r])):
-    #     curr = validity_matrix[r][c]
-    #     if not started and curr == "#":
-    #         curr_start = c
-    #         started = True
-    #     if curr == "." and started:
-    #         can_be_closed = True
-    #     if can_be_closed and curr == "#":
-    #         start_end.append([curr_start, c])
+    # Flood fill from outside to mark tiles outside the polygon
+    visited = set()
+    queue = deque([(0, 0)])
+    visited.add((0, 0))
 
-    # for start, end in start_end:
-    #     for i in range(start, end):
-    #         validity_matrix[r][i] = "#"
+    while queue:
+        x, y = queue.popleft()
+        validity_matrix[y][x] = 'O'  # Mark as outside
 
-    # from_to = []
-    # started = False
-    # for c in range(len(validity_matrix[r])):
-    #     curr = validity_matrix[r][c]
-    #     if curr == "#" and not started:
-    #         started = True
+        for dx, dy in [(0, 1), (0, -1), (1, 0), (-1, 0)]:
+            nx, ny = x + dx, y + dy
+            if 0 <= nx < width and 0 <= ny < height:
+                if (nx, ny) not in visited and validity_matrix[ny][nx] == '.':
+                    visited.add((nx, ny))
+                    queue.append((nx, ny))
 
-    # for l in validity_matrix:
-    #     print(l)
+    # Convert remaining '.' to 'X' (inside the polygon = green)
+    for y in range(height):
+        for x in range(width):
+            if validity_matrix[y][x] == '.':
+                validity_matrix[y][x] = '#'
 
-    # biggest_square = -1
-    # for t1 in range(len(red_tiles_pos)):
-    #     for t2 in range(t1 + 1, len(red_tiles_pos)):
-    #         x1 = red_tiles_pos[t1][0]
-    #         x2 = red_tiles_pos[t2][0]
-    #         y1 = red_tiles_pos[t1][1]
-    #         y2 = red_tiles_pos[t2][1]
-    #         x_side = abs(x2 - x1) + 1
-    #         y_side = abs(y2 - y1) + 1
+    # Find the largest rectangle with red corners using only red/green tiles
+    biggest_area = 0
 
-    #         curr_rect_area = x_side * y_side
+    for t1 in range(len(red_tiles_pos)):
+        for t2 in range(t1 + 1, len(red_tiles_pos)):
+            x1 = red_tiles_pos[t1][0]
+            x2 = red_tiles_pos[t2][0]
+            y1 = red_tiles_pos[t1][1]
+            y2 = red_tiles_pos[t2][1]
 
-    #         if curr_rect_area > biggest_square:
-    #             # Check if the square is in a valid position
-    #             # Find all the corner of the rectangle
-    #             if curr_rect_area == 50:
-    #                 min_x = min(x1, x2)
-    #                 max_x = max(x1, x2)
-    #                 min_y = min(y1, y2)
-    #                 max_y = max(y1, y2)
-    #                 print(min_x, min_y)
+            # Convert to matrix coordinates (with padding offset of 1)
+            mx1 = x1 - min_x + 1
+            mx2 = x2 - min_x + 1
+            my1 = y1 - min_y + 1
+            my2 = y2 - min_y + 1
 
-    #             biggest_square = curr_rect_area
+            min_mx = min(mx1, mx2)
+            max_mx = max(mx1, mx2)
+            min_my = min(my1, my2)
+            max_my = max(my1, my2)
 
-    return -1
+            # Check if all tiles in rectangle are red (#) or green (X)
+            valid = True
+            for y in range(min_my, max_my + 1):
+                for x in range(min_mx, max_mx + 1):
+                    if validity_matrix[y][x] not in ['#', 'X']:
+                        valid = False
+                        break
+                if not valid:
+                    break
+
+            if valid:
+                area = (max_mx - min_mx + 1) * (max_my - min_my + 1)
+                biggest_area = max(biggest_area, area)
+
+    return biggest_area
 
 
 def main():
-    # parser = argparse.ArgumentParser()
-    # parser.add_argument("input", help="Path to input file")
-    # args = parser.parse_args()
-    # input_path = args.input
+    parser = argparse.ArgumentParser()
+    parser.add_argument("input", help="Path to input file")
+    args = parser.parse_args()
+    input_path = args.input
 
-    input_path = "/Users/alessandrocaula/Documents/Devs/Git-Repos/ProgrammingAlgoAndChallenges/Advent_of_Code_2025/Day_9/input_test.txt"
+    # input_path = "/Users/alessandrocaula/Documents/Devs/Git-Repos/ProgrammingAlgoAndChallenges/Advent_of_Code_2025/Day_9/input.txt"
 
     part_1_res = movie_theater_part1(input_path)
     print("Part 1: ", part_1_res)
