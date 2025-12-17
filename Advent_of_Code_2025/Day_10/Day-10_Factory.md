@@ -46,3 +46,14 @@ The second machine can be configured with as few as **3** button presses:
 
 One way to achieve this is by pressing the last three buttons ((0,4), (0,1,2), and (1,2,3,4)) once each.
 
+The third machine has a total of six indicator lights that need to be configured correctly:
+
+```
+[.###.#] (0,1,2,3,4) (0,3,4) (0,1,2,4,5) (1,2) {10,11,11,5,10,5}
+```
+
+The fewest presses required to correctly configure it is **2**; one way to do this is by pressing buttons (0,3,4) and (0,1,2,4,5) once each.
+
+So, the fewest button presses required to correctly configure the indicator lights on all of the machines is 2 + 3 + 2 = 7.
+
+Analyze each machine's indicator light diagram and button wiring schematics. **What is the fewest button presses required to correctly configure the indicator lights on all of the machines?**

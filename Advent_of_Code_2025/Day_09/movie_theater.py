@@ -1,5 +1,5 @@
-import argparse
 import math
+import argparse
 from collections import deque
 
 
@@ -169,18 +169,133 @@ def movie_theater_part2(input_path: str):
     return biggest_area
 
 
+def movie_theater_part2_opt(input_path: str):
+    points = []
+    with open(input_path) as f:
+        for line in f:
+            line = line.strip()
+            x, y = map(int, line.split(","))
+            points.append([x, y])
+
+    # COORDINATE COMPRESSION: Extract unique x and y coordinates and sort them
+    # This maps large coordinate ranges to small indices (e.g. [2, 100, 500] -> [0, 1, 2])
+    # Saves massive memory when coordinates are sparse
+    xs = sorted({x for x, _ in points})
+    ys = sorted({y for _, y in points})
+
+    # INTERLEAVED GRID: Create grid with size (2*n - 1) to fit both tiles AND spaces between them
+    # Even indices (0, 2, 4, ...) = actual tile positions
+    # Odd indices (1, 3, 5, ...) = space between tiles (for connecting green lines)
+    # Example: 4 unique x-coords -> grid of width 7 (0,1,2,3,4,5,6)
+    grid = [[0] * (len(ys) * 2 - 1) for _ in range(len(xs) * 2 - 1)]
+
+    # DRAW POLYGON BOUNDARY: Connect consecutive red tiles with lines (red + green tiles)
+    # zip(points, points[1:] + points[:1]) pairs each point with the next, wrapping last to first
+    for (x1, y1), (x2, y2) in zip(points, points[1:] + points[:1]):
+        # Convert original coordinates to compressed grid indices
+        # xs.index(x1) finds position in sorted list, +2 converts to interleaved grid position
+        cx1, cx2 = sorted([xs.index(x1) * 2, xs.index(x2) * 2])
+        cy1, cy2 = sorted([ys.index(y1) * 2, ys.index(y2) * 2])
+
+        # Fill rectangle between these two points (handles horizontal/vertical lines)
+        # This marks both the red tiles and green connecting tiles as boundary (value = 1)
+        for cx in range(cx1, cx2 + 1):
+            for cy in range(cy1, cy2 + 1):
+                grid[cx][cy] = 1
+
+    # FLOOD FILL FROM OUTSIDE: Mark all cells reachable from outside the polygon
+    # Start at (-1, -1) which is just outside the grid bounds
+    outside = {(-1, -1)}
+    queue = deque(outside)
+
+    while len(queue) > 0:
+        tx, ty = queue.popleft()
+
+        # Check all 4 neighbors (up, down, left, right)
+        for nx, ny in [(tx - 1, ty), (tx + 1, ty), (tx, ty - 1), (tx, ty + 1)]:
+            # Skip if too far out of bounds (more than 1 step outside grid)
+            if nx < -1 or ny < -1 or nx > len(grid) or ny > len(grid[0]):
+                continue
+
+            # Skip if it's a boundary cell (value = 1, meaning red and green tiles)
+            if 0 <= nx < len(grid) and 0 <= ny < len(grid[0]) and grid[nx][ny] == 1:
+                continue
+
+            # Skip if already visited
+            if (nx, ny) in outside:
+                continue
+
+            # Mark as outside and add to queue for continued flood fill
+            outside.add((nx, ny))
+            queue.append((nx, ny))
+
+    # FILL INTERIOR: Any cell not reached by flood fill must be inside the polygon
+    # Mark these interior cells as valid (green) by setting them to 1
+    for x in range(len(grid)):
+        for y in range(len(grid[0])):
+            if (x, y) not in outside:
+                grid[x][y] = 1
+
+    # BUILD PREFIX SUM ARRAY (PSA): Enables O(1) rectangle sum queries
+    # psa[x][y] = sum of all grid values in rectangle from (0, 0) to (x, y)
+    psa = [[0] * len(row) for row in grid]
+    for x in range(len(psa)):
+        for y in range(len(psa[0])):
+            # Use inclusion-exclusion principles to compute prefix sum
+            left = psa[x - 1][y] if x > 0 else 0    # Sum to the left
+            top = psa[x][y - 1] if y > 0 else 0     # Sum above
+            # Diagonal (counted twice, subtract once)
+            topleft = psa[x - 1][y - 1] if x > 0 < y else 0
+            psa[x][y] = left + top - topleft + grid[x][y]
+
+    def valid(x1, y1, x2, y2):
+        """
+        Check if rectangle with corners at (x1, y1) and (x2, y2) contains ONLY valid tiles. 
+        Uses prefix sum array for O(1) rectangle sum query.
+        Returns True if all cells in rectangle are marked as valid (value = 1).
+        """
+        # Convert original coordinates to compressed grid indices
+        cx1, cx2 = sorted([xs.index(x1) * 2, xs.index(x2) * 2])
+        cy1, cy2 = sorted([ys.index(y1) * 2, ys.index(y2) * 2])
+
+        # Calculate sum in rectangle using PSA with inclusion-exclusion principle
+        # Sum(rect) = psa[bottom-right] - psa[left-column] - psa[top-row] + psa[top-left-corner]
+        left = psa[cx1 - 1][cy2] if cx1 > 0 else 0
+        top = psa[cx2][cy1 - 1] if cy1 > 0 else 0
+        topleft = psa[cx1 - 1][cy1 - 1] if cx1 > 0 < cy1 else 0
+        count = psa[cx2][cy2] - left - top + topleft
+
+        # Rectangle is valid if ALL cells are marked (count equals total cells)
+        return count == (cx2 - cx1 + 1) * (cy2 - cy1 + 1)
+
+    # FIND LARGEST VALID RECTANGLE: Check all pairs of red tiles as potential corners
+    # Calculate area in ORIGINAL coordinates (not compressed grid coordinates)
+    # Only consider rectangles that are fully inside the polygon (valid returns True)
+    max_rectangle = (max(
+        # Area in original coordinate space
+        (abs(x1 - x2) + 1) * (abs(y1 - y2) + 1)
+        for i, (x1, y1) in enumerate(points)    # For each red tile
+        # Pair with all previous tiles (avoid duplicates)
+        for x2, y2 in points[:i]
+        if valid(x1, y1, x2, y2)
+    ))
+
+    return max_rectangle
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("input", help="Path to input file")
     args = parser.parse_args()
     input_path = args.input
 
-    # input_path = "/Users/alessandrocaula/Documents/Devs/Git-Repos/ProgrammingAlgoAndChallenges/Advent_of_Code_2025/Day_9/input.txt"
-
     part_1_res = movie_theater_part1(input_path)
     print("Part 1: ", part_1_res)
 
-    part_2_res = movie_theater_part2(input_path)
+    # part_2_res = movie_theater_part2(input_path)
+    # print("Part 2: ", part_2_res)
+
+    part_2_res = movie_theater_part2_opt(input_path)
     print("Part 2: ", part_2_res)
 
 
