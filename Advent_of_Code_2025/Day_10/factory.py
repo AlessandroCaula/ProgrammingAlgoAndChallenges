@@ -58,6 +58,60 @@ def factory_part1(input_path: str):
     return tot_presses
 
 
+def factory_part2(input_path: str):
+    buttons = []
+    joltage_levels = []
+    with open(input_path) as f:
+        for line in f:
+            line = line.strip().split(" ")
+            # Store the joltage values
+            jlt = line[len(line) - 1]
+            joltage = list(map(int, jlt[1: len(jlt) - 1].split(",")))
+            joltage_levels.append(joltage)
+            # Store the buttons
+            curr_btns = []
+            for btn in line[1: len(line) - 1]:
+                btn_set = set(map(int, btn[1: len(btn) - 1].split(",")))
+                curr_btns.append(btn_set)
+            buttons.append(curr_btns)
+
+    # Loop through all the machines
+    for i in range(len(joltage_levels)):
+        # print(joltage_levels[i])
+        # print(buttons[i])
+        target_joltage = joltage_levels[i]
+        curr_buttons = buttons[i]
+        # Check for each of the joltage levels if there are some buttons position equal to 0. They cannot be touched
+        do_not_press = []
+        for j, pos in enumerate(target_joltage):
+            if pos == 0:
+                do_not_press.append(j)
+        # Remove the buttons combinations that includes the button that cannot be pressed
+        for btn_comb in curr_buttons:
+            for btn in btn_comb:
+                if btn in do_not_press:
+                    curr_buttons.remove(btn_comb)
+
+        pos_presses_map = {}
+        for j, press in enumerate(target_joltage):
+            pos_presses_map[j] = press
+
+        # Sort the mapped buttons and number of presses by press times
+        pos_presses_map = dict(sorted(
+            pos_presses_map.items(), key=lambda item: item[1]
+        ))
+        # Sort the button combinations by length
+        curr_buttons = sorted(curr_buttons, key=lambda x: len(x), reverse=True)
+        # print(curr_buttons)
+
+        curr_joltage = [0 for _ in range(len(target_joltage))]
+        # print(curr_joltage)
+        # print(target_joltage)
+        # Loop for each button and relative number of presses
+        # for btn, presses in pos_presses_map.items():
+        # Loop through all the button combinations
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("input", help="Path to input file")
@@ -66,11 +120,11 @@ def main():
 
     # input_path = "/Users/alessandrocaula/Documents/Devs/Git-Repos/ProgrammingAlgoAndChallenges/Advent_of_Code_2025/Day_10/input_test.txt"
 
-    part_1_res = factory_part1(input_path)
-    print("Part 1: ", part_1_res)
+    # part_1_res = factory_part1(input_path)
+    # print("Part 1: ", part_1_res)
 
-    # part_2_res = factory_part2(input_path)
-    # print("Part 2: ", part_2_res)
+    part_2_res = factory_part2(input_path)
+    print("Part 2: ", part_2_res)
 
 
 if __name__ == "__main__":
